@@ -1,0 +1,11 @@
+node coord12 red 1 4 red
+node coord13 yellow 1 7 yellow
+node coord21 green 4 1 green
+node coord24 blue 4 10 blue
+node coord31 purple 7 1 purple
+node coord34 cyan 7 10 cyan
+node coord42 violetred 10 4 violetred
+node coord43 magenta 10 7 magenta
+permutation purple [[coord21, coord31, coord42, coord43, coord34, coord24, coord13, coord12]]
+permutation yellow [[coord12, coord42]]
+permutation cyan [[coord21, coord24]]

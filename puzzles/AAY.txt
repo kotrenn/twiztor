@@ -1,0 +1,13 @@
+node oul red 4 1 red
+node our orange 12 1 orange
+node oml yellow 1 9 yellow
+node omr magenta 15 9 magenta
+node obt darkred 8 13 darkred
+node iul cyan 6 4 cyan
+node iur blue 10 4 blue
+node iml green 4 7 green
+node imr darkgreen 12 7 darkgreen
+node ibt purple 8 10 purple
+permutation red [[obt, oml, oul, our, omr]]
+permutation green [[ibt, obt], [iml, oml], [iul, oul], [iur, our], [imr, omr]]
+permutation blue [[ibt, iur, iml, imr, iul]]

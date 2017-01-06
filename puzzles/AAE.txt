@@ -1,0 +1,6 @@
+node ul red 1 1 green
+node ur yellow 4 1 blue
+node bl blue 1 4 yellow
+node br green 4 4 red
+permutation red [[ul, bl], [ur, br]]
+permutation blue [[ul, ur], [bl, br]]

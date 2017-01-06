@@ -1,0 +1,15 @@
+[ ] Camera system
+  [ ] Camera move
+  [ ] Camera zoom
+  [ ] Camera rotation
+[ ] InputSystem from public singleton to only public static methods
+[ ] GL rendering class
+  [ ] Matrix stack
+[ ] Vectors and matrices
+  [ ] vec2{if}
+  [ ] vec3{if}
+  [ ] vec4{if}
+  [ ] mat2{if}
+  [ ] mat3{if}
+  [ ] mat4{if}
+[ ] Convert gl_* matrices in GLSL to user-defined matrices

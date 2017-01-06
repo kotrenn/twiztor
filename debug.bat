@@ -1,0 +1,1 @@
+gdb bin/permcpp.exe

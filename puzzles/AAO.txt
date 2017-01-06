@@ -1,0 +1,14 @@
+node coord11 red 1 1 red
+node coord12 red 1 4 red
+node coord21 red 4 1 red
+node coord22 red 4 4 red
+node coord31 green 7 1 green
+node coord32 green 7 4 green
+node coord41 green 10 1 green
+node coord42 green 10 4 green
+node coord33 blue 7 7 blue
+node coord34 blue 7 10 blue
+node coord43 blue 10 7 blue
+node coord44 blue 10 10 blue
+permutation purple [[coord11, coord21, coord22, coord12], [coord31, coord41, coord42, coord32], [coord33, coord43, coord44, coord34]]
+permutation red [[coord11, coord31, coord33], [coord12, coord32, coord34], [coord21, coord41, coord43], [coord22, coord42, coord44]]

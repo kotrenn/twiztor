@@ -1,0 +1,25 @@
+node r1c2 red 4 1 red
+node r1c6 green 16 1 green
+node r2c1 red 1 4 red
+node r2c3 darkred 7 4 darkred
+node r2c5 darkgreen 13 4 darkgreen
+node r2c7 green 19 4 green
+node r3c2 darkred 4 7 darkred
+node r3c3 darkred 7 7 darkred
+node r3c5 darkgreen 13 7 darkgreen
+node r3c6 darkgreen 16 7 darkgreen
+node r4c4 gray 10 10 gray
+node r5c2 purple 4 13 purple
+node r5c3 purple 7 13 purple
+node r5c5 blue 13 13 blue
+node r5c6 blue 16 13 blue
+node r6c1 magenta 1 16 magenta
+node r6c3 purple 7 16 purple
+node r6c5 blue 13 16 blue
+node r6c7 cyan 19 16 cyan
+node r7c2 magenta 4 19 magenta
+node r7c6 cyan 16 19 cyan
+permutation red [[r3c2, r3c3, r4c4, r5c3, r5c2], [r2c5, r1c6, r2c7, r3c6]]
+permutation yellow [[r6c3, r5c3, r4c4, r5c5, r6c5], [r3c2, r2c1, r1c2, r2c3]]
+permutation green [[r2c5, r3c5, r4c4, r3c3, r2c3], [r5c6, r6c7, r7c6, r6c5]]
+permutation blue [[r5c6, r5c5, r4c4, r3c5, r3c6], [r6c3, r7c2, r6c1, r5c2]]

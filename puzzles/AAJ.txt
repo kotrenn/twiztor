@@ -1,0 +1,11 @@
+node lhs1 red 1 1 red
+node lhs2 orange 1 4 orange
+node lhs3 yellow 1 7 yellow
+node rhs1 green 4 1 green
+node rhs2 cyan 4 4 cyan
+node rhs3 blue 4 7 blue
+node rhs4 magenta 4 10 magenta
+node rhs5 purple 4 13 purple
+permutation red [[lhs1, lhs2, lhs3]]
+permutation green [[lhs1, rhs1]]
+permutation blue [[rhs1, rhs2, rhs3, rhs4, rhs5]]

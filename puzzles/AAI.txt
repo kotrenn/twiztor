@@ -1,0 +1,10 @@
+node ul red 3 1 red
+node ur yellow 6 1 yellow
+node rhs green 8 4 green
+node br cyan 6 7 cyan
+node bl blue 3 7 blue
+node lhs purple 1 4 purple
+permutation red [[ul, ur]]
+permutation yellow [[lhs, bl]]
+permutation green [[rhs, br]]
+permutation blue [[ul, ur, rhs, br, bl, lhs]]

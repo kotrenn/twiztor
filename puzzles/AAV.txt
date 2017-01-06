@@ -1,0 +1,21 @@
+node ulul red 1 1 red
+node ulur red 4 1 red
+node ulbl red 1 4 red
+node ulbr red 4 4 red
+node urul yellow 10 1 yellow
+node urur yellow 13 1 yellow
+node urbl yellow 10 4 yellow
+node urbr yellow 13 4 yellow
+node blul green 1 10 green
+node blur green 4 10 green
+node blbl green 1 13 green
+node blbr green 4 13 green
+node brul blue 10 10 blue
+node brur blue 13 10 blue
+node brbl blue 10 13 blue
+node brbr blue 13 13 blue
+node center purple 7 7 purple
+permutation red [[ulul, ulur, ulbr, ulbl], [urul, urur, urbr, urbl]]
+permutation yellow [[brul, brur, brbr, brbl], [blul, blur, blbr, blbl]]
+permutation green [[ulbr, center, urbl]]
+permutation blue [[blur, center, brul]]
