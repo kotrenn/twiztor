@@ -1,0 +1,23 @@
+float L %[3.0]
+node p1 yellow %[zero]
+node p2 yellow %[-L*w0]
+node p3 red %[-L*w2]
+node p4 green %[-L*w1]
+node p5 red %[-L*w0+L*w1]
+node p6 red %[L*w0-L*w2]
+node p7 blue %[-L*w1+L*w2]
+permutation red [[p1, p3], [p4, p7]]
+permutation green [[p1, p4], [p2, p5]]
+permutation blue [[p1, p2], [p3, p6]]
+arc circle red p1 %[L] -+
+arc circle red p3 %[L] -+
+arc circle red p4 %[L] -+
+arc circle red p7 %[L] -+
+arc circle green p1 %[L] -+
+arc circle green p4 %[L] -+
+arc circle green p2 %[L] -+
+arc circle green p5 %[L] -+
+arc circle blue p1 %[L] -+
+arc circle blue p2 %[L] -+
+arc circle blue p3 %[L] -+
+arc circle blue p6 %[L] -+

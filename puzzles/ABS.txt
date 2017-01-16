@@ -1,0 +1,71 @@
+float r 3.5
+float R 5.0
+float L 2.0
+node p1 red %[r*tau_(3,0)]
+node p2 red %[r*tau_(3,1)]
+node p3 red %[r*tau_(3,2)]
+node p4 yellow %[-(r+L+R)*w0+R*tau(6,0)]
+node p5 yellow %[-(r+L+R)*w0+R*tau(6,5)]
+node p6 yellow %[-(r+L+R)*w0+R*tau(6,4)]
+node p7 yellow %[-(r+L+R)*w0+R*tau(6,3)]
+node p8 yellow %[-(r+L+R)*w0+R*tau(6,2)]
+node p9 yellow %[-(r+L+R)*w0+R*tau(6,1)]
+node p10 green %[-(r+L+R)*w2+R*tau(6,4)]
+node p11 green %[-(r+L+R)*w2+R*tau(6,3)]
+node p12 green %[-(r+L+R)*w2+R*tau(6,2)]
+node p13 green %[-(r+L+R)*w2+R*tau(6,1)]
+node p14 green %[-(r+L+R)*w2+R*tau(6,0)]
+node p15 green %[-(r+L+R)*w2+R*tau(6,5)]
+node p16 cyan %[-(r+L+R)*w1+R*tau(6,2)]
+node p17 cyan %[-(r+L+R)*w1+R*tau(6,1)]
+node p18 cyan %[-(r+L+R)*w1+R*tau(6,0)]
+node p19 cyan %[-(r+L+R)*w1+R*tau(6,5)]
+node p20 cyan %[-(r+L+R)*w1+R*tau(6,4)]
+node p21 cyan %[-(r+L+R)*w1+R*tau(6,3)]
+node p22 blue %[-(r+L+R)*w0+(R+L+r)*w2+r*tau_(3,1)]
+node p23 blue %[-(r+L+R)*w0+(R+L+r)*w2+r*tau_(3,2)]
+node p24 blue %[-(r+L+R)*w0+(R+L+r)*w2+r*tau_(3,0)]
+node p25 purple %[-(r+L+R)*w0+(R+L+r)*w1+r*tau_(3,2)]
+node p26 purple %[-(r+L+R)*w0+(R+L+r)*w1+r*tau_(3,0)]
+node p27 purple %[-(r+L+R)*w0+(R+L+r)*w1+r*tau_(3,1)]
+permutation red [[p1, p2, p3], [p22, p23, p24], [p25, p26, p27]]
+permutation green [[p1, p4], [p2, p10], [p3, p16], [p6, p22], [p8, p25]]
+permutation blue [[p4, p5, p6, p7, p8, p9], [p10, p11, p12, p13, p14, p15], [p16, p17, p18, p19, p20, p21]]
+arc circle red p1 %[r] --
+arc circle red p2 %[r] --
+arc circle red p3 %[r] --
+arc circle red p22 %[r] --
+arc circle red p23 %[r] --
+arc circle red p24 %[r] --
+arc circle red p25 %[r] --
+arc circle red p26 %[r] --
+arc circle red p27 %[r] --
+float Lr %[0.9*L]
+arc circle green p1 %[Lr] -+
+arc circle green p4 %[Lr] -+
+arc circle green p2 %[Lr] -+
+arc circle green p10 %[Lr] -+
+arc circle green p3 %[Lr] -+
+arc circle green p16 %[Lr] -+
+arc circle green p6 %[Lr] -+
+arc circle green p22 %[Lr] -+
+arc circle green p8 %[Lr] -+
+arc circle green p25 %[Lr] -+
+arc circle blue p4 %[R] -+
+arc circle blue p5 %[R] -+
+arc circle blue p6 %[R] -+
+arc circle blue p7 %[R] -+
+arc circle blue p8 %[R] -+
+arc circle blue p9 %[R] -+
+arc circle blue p10 %[R] -+
+arc circle blue p11 %[R] -+
+arc circle blue p12 %[R] -+
+arc circle blue p13 %[R] -+
+arc circle blue p14 %[R] -+
+arc circle blue p15 %[R] -+
+arc circle blue p16 %[R] -+
+arc circle blue p17 %[R] -+
+arc circle blue p18 %[R] -+
+arc circle blue p19 %[R] -+
+arc circle blue p20 %[R] -+
+arc circle blue p21 %[R] -+

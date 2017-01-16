@@ -12,6 +12,9 @@ class vec2f(object):
     def __sub__(self, rhs):
         return vec2f(self.x - rhs.x, self.y - rhs.y)
 
+    def __neg__(self):
+        return vec2f(-self.x, -self.y)
+
     def __mul__(self, rhs):
         return vec2f(self.x * float(rhs), self.y * float(rhs))
 
