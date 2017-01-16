@@ -1,12 +1,12 @@
-node p1 yellow %[4*w0+8*w1] yellow
-node p2 yellow %[2*w1] yellow
-node p3 yellow %[-2*w2] yellow
-node p4 green %[-3*w0] green
-node p5 green %[zero] green
-node p6 green %[3*w0] green
-node p7 cyan %[2*w2] cyan
-node p8 cyan %[-2*w1] cyan
-node p9 cyan %[4*w0+8*w2] cyan
+node p1 yellow %[4*w0+8*w1]
+node p2 yellow %[2*w1]
+node p3 yellow %[-2*w2]
+node p4 green %[-3*w0]
+node p5 green %[zero]
+node p6 green %[3*w0]
+node p7 cyan %[2*w2]
+node p8 cyan %[-2*w1]
+node p9 cyan %[4*w0+8*w2]
 permutation yellow [[p1, p6, p4], [p5, p2, p3]]
 permutation cyan [[p9, p4, p6], [p5, p8, p7]]
 float R 4.0

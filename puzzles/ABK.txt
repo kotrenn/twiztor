@@ -1,12 +1,12 @@
-node p1 purple %[w0+3*w1] purple
-node p2 purple %[w0+3*w2] purple
-node p3 red %[-5*w0] red
-node p4 blue %[4*w0] blue
-node p5 red %[-2*w0+2*w1] red
-node p6 blue %[2*w0+w1] blue
-node p7 purple %[zero] purple
-node p8 blue %[2*w0+w2] blue
-node p9 red %[-2*w0+2*w2] red
+node p1 purple %[w0+3*w1]
+node p2 purple %[w0+3*w2]
+node p3 red %[-5*w0]
+node p4 blue %[4*w0]
+node p5 red %[-2*w0+2*w1]
+node p6 blue %[2*w0+w1]
+node p7 purple %[zero]
+node p8 blue %[2*w0+w2]
+node p9 red %[-2*w0+2*w2]
 permutation red [[p1, p2, p3], [p5, p7, p9]]
 permutation blue [[p1, p4, p2], [p6, p8, p7]]
 arc circle red p1 3.0 --

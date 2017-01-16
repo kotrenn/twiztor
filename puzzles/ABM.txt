@@ -1,39 +1,39 @@
-node p1 yellow %[-3*w2] yellow
-node p2 yellow %[-3*w1] yellow
-node p3 yellow %[-3*w0] yellow
-node p4 yellow %[5*w1] yellow
-node p5 yellow %[5*w0] yellow
-node p6 yellow %[5*w2] yellow
-node p7 yellow %[2*w0+7*w1] yellow
-node p8 yellow %[7*w0+2*w2] yellow
-node p9 yellow %[2*w1+7*w2] yellow
-node p10 blue %[-8*w0] blue
-node p11 blue %[-9*w0+w1] blue
-node p12 blue %[-9*w0+w2] blue
-node p13 red %[-8*w2] red
-node p14 red %[-9*w2+w1] red
-node p15 red %[-9*w2+w0] red
-node p16 green %[-8*w1] green
-node p17 green %[-9*w1+w0] green
-node p18 green %[-9*w1+w2] green
-node p19 red %[10*w2] red
-node p20 red %[16*w2] red
-node p21 red %[-6*w0+10*w2] red
-node p22 red %[-2*w0+10*w2] red
-node p23 red %[14*w2] red
-node p24 red %[-4*w0+12*w2] red
-node p25 blue %[10*w0-2*w1] blue
-node p26 blue %[14*w0] blue
-node p27 blue %[12*w0-4*w1] blue
-node p28 blue %[10*w0] blue
-node p29 blue %[16*w0] blue
-node p30 blue %[10*w0-6*w1] blue
-node p31 green %[10*w1-2*w2] green
-node p32 green %[14*w1] green
-node p33 green %[12*w1-4*w2] green
-node p34 green %[10*w1] green
-node p35 green %[16*w1] green
-node p36 green %[10*w1-6*w2] green
+node p1 yellow %[-3*w2]
+node p2 yellow %[-3*w1]
+node p3 yellow %[-3*w0]
+node p4 yellow %[5*w1]
+node p5 yellow %[5*w0]
+node p6 yellow %[5*w2]
+node p7 yellow %[2*w0+7*w1]
+node p8 yellow %[7*w0+2*w2]
+node p9 yellow %[2*w1+7*w2]
+node p10 blue %[-8*w0]
+node p11 blue %[-9*w0+w1]
+node p12 blue %[-9*w0+w2]
+node p13 red %[-8*w2]
+node p14 red %[-9*w2+w1]
+node p15 red %[-9*w2+w0]
+node p16 green %[-8*w1]
+node p17 green %[-9*w1+w0]
+node p18 green %[-9*w1+w2]
+node p19 red %[10*w2]
+node p20 red %[16*w2]
+node p21 red %[-6*w0+10*w2]
+node p22 red %[-2*w0+10*w2]
+node p23 red %[14*w2]
+node p24 red %[-4*w0+12*w2]
+node p25 blue %[10*w0-2*w1]
+node p26 blue %[14*w0]
+node p27 blue %[12*w0-4*w1]
+node p28 blue %[10*w0]
+node p29 blue %[16*w0]
+node p30 blue %[10*w0-6*w1]
+node p31 green %[10*w1-2*w2]
+node p32 green %[14*w1]
+node p33 green %[12*w1-4*w2]
+node p34 green %[10*w1]
+node p35 green %[16*w1]
+node p36 green %[10*w1-6*w2]
 permutation red [[p22, p23, p24], [p19, p20, p21], [p13, p14, p15]]
 permutation green [[p31, p32, p33], [p34, p35, p36], [p16, p17, p18]]
 permutation blue [[p25, p26, p27], [p28, p29, p30], [p10, p11, p12]]
