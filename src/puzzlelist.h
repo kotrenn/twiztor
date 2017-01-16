@@ -20,6 +20,8 @@ public:
 	PuzzleData *getCurrentPuzzle() const;
 	void nextPuzzle();
 	void prevPuzzle();
+	void firstPuzzle();
+	void lastPuzzle();
 private:
 	vector<PuzzleData *> m_puzzleDataList;
 	unsigned int m_currentIndex;

@@ -71,3 +71,13 @@ void PuzzleList::prevPuzzle()
 	if (m_currentIndex == 0) return;
 	m_currentIndex--;
 }
+
+void PuzzleList::firstPuzzle()
+{
+	m_currentIndex = 0;
+}
+
+void PuzzleList::lastPuzzle()
+{
+	m_currentIndex = m_puzzleDataList.size() - 1;
+}

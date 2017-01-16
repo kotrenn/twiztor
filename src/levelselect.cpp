@@ -35,6 +35,8 @@ void LevelSelect::eventKeyUp(const SDL_KeyboardEvent &key)
 	{
 	case SDLK_LEFTBRACKET:  m_puzzleList->prevPuzzle(); break;
 	case SDLK_RIGHTBRACKET: m_puzzleList->nextPuzzle(); break;
+	case SDLK_HOME:         m_puzzleList->firstPuzzle(); break;
+	case SDLK_END:          m_puzzleList->lastPuzzle(); break;
 	default: break;
 	}
 
