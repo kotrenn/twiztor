@@ -1,26 +1,26 @@
 float r 2.0
 float R 3.0
-node p1 purple %[r*tau(4,0)] purple
-node p2 purple %[r*tau(4,1)] purple
-node p3 purple %[r*tau(4,2)] purple
-node p4 purple %[r*tau(4,3)] purple
-node p5 red %[R*tau(4,3)] red
-node p6 yellow %[R*tau(4,0)+r*tau(2,1)] yellow
-node p7 yellow %[R*tau(4,0)+r*tau(2,0)] yellow
-node p8 green %[R*tau(4,1)+r*tau(12,9)] green
-node p9 green %[R*tau(4,1)+r*tau(12,5)] green
-node p10 green %[R*tau(4,1)+r*tau(12,1)] green
-node p11 blue %[R*tau(4,2)+r*tau(4,0)] blue
-node p12 blue %[R*tau(4,2)+r*tau(4,3)] blue
-node p13 blue %[R*tau(4,2)+r*tau(4,2)] blue
-node p14 blue %[R*tau(4,2)+r*tau(4,1)] blue
+node p1 purple %[r*tau(4,3)] purple
+node p2 purple %[r*tau(4,0)] purple
+node p3 purple %[r*tau(4,1)] purple
+node p4 purple %[r*tau(4,2)] purple
+node p5 red %[(r+R+r)*tau(4,3)+r*tau(4,1)] red
+node p6 yellow %[(r+R+r)*tau(4,0)+r*tau(2,1)] yellow
+node p7 yellow %[(r+R+r)*tau(4,0)+r*tau(2,0)] yellow
+node p8 green %[(r+R+r)*tau(4,1)+r*tau(12,9)] green
+node p9 green %[(r+R+r)*tau(4,1)+r*tau(12,5)] green
+node p10 green %[(r+R+r)*tau(4,1)+r*tau(12,1)] green
+node p11 blue %[(r+R+r)*tau(4,2)+r*tau(4,0)] blue
+node p12 blue %[(r+R+r)*tau(4,2)+r*tau(4,3)] blue
+node p13 blue %[(r+R+r)*tau(4,2)+r*tau(4,2)] blue
+node p14 blue %[(r+R+r)*tau(4,2)+r*tau(4,1)] blue
 permutation red [[p1, p4, p3, p2]]
 permutation green [[p1, p5], [p2, p6], [p3, p8], [p4, p11]]
 permutation blue [[p6, p7], [p8, p9, p10], [p11, p12, p13, p14]]
-arc circle red p1 2.0 +-
-arc circle red p4 2.0 +-
-arc circle red p3 2.0 +-
-arc circle red p2 2.0 +-
+arc circle red p1 %[r] --
+arc circle red p4 %[r] --
+arc circle red p3 %[r] --
+arc circle red p2 %[r] --
 arc circle green p1 2.2 +-
 arc circle green p5 2.2 +-
 arc circle green p2 2.2 +-
@@ -29,12 +29,12 @@ arc circle green p3 2.2 +-
 arc circle green p8 2.2 +-
 arc circle green p4 2.2 +-
 arc circle green p11 2.2 +-
-arc circle blue p6 2.0 +-
-arc circle blue p7 2.0 +-
-arc circle blue p8 2.0 +-
-arc circle blue p9 2.0 +-
-arc circle blue p10 2.0 +-
-arc circle blue p11 2.0 +-
-arc circle blue p12 2.0 +-
-arc circle blue p13 2.0 +-
-arc circle blue p14 2.0 +-
+arc circle blue p6 %[r] +-
+arc circle blue p7 %[r] +-
+arc circle blue p8 %[r] --
+arc circle blue p9 %[r] --
+arc circle blue p10 %[r] --
+arc circle blue p11 %[r] --
+arc circle blue p12 %[r] --
+arc circle blue p13 %[r] --
+arc circle blue p14 %[r] --
