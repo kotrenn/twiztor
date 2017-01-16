@@ -121,30 +121,30 @@ void PuzzleReader::readArc(const string &rawLine)
 void PuzzleReader::readCircleArc(const vector<string> &values)
 {
 	// TODO: PuzzleReader: Remove destination of an arc in the specification (all arc types)
-	// TODO:               Update circle arcs with center point -> radius
-	// TODO:               Include +/- for which solution to quad. eq. and which half of circle
 	string arcColor = values[2];
 	string nodeU = values[3];
 	string nodeV = values[4];
-	float circleX = m_zoomScale * stof(values[5]);
-	float circleY = m_zoomScale * stof(values[6]);
+	float circleR = m_zoomScale * stof(values[5]);
+	bool circlePlus = values[6][0] == '+';
+	bool circleInverted = values[6][1] == '+';
 
-	if (m_debugEnabled || true)
+	if (m_debugEnabled)
 		cout << "Building circle arc on permutation " << arcColor
 		     << " from node " << nodeU << " to " << nodeV
-		     << " with circle center [" << circleX << ", "
-		     << circleY << "]" << endl;
+		     << " with radius " << circleR << ", plus = "
+		     << boolalpha << circlePlus << ", inverted = "
+		     << circleInverted << endl;
 
 	Permutation *permutation = m_permutationMap[arcColor];
 	unsigned int indexU = indexOf(nodeU);
 	unsigned int indexV = indexOf(nodeV);
 	Slot *slotU = m_puzzleData->getSlot(indexU);
 	Slot *slotV = m_puzzleData->getSlot(indexV);
-	vec2f circleCenter = vec2f(circleX, circleY);
-	CircleArc *circleArc = new CircleArc(permutation, slotU, slotV, circleCenter);
+	CircleArc *circleArc = new CircleArc(permutation, slotU, slotV,
+	                                     circleR, circlePlus, circleInverted);
 	m_puzzleData->setArc(permutation, indexU, circleArc);
 
-	if (m_debugEnabled || true)
+	if (m_debugEnabled)
 	{
 		cout << "  indexU = " << indexU << endl;
 		cout << "  indexV = " << indexV << endl;
@@ -312,5 +312,4 @@ void PuzzleReader::recenter()
 	for (Permutation *permutation : *(m_puzzleData->getPermutationList()))
 		for (Arc *arc : m_puzzleData->getArcList(permutation))
 			arc->adjustCenter(centerSum);
-		
 }

@@ -1,5 +1,5 @@
 node lhs red 1 1 blue
 node rhs blue 4 1 red
 permutation red [[lhs, rhs]]
-arc circle red lhs rhs 2.5 0.0
-arc circle red rhs lhs 2.5 2.0
+arc circle red lhs rhs 2.2 +-
+arc circle red rhs lhs 2.2 +-

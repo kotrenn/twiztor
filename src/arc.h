@@ -33,14 +33,18 @@ public:
 class CircleArc : public Arc
 {
 public:
-	CircleArc(Permutation *permutation, Slot *slotU, Slot *slotV, const vec2f &circleCenter);
+	CircleArc(Permutation *permutation, Slot *slotU, Slot *slotV,
+	          float circleRadius,
+	          bool circlePlus, bool circleInverted);
 
 	vec2f getPoint(float t) const;
 	void render() const;
-
-	void adjustCenter(const vec2f &newCenter);
 private:
-	vec2f m_circleCenter;
+	static const bool sc_debugEnabled = false;
+	
+	float m_circleRadius;
+	bool m_circlePlus;
+	bool m_circleInverted;
 };
 
 #endif
