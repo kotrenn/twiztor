@@ -15,6 +15,9 @@ class vec2f(object):
     def __rmul__(self, rhs):
         return vec2f(rhs * self.x, rhs * self.y)
 
+    def norm(self):
+        return sqrt(self.x * self.x + self.y * self.y)
+
     def __str__(self):
         xstr = '{0:.4f}'.format(self.x)
         ystr = '{0:.4f}'.format(self.y)
@@ -47,9 +50,12 @@ def eval_exp(var_table, val):
 
 def update_vars(var_table, vals):
     if vals[0] == 'float':
-        var_table[vals[1]] = vals[2]
+        f = eval_exp(var_table, vals[2])
+        var_table[vals[1]] = f
     if vals[0] == 'vec2f':
-        var_table[vals[1]] = 'vec2f(' + vals[2] + ',' + vals[3] + ')'
+        x = eval_exp(var_table, vals[2])
+        y = eval_exp(var_table, vals[3])
+        var_table[vals[1]] = 'vec2f(' + x + ',' + y + ')'
 
 var_table = {}
 with open(sys.argv[1], 'r') as f:
