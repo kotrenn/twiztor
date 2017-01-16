@@ -123,21 +123,20 @@ void PuzzleReader::readCircleArc(const vector<string> &values)
 	// TODO: PuzzleReader: Remove destination of an arc in the specification (all arc types)
 	string arcColor = values[2];
 	string nodeU = values[3];
-	string nodeV = values[4];
-	float circleR = m_zoomScale * stof(values[5]);
-	bool circlePlus = values[6][0] == '+';
-	bool circleInverted = values[6][1] == '+';
+	float circleR = m_zoomScale * stof(values[4]);
+	bool circlePlus = values[5][0] == '+';
+	bool circleInverted = values[5][1] == '+';
 
 	if (m_debugEnabled)
 		cout << "Building circle arc on permutation " << arcColor
-		     << " from node " << nodeU << " to " << nodeV
+		     << " from node " << nodeU
 		     << " with radius " << circleR << ", plus = "
 		     << boolalpha << circlePlus << ", inverted = "
 		     << circleInverted << endl;
 
 	Permutation *permutation = m_permutationMap[arcColor];
 	unsigned int indexU = indexOf(nodeU);
-	unsigned int indexV = indexOf(nodeV);
+	unsigned int indexV = permutation->next(indexU);
 	Slot *slotU = m_puzzleData->getSlot(indexU);
 	Slot *slotV = m_puzzleData->getSlot(indexV);
 	CircleArc *circleArc = new CircleArc(permutation, slotU, slotV,
