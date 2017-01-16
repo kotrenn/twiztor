@@ -16,10 +16,10 @@ $(obj): %.o: %.cpp
 	g++ ${FLAGS} -c -o $@ $<
 
 clean:
-	rm -rf ${EXE} src/*.o puzzlelist.txt
+	rm -rf ${EXE} src/*.o puzzlelist.txt puzzles/*.puz
 
 clean-all:
-	rm -rf ${EXE} src/*.o html latex
+	rm -rf ${EXE} src/*.o puzzlelist.txt puzzles/*.puz html latex
 
 doc:
 	rm -rf html latex
