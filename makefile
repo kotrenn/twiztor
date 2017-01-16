@@ -2,6 +2,8 @@ NAME = permcpp
 EXE = bin\${NAME}.exe
 src := $(wildcard src/*.cpp)
 obj := $(src:%.cpp=%.o)
+puz_src := $(wildcard puzzles/*.txt)
+puz_obj := $(puz_src:%.txt=%.puz)
 FLAGS = -O0 -g -Wall -Wextra -std=c++0x -Wl,-subsystem,windows
 #FLAGS = -O3 -std=c++0x
 LINKS = -lm -lmingw32 -lSDL2main -lSDL2 -lglew32 -lopengl32 -lglu32
@@ -27,5 +29,8 @@ doc:
 
 puzzles: puzzlelist.txt
 
-puzzlelist.txt: genpuzzles.py
+puzzlelist.txt: genpuzzles.py compile_puzzle.py $(puz_obj)
 	python genpuzzles.py
+
+$(puz_obj): %.puz: %.txt
+	python compile_puzzle.py $< > $@
