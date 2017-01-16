@@ -1,0 +1,18 @@
+node p1 red %[-6*w0] red
+node p2 blue %[-3*w0+3*w1] blue
+node p3 red %[-3*w0] red
+node p4 blue %[3*w1] blue
+node p5 red %[zero] red
+node p6 blue %[-3*w2] blue
+node p7 red %[3*w0] red
+node p8 blue %[3*w0-3*w2] blue
+node p9 red %[6*w0] red
+node p10 purple %[3*w0+6*w1] purple
+node p11 purple %[2*w0+4*w2] purple
+permutation red [[p1, p2], [p3, p4], [p5, p6], [p7, p8]]
+permutation blue [[p2, p3], [p4, p5], [p6, p7], [p8, p9]]
+permutation purple [[p10, p8, p6, p4, p2], [p1, p3, p5, p7, p9, p11]]
+arc circle purple p2 %[(-3*w0+3*w1).norm()] -+
+arc circle purple p10 %[(-3*w0+3*w1).norm()] -+
+arc circle purple p9 %[(4*w0+8*w2).norm()] -+
+arc circle purple p11 %[(4*w0+8*w2).norm()] -+
