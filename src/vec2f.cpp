@@ -147,8 +147,8 @@ const vec2f vec2f::getUnit() const
 	float retY = 0.0;
 	if (mag > EPSILON)
 	{
-		retX /= mag;
-		retY /= mag;
+		retX = m_x / mag;
+		retY = m_y / mag;
 	}
 	vec2f ret(retX, retY);
 	return ret;
