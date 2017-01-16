@@ -1,0 +1,103 @@
+node p1 red %[-3*w2] red
+node p2 red %[-3*w1] red
+node p3 red %[-3*w0] red
+node p4 red %[5*w1] red
+node p5 red %[5*w0] red
+node p6 red %[5*w2] red
+node p7 red %[2*w0+7*w1] red
+node p8 red %[7*w0+2*w2] red
+node p9 red %[2*w1+7*w2] red
+node p10 red %[-8*w0] red
+node p11 red %[-9*w0+w1] red
+node p12 red %[-9*w0+w2] red
+node p13 red %[-8*w2] red
+node p14 red %[-9*w2+w1] red
+node p15 red %[-9*w2+w0] red
+node p16 red %[-8*w1] red
+node p17 red %[-9*w1+w0] red
+node p18 red %[-9*w1+w2] red
+node p19 red %[10*w2] red
+node p20 red %[16*w2] red
+node p21 red %[-6*w0+10*w2] red
+node p22 red %[-2*w0+10*w2] red
+node p23 red %[14*w2] red
+node p24 red %[-4*w0+12*w2] red
+node p25 red %[10*w0-2*w1] red
+node p26 red %[14*w0] red
+node p27 red %[12*w0-4*w1] red
+node p28 red %[10*w0] red
+node p29 red %[16*w0] red
+node p30 red %[10*w0-6*w1] red
+node p31 red %[10*w1-2*w2] red
+node p32 red %[14*w1] red
+node p33 red %[12*w1-4*w2] red
+node p34 red %[10*w1] red
+node p35 red %[16*w1] red
+node p36 red %[10*w1-6*w2] red
+permutation red [[p22, p23, p24], [p19, p20, p21], [p13, p14, p15]]
+permutation green [[p31, p32, p33], [p34, p35, p36], [p16, p17, p18]]
+permutation blue [[p25, p26, p27], [p28, p29, p30], [p10, p11, p12]]
+permutation yellow [[p1, p2, p3], [p4, p5, p6], [p7, p8, p9]]
+permutation cyan [[p12, p11, p34, p14, p15, p28, p17, p18, p19]]
+permutation purple [[p4, p34], [p5, p28], [p6, p19], [p7, p31], [p8, p25], [p9, p22], [p1, p13], [p2, p16], [p3, p10]]
+float r1 3.0
+float r2 5.0
+float r3 %[(5*w0-2*w1).norm()]
+float r4 2.0
+float r5 %[(2*w0-2*w2).norm()]
+float r6 1.0
+float r7 4.2
+arc circle red p22 %[r4] --
+arc circle red p23 %[r4] --
+arc circle red p24 %[r4] --
+arc circle red p19 %[r5] -+
+arc circle red p20 %[r5] -+
+arc circle red p21 %[r5] -+
+arc circle red p13 %[r6] --
+arc circle red p14 %[r6] --
+arc circle red p15 %[r6] --
+arc circle green p31 %[r4] --
+arc circle green p32 %[r4] --
+arc circle green p33 %[r4] --
+arc circle green p34 %[r5] -+
+arc circle green p35 %[r5] -+
+arc circle green p36 %[r5] -+
+arc circle green p16 %[r6] --
+arc circle green p17 %[r6] --
+arc circle green p18 %[r6] --
+arc circle blue p25 %[r4] --
+arc circle blue p26 %[r4] --
+arc circle blue p27 %[r4] --
+arc circle blue p28 %[r5] -+
+arc circle blue p29 %[r5] -+
+arc circle blue p30 %[r5] -+
+arc circle blue p10 %[r6] +-
+arc circle blue p11 %[r6] +-
+arc circle blue p12 %[r6] +-
+arc circle yellow p1 %[r1] -+
+arc circle yellow p2 %[r1] -+
+arc circle yellow p3 %[r1] -+
+arc circle yellow p4 %[r2] -+
+arc circle yellow p5 %[r2] -+
+arc circle yellow p6 %[r2] -+
+arc circle yellow p7 %[r3] -+
+arc circle yellow p8 %[r3] -+
+arc circle yellow p9 %[r3] -+
+arc circle purple p4 %[r7] -+
+arc circle purple p34 %[r7] -+
+arc circle purple p5 %[r7] -+
+arc circle purple p28 %[r7] -+
+arc circle purple p6 %[r7] -+
+arc circle purple p19 %[r7] -+
+arc circle purple p7 %[r7] -+
+arc circle purple p31 %[r7] -+
+arc circle purple p8 %[r7] -+
+arc circle purple p25 %[r7] -+
+arc circle purple p9 %[r7] -+
+arc circle purple p22 %[r7] -+
+arc circle purple p1 %[r7] -+
+arc circle purple p13 %[r7] -+
+arc circle purple p2 %[r7] -+
+arc circle purple p16 %[r7] -+
+arc circle purple p3 %[r7] -+
+arc circle purple p10 %[r7] -+
