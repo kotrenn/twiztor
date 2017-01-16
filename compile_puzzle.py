@@ -12,8 +12,17 @@ class vec2f(object):
     def __sub__(self, rhs):
         return vec2f(self.x - rhs.x, self.y - rhs.y)
 
-    def __rmul__(self, rhs):
-        return vec2f(rhs * self.x, rhs * self.y)
+    def __mul__(self, rhs):
+        return vec2f(self.x * float(rhs), self.y * float(rhs))
+
+    def __div__(self, rhs):
+        return vec2f(self.x / float(rhs), self.y / float(rhs))
+
+    def __rmul__(self, lhs):
+        return vec2f(float(lhs) * self.x, float(lhs) * self.y)
+
+    def __rdiv__(self, lhs):
+        return vec2f(float(lhs) / self.x, float(lhs) / self.y)
 
     def norm(self):
         return sqrt(self.x * self.x + self.y * self.y)
