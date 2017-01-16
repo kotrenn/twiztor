@@ -1,8 +1,8 @@
-node coord11 red 1 1 red
-node coord21 blue 4 1 red
-node coord22 red 4 4 red
-node coord32 blue 7 4 blue
-node coord33 red 7 7 blue
+node coord11 red 1 1
+node coord21 blue 4 1
+node coord22 red 4 4
+node coord32 blue 7 4
+node coord33 red 7 7
 permutation red [[coord11, coord21]]
 permutation green [[coord21, coord22]]
 permutation blue [[coord22, coord32]]

@@ -1,7 +1,7 @@
-node ul red 1 1 red
-node ur yellow 4 1 yellow
-node bl blue 1 4 blue
-node br green 4 4 green
+node ul red 1 1
+node ur yellow 4 1
+node bl blue 1 4
+node br green 4 4
 permutation red [[ul, ur, bl]]
 permutation blue [[ur, br, bl]]
 arc circle red ul 2.2 +-

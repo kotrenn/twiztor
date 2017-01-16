@@ -1,6 +1,6 @@
-node coord12 red 1 4 red
-node coord13 yellow 1 7 yellow
-node coord21 green 4 1 green
-node coord23 blue 4 7 blue
-node coord31 purple 7 1 purple
-node coord32 cyan 7 4 cyan
+node coord12 red 1 4
+node coord13 yellow 1 7
+node coord21 green 4 1
+node coord23 blue 4 7
+node coord31 purple 7 1
+node coord32 cyan 7 4

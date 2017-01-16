@@ -1,8 +1,8 @@
-node ul red 3 1 red
-node ur yellow 6 1 yellow
-node rhs green 8 4 green
-node br cyan 6 7 cyan
-node bl blue 3 7 blue
-node lhs purple 1 4 purple
+node ul red 3 1
+node ur yellow 6 1
+node rhs green 8 4
+node br cyan 6 7
+node bl blue 3 7
+node lhs purple 1 4
 permutation red [[ul, ur]]
 permutation blue [[ul, ur, rhs, br, bl, lhs]]

@@ -1,12 +1,12 @@
-node r2c1 red 1 4 red
-node r2c2 red 4 4 red
-node r1c2 red 4 1 red
-node r1c3 green 7 1 green
-node r1c4 green 10 1 green
-node r2c4 green 10 4 green
-node r3c4 blue 10 7 blue
-node r3c3 blue 7 7 blue
-node r4c3 blue 7 10 blue
+node r2c1 red 1 4
+node r2c2 red 4 4
+node r1c2 red 4 1
+node r1c3 green 7 1
+node r1c4 green 10 1
+node r2c4 green 10 4
+node r3c4 blue 10 7
+node r3c3 blue 7 7
+node r4c3 blue 7 10
 permutation red [[r2c1, r2c2], [r1c4, r2c4]]
 permutation yellow [[r2c2, r1c2], [r2c4, r3c4]]
 permutation green [[r1c2, r1c3], [r3c4, r3c3]]

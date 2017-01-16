@@ -1,6 +1,6 @@
-node lhs red 1 1 green
-node rhs green 4 1 blue
-node bot blue 4 4 red
+node lhs red 1 1
+node rhs green 4 1
+node bot blue 4 4
 permutation red [[lhs, rhs]]
 permutation blue [[rhs, bot]]
 arc circle red lhs 2.2 +-

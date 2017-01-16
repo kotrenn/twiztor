@@ -1,16 +1,16 @@
-node coord13 red 1 7 red
-node coord22 yellow 4 4 yellow
-node coord23 green 4 7 green
-node coord24 blue 4 10 blue
-node coord31 purple 7 1 purple
-node coord32 cyan 7 4 cyan
-node coord33 violet 7 7 violet
-node coord34 brown 7 10 brown
-node coord35 grey 7 13 grey
-node coord42 darkred 10 4 darkred
-node coord43 darkorchid 10 7 darkorchid
-node coord44 turquoise4 10 10 turquoise4
-node coord53 yellowgreen 13 7 yellowgreen
+node coord13 red 1 7
+node coord22 yellow 4 4
+node coord23 green 4 7
+node coord24 blue 4 10
+node coord31 purple 7 1
+node coord32 cyan 7 4
+node coord33 violet 7 7
+node coord34 brown 7 10
+node coord35 grey 7 13
+node coord42 darkred 10 4
+node coord43 darkorchid 10 7
+node coord44 turquoise4 10 10
+node coord53 yellowgreen 13 7
 permutation red [[coord13, coord23], [coord33, coord43]]
 permutation yellow [[coord22, coord23], [coord31, coord32], [coord33, coord34], [coord42, coord43]]
 permutation green [[coord23, coord33], [coord43, coord53]]

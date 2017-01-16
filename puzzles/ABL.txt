@@ -23,4 +23,3 @@ arc circle cyan p6 %[R] -+
 arc circle cyan p5 %[r] -+
 arc circle cyan p8 %[r] -+
 arc circle cyan p7 %[r] -+
-
