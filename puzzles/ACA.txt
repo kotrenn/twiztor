@@ -1,0 +1,51 @@
+node p1 purple %[3*tau(6,0)]
+node p2 purple %[3*tau(6,1)]
+node p3 blue %[3*tau(6,2)]
+node p4 blue %[3*tau(6,3)]
+node p5 blue %[3*tau(6,4)]
+node p6 purple %[3*tau(6,5)]
+node p7 blue %[-3*w0+3*tau(6,0)]
+node p8 cyan %[-3*w0+3*tau(6,2)]
+node p9 cyan %[-3*w0+3*tau(6,3)]
+node p10 cyan %[-3*w0+3*tau(6,4)]
+node p11 green %[-12*w0+3*tau(6,0)]
+node p12 green %[-12*w0+3*tau(6,1)]
+node p13 yellow %[-12*w0+3*tau(6,2)]
+node p14 yellow %[-12*w0+3*tau(6,3)]
+node p15 yellow %[-12*w0+3*tau(6,4)]
+node p16 green %[-12*w0+3*tau(6,5)]
+node p17 yellow %[-15*w0+3*tau(6,0)]
+node p18 red %[-15*w0+3*tau(6,2)]
+node p19 red %[-15*w0+3*tau(6,3)]
+node p20 red %[-15*w0+3*tau(6,4)]
+permutation red [[p17, p15, p20, p19, p18, p13], [p1, p2, p3, p4, p5, p6]]
+permutation yellow [[p12, p13, p14, p15, p16, p11], [p7, p3, p8, p9, p10, p5]]
+permutation purple [[p9, p11]]
+float R %[3.0]
+arc circle red p17 %[R] -+
+arc circle red p15 %[R] -+
+arc circle red p20 %[R] -+
+arc circle red p19 %[R] -+
+arc circle red p18 %[R] -+
+arc circle red p13 %[R] -+
+arc circle yellow p11 %[R] +-
+arc circle yellow p16 %[R] +-
+arc circle yellow p15 %[R] +-
+arc circle yellow p14 %[R] +-
+arc circle yellow p13 %[R] +-
+arc circle yellow p12 %[R] +-
+arc circle yellow p7 %[R] +-
+arc circle yellow p3 %[R] +-
+arc circle yellow p8 %[R] +-
+arc circle yellow p9 %[R] +-
+arc circle yellow p10 %[R] +-
+arc circle yellow p5 %[R] +-
+arc circle red p1 %[R] +-
+arc circle red p2 %[R] +-
+arc circle red p3 %[R] +-
+arc circle red p4 %[R] +-
+arc circle red p5 %[R] +-
+arc circle red p6 %[R] +-
+float r %[3.0]
+arc circle purple p9 %[r] -+
+arc circle purple p11 %[r] -+
