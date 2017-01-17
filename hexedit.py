@@ -12,6 +12,8 @@ def draw_string(dst, msg, x, y, centered=False):
         y -= text.get_height() / 2
     dst.blit(text, (x, y))
 
+TILE_RADIUS = 40.0
+
 DIR_UP = 0
 DIR_LEFT_UP = 1
 DIR_LEFT_DOWN = 2
@@ -25,7 +27,7 @@ def dir_to_vec2f(the_dir):
 class HexTile(object):
     def __init__(self, center):
         self.center = center
-        self.radius = 40.0
+        self.radius = TILE_RADIUS
         self.selected = False
         self.text = '???'
 
@@ -74,7 +76,7 @@ class HexTile(object):
 
     def save_to_file(self, f):
         if len(self.text) == 0: self.text = '???'
-        print >>f, self.text + ' ' + str(self.center)
+        print >>f, self.text + ' ' + str(self.center / TILE_RADIUS)
 
 class HexMap(object):
     def __init__(self, filename, width, height):
@@ -204,7 +206,8 @@ class HexMap(object):
                 text = vals[0]
                 x = float(vals[1])
                 y = float(vals[2])
-                new_tile = HexTile(vec2f(x, y))
+                center = vec2f(x, y) * TILE_RADIUS
+                new_tile = HexTile(center)
                 new_tile.text = text
                 self.add_tile(new_tile)
         self.reset_camera()
