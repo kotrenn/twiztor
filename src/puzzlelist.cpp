@@ -34,7 +34,7 @@ void PuzzleList::readFromFile(const string &filename)
 		rawLine = string(buf);
 		rawLine.pop_back(); // Clear out the newline
 
-		cout << "Reading in puzzle " << rawLine << endl;
+		//cout << "Reading in puzzle " << rawLine << endl;
 		//puzzleReader.enableDebug();
 		puzzleReader.readFromFile(rawLine);
 		PuzzleData *puzzleData = puzzleReader.getPuzzleData();

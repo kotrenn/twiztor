@@ -1,0 +1,47 @@
+node p1 red %[-w0+w1]
+node p2 yellow %[-3*w0+w1]
+node p3 blue %[-w0+5*w1]
+node p4 green %[w0+5*w1]
+node p5 red %[w0-w2]
+node p6 yellow %[w0-3*w2]
+node p7 blue %[5*w0-w2]
+node p8 green %[5*w0+w2]
+node p9 red %[-w1+w2]
+node p10 yellow %[-3*w1+w2]
+node p11 blue %[-w1+5*w2]
+node p12 green %[w1+5*w2]
+permutation red [[p1, p4], [p2, p3]]
+permutation green [[p5, p6], [p7, p8]]
+permutation blue [[p9, p11], [p10, p12]]
+permutation yellow [[p1, p5, p9], [p2, p6, p10], [p3, p7, p11], [p4, p8, p12]]
+float Rr %[(2*w1-2*w2).norm()]
+arc circle red p1 %[Rr] -+
+arc circle red p4 %[Rr] -+
+arc circle red p2 %[Rr] -+
+arc circle red p3 %[Rr] -+
+float Rg %[(-2*w2).norm()]
+arc circle green p5 %[Rg] -+
+arc circle green p6 %[Rg] -+
+arc circle green p7 %[Rg] -+
+arc circle green p8 %[Rg] -+
+float Rb %[(-4*w2).norm()]
+arc circle blue p9 %[Rb] -+
+arc circle blue p11 %[Rb] -+
+arc circle blue p10 %[Rb] -+
+arc circle blue p12 %[Rb] -+
+float r1 %[(w0-w2).norm()]
+float r2 %[(w0-3*w2).norm()]
+float r3 %[(5*w0+w2).norm()]
+float r4 %[(5*w0-w2).norm()]
+arc circle yellow p1 %[r1] -+
+arc circle yellow p2 %[r2] -+
+arc circle yellow p3 %[r4] -+
+arc circle yellow p4 %[r3] -+
+arc circle yellow p5 %[r1] -+
+arc circle yellow p6 %[r2] -+
+arc circle yellow p7 %[r4] -+
+arc circle yellow p8 %[r3] -+
+arc circle yellow p9 %[r1] -+
+arc circle yellow p10 %[r2] -+
+arc circle yellow p11 %[r4] -+
+arc circle yellow p12 %[r3] -+
