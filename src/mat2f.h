@@ -5,6 +5,10 @@
 
 class mat2f
 {
+	friend class vec2f;
+	friend class vec3f;
+	friend class mat3f;
+	
 public:
 	mat2f();
 	mat2f(float s);

@@ -34,6 +34,14 @@ mat3f::mat3f(const float data[3][3])
 {
 }
 
+mat3f::mat3f(const mat2f &rhs)
+	:m_data{
+	{ rhs.m_a, rhs.m_b, 0.0 },
+	{ rhs.m_c, rhs.m_d, 0.0 },
+	{ 0.0, 0.0, 1.0 }}
+{
+}
+
 mat3f::mat3f(const mat3f &rhs)
 	:m_data{
 	{ rhs.m_data[0][0], rhs.m_data[0][1], rhs.m_data[0][2] },

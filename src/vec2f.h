@@ -7,6 +7,10 @@
 
 class vec2f
 {
+	friend class vec3f;
+	friend class mat2f;
+	friend class mat3f;
+	
 public:
 	vec2f();
 	vec2f(float s);

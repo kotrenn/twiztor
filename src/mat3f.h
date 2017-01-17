@@ -6,6 +6,10 @@
 
 class mat3f
 {
+	friend class vec2f;
+	friend class vec3f;
+	friend class mat2f;
+	
 public:
 	mat3f();
 	mat3f(float s);
@@ -13,6 +17,7 @@ public:
 	      float x21, float x22, float x23,
 	      float x31, float x32, float x33);
 	mat3f(const float data[3][3]);
+	mat3f(const mat2f &rhs);
 	mat3f(const mat3f &rhs);
 
 	mat3f &operator=(const mat3f &rhs);
