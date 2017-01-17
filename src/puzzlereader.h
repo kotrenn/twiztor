@@ -40,6 +40,7 @@ private:
 
 	Color lookupColor(const string &colorName) const;
 	void recenter();
+	void normalize();
 
 	unsigned int indexOf(const string &nodeLabel) const;
 };

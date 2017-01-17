@@ -7,7 +7,7 @@
 Camera::Camera()
 	:m_viewWidth(1.33333),
 	 m_viewHeight(1.0),
-	 m_zoomScale(1.0),
+	 m_zoomScale(0.42),
 	 m_centerX(0.0),
 	 m_centerY(0.0),
 	 m_rotationAngle(0.0),

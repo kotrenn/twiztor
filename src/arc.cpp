@@ -13,6 +13,10 @@ void Arc::adjustCenter(const vec2f &)
 {
 }
 
+void Arc::normalize(float)
+{
+}
+
 
 
 LineArc::LineArc(Permutation *permutation, Slot *slotU, Slot *slotV)
@@ -134,4 +138,9 @@ void CircleArc::render() const
 		glGraphics->setColor(0.0, 1.0, 0.0);
 		glGraphics->drawCircle(circleCenter, 0.005);
 	}
+}
+
+void CircleArc::normalize(float radius)
+{
+	m_circleRadius /= radius;
 }

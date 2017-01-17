@@ -61,6 +61,7 @@ void PuzzleReader::readFromFile(const string &filename)
 	fclose(inFile);
 
 	recenter();
+	normalize();
 }
 
 void PuzzleReader::readNode(const string &rawLine)
@@ -310,4 +311,28 @@ void PuzzleReader::recenter()
 	for (Permutation *permutation : *(m_puzzleData->getPermutationList()))
 		for (Arc *arc : m_puzzleData->getArcList(permutation))
 			arc->adjustCenter(centerSum);
+}
+
+void PuzzleReader::normalize()
+{
+	float maxRadius = -1.0;
+
+	for (Slot *slot : *(m_puzzleData->getSlotList()))
+	{
+		vec2f slotCenter = slot->getCenter();
+		float radius = slotCenter.getNorm();
+		if (radius > maxRadius)
+			maxRadius = radius;
+	}
+
+	for (Slot *slot : *(m_puzzleData->getSlotList()))
+	{
+		vec2f slotCenter = slot->getCenter();
+		slotCenter /= maxRadius;
+		slot->setCenter(slotCenter);
+	}
+
+	for (Permutation *permutation : *(m_puzzleData->getPermutationList()))
+		for (Arc *arc : m_puzzleData->getArcList(permutation))
+			arc->normalize(maxRadius);
 }

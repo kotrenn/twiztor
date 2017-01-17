@@ -15,6 +15,7 @@ public:
 	virtual void render() const = 0;
 
 	virtual void adjustCenter(const vec2f &newCenter);
+	virtual void normalize(float radius);
 protected:
 	Permutation *m_permutation;
 	Slot *m_slotU;
@@ -39,6 +40,8 @@ public:
 
 	vec2f getPoint(float t) const;
 	void render() const;
+
+	void normalize(float radius);
 private:
 	static const bool sc_debugEnabled = false;
 	
