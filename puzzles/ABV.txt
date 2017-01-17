@@ -1,0 +1,46 @@
+float R %[(6*w0+3*w1).norm()]
+node p1 white %[zero]
+node p2 purple %[R*tau_(12,1)]
+node p3 red %[R*tau_(12,3)]
+node p4 yellow %[R*tau_(12,5)]
+node p5 green %[R*tau_(12,7)]
+node p6 cyan %[R*tau_(12,9)]
+node p7 blue %[R*tau_(12,11)]
+node p8 purple %[-3*w0-1.5*w2]
+node p9 yellow %[3*w0+1.5*w1]
+node p10 cyan %[1.5*w0+3*w2]
+node p11 red %[4.5*w1]
+node p12 red %[-4.5*w2]
+node p13 green %[4.5*w0]
+node p14 green %[-4.5*w1]
+node p15 blue %[4.5*w2]
+node p16 blue %[-4.5*w0]
+permutation red [[p1, p2, p3, p4], [p8, p11, p12, p9]]
+permutation green [[p1, p4, p5, p6], [p9, p13, p14, p10]]
+permutation blue [[p1, p6, p7, p2], [p10, p15, p16, p8]]
+arc circle red p1 %[R] -+
+arc circle red p2 %[R] -+
+arc circle red p3 %[R] -+
+arc circle red p4 %[R] -+
+arc circle green p1 %[R] -+
+arc circle green p4 %[R] -+
+arc circle green p5 %[R] -+
+arc circle green p6 %[R] -+
+arc circle blue p1 %[R] -+
+arc circle blue p6 %[R] -+
+arc circle blue p7 %[R] -+
+arc circle blue p2 %[R] -+
+float r1 %[(-0.5*w1+4*w0-0.5*w2).norm()]
+float r2 %[(1.5*w0-1.5*w1).norm()]
+arc circle red p8 %[r2] -+
+arc circle red p11 %[r1] -+
+arc circle red p12 %[r2] -+
+arc circle red p9 %[r1] -+
+arc circle green p9 %[r2] -+
+arc circle green p13 %[r1] -+
+arc circle green p14 %[r2] -+
+arc circle green p10 %[r1] -+
+arc circle blue p10 %[r2] -+
+arc circle blue p15 %[r1] -+
+arc circle blue p16 %[r2] -+
+arc circle blue p8 %[r1] -+
