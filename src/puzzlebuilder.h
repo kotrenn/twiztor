@@ -20,7 +20,7 @@ public:
 	PuzzleBuilder();
 	~PuzzleBuilder();
 
-	void beginPuzzle();
+	void beginPuzzle(const string &name);
 	PuzzleData *compilePuzzle();
 
 	void addNode(const string &name, const Color &color, const vec2f &center);

@@ -18,7 +18,9 @@ class PuzzleRenderer;
 class PuzzleData
 {
 public:
-	PuzzleData();
+	PuzzleData(const string &name);
+
+	string getName() const { return m_name; }
 
 	void setRenderer(PuzzleRenderer *puzzleRenderer) { m_puzzleRenderer = puzzleRenderer; }
 	void render() const;
@@ -53,6 +55,7 @@ public:
 	void makeTestLevel();
 	
 private:
+	string m_name;
 	vector<Permutation *> m_permutationList;
 	vector<Slot *> m_slotList;
 	vector<Sticker *> m_stickerList;

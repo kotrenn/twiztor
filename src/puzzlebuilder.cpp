@@ -13,9 +13,9 @@ PuzzleBuilder::~PuzzleBuilder()
 {
 }
 
-void PuzzleBuilder::beginPuzzle()
+void PuzzleBuilder::beginPuzzle(const string &name)
 {
-	m_puzzleData = new PuzzleData();
+	m_puzzleData = new PuzzleData(name);
 }
 
 PuzzleData *PuzzleBuilder::compilePuzzle()

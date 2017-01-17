@@ -32,7 +32,8 @@ void PuzzleReader::readFromFile(const string &filename)
 		return;
 	}
 
-	m_puzzleData = new PuzzleData();
+	string puzzleName = filename.substr(0, filename.size() - 4);
+	m_puzzleData = new PuzzleData(puzzleName);
 
 	int numPermutations = 0;
 	int len = 1200;

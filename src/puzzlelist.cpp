@@ -60,6 +60,15 @@ PuzzleData *PuzzleList::getCurrentPuzzle() const
 	return m_puzzleDataList[m_currentIndex];
 }
 
+PuzzleData *PuzzleList::getPuzzle(const string &name) const
+{
+	for (PuzzleData *puzzleData : m_puzzleDataList)
+		if (puzzleData->getName() == name)
+			return puzzleData;
+
+	return NULL;
+}
+
 void PuzzleList::nextPuzzle()
 {
 	if (m_currentIndex == size() - 1) return;

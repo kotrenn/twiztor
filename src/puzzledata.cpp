@@ -2,8 +2,9 @@
 
 #include "color.h"
 
-PuzzleData::PuzzleData()
-	:m_permutationList(),
+PuzzleData::PuzzleData(const string &name)
+	:m_name(name),
+	 m_permutationList(),
 	 m_slotList(),
 	 m_stickerList(),
 	 m_permutationFactory(new PermutationFactory()),
@@ -41,13 +42,6 @@ void PuzzleData::makeTestLevel()
 	Color green(  "green", 0.0, 1.0, 0.0);
 	Color blue(    "blue", 0.0, 0.0, 1.0);
 
-	/*
-	Slot *slot0 = new Slot(new Sticker(red),    vec2f(0.0, -3.0),  red);
-	Slot *slot1 = new Slot(new Sticker(yellow), vec2f(0.0,  0.0),  yellow);
-	Slot *slot2 = new Slot(new Sticker(green),  vec2f(-3.0,  3.0), green);
-	Slot *slot3 = new Slot(new Sticker(blue),   vec2f(3.0,  3.0),  blue);
-	*/
-
 	Slot *slot0 = m_slotFactory.makeSlot(red,    vec2f( 0.0, -3.0));
 	Slot *slot1 = m_slotFactory.makeSlot(yellow, vec2f( 0.0,  0.0));
 	Slot *slot2 = m_slotFactory.makeSlot(green,  vec2f(-3.0,  3.0));
@@ -62,12 +56,6 @@ void PuzzleData::makeTestLevel()
 		slotSticker->setSlot(slot);
 		addSticker(slotSticker);
 	}
-
-	//Permutation *p0 = new Permutation(4, red, 0);
-	//Permutation *p1 = new Permutation(4, blue, 1);
-
-	//p0->setCycles({ { 0, 1 }, { 2 }, { 3 } });
-	//p1->setCycles({ { 0 }, { 1, 2, 3 } });
 
 	vector<vector<unsigned int>> cycles0({ { 0, 1 }, { 2 }, { 3 } });
 	vector<vector<unsigned int>> cycles1({ { 0 }, { 1, 2, 3 } });

@@ -27,7 +27,7 @@ int main(int, char **)
 
 		if (testLevel)
 		{
-			puzzleData = new PuzzleData();
+			puzzleData = new PuzzleData("test");
 			puzzleData->makeTestLevel();
 		}
 		else

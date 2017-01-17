@@ -18,6 +18,7 @@ public:
 	unsigned int size() const { return m_puzzleDataList.size(); }
 	
 	PuzzleData *getCurrentPuzzle() const;
+	PuzzleData *getPuzzle(const string &name) const;
 	void nextPuzzle();
 	void prevPuzzle();
 	void firstPuzzle();
