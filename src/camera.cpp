@@ -69,9 +69,11 @@ void Camera::eventMouseMotion(const SDL_MouseMotionEvent &event)
 	int deltaX = event.xrel;
 	int deltaY = event.yrel;
 
-	if (buttonState == 0) return;
-	m_offsetX -= deltaX * m_moveSpeed / m_zoomScale;
-	m_offsetY += deltaY * m_moveSpeed / m_zoomScale;
+	if (buttonState & SDL_BUTTON_RMASK)
+	{
+		m_offsetX -= deltaX * m_moveSpeed / m_zoomScale;
+		m_offsetY += deltaY * m_moveSpeed / m_zoomScale;
+	}
 }
 
 void Camera::eventMouseWheel(const SDL_MouseWheelEvent &event)

@@ -100,6 +100,7 @@ void LevelSelect::eventKeyUp(const SDL_KeyboardEvent &key)
 
 void LevelSelect::eventMouseButtonUp(const SDL_MouseButtonEvent &mouse)
 {
+	if (mouse.button != SDL_BUTTON_LEFT) return;
 	vec2f worldLoc = m_camera->cameraToWorld(vec2f(mouse.x, mouse.y));
 	m_puzzleList->nearestPuzzle(worldLoc);
 	moveCamera();
