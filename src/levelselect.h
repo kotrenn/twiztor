@@ -6,7 +6,7 @@
 #include "puzzlecontroller.h"
 #include "scene.h"
 
-class LevelSelect : public Scene, KeyListener
+class LevelSelect : public Scene, KeyListener, MouseListener
 {
 public:
 	LevelSelect(Camera *camera);
@@ -16,6 +16,9 @@ public:
 	void render(GLSystem *glSystem) const;
 	
 	void eventKeyUp(const SDL_KeyboardEvent &key);
+	void eventMouseButtonUp(const SDL_MouseButtonEvent &mouse);
+
+	void showCursor() { m_showingCursor = true; }
 private:
 	PuzzleList *m_puzzleList;
 	PuzzleController *m_puzzleController;
@@ -23,8 +26,10 @@ private:
 	Uint32 m_moveDuration;
 	vec2f m_cameraStartVec;
 	vec2f m_cameraGoalVec;
+	bool m_showingCursor;
 
 	vec2f interpolate(float t, const vec2f &a, const vec2f &b) const;
+	void renderCursor() const;
 	void moveCamera();
 };
 

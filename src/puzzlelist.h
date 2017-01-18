@@ -20,10 +20,12 @@ public:
 	
 	PuzzleData *getCurrentPuzzle() const;
 	PuzzleData *getPuzzle(const string &name) const;
+
 	void nextPuzzle(unsigned int skip=1);
 	void prevPuzzle(unsigned int skip=1);
 	void firstPuzzle();
 	void lastPuzzle();
+	void nearestPuzzle(const vec2f &loc);
 private:
 	vector<PuzzleData *> m_puzzleDataList;
 	unsigned int m_currentIndex;

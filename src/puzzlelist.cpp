@@ -150,3 +150,23 @@ void PuzzleList::lastPuzzle()
 {
 	m_currentIndex = m_puzzleDataList.size() - 1;
 }
+
+void PuzzleList::nearestPuzzle(const vec2f &loc)
+{
+	if (size() == 0) return;
+
+	m_currentIndex = 0;
+	vec2f startCenter = getCurrentPuzzle()->getCenter();
+	float minDist = (startCenter - loc).getNorm();
+	for (unsigned int i = 1; i < m_puzzleDataList.size(); ++i)
+	{
+		PuzzleData *puzzleData = m_puzzleDataList[i];
+		vec2f center = puzzleData->getCenter();
+		float dist = (center - loc).getNorm();
+		if (dist < minDist)
+		{
+			m_currentIndex = i;
+			minDist = dist;
+		}
+	}
+}

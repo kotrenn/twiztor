@@ -6,15 +6,18 @@
 LevelSelect::LevelSelect(Camera *camera)
 	:Scene(camera),
 	 KeyListener(),
+	 MouseListener(),
 	 m_puzzleList(NULL),
 	 m_puzzleController(NULL),
 	 m_prevCameraTime(0),
 	 m_moveDuration(1200),
 	 m_cameraStartVec(0.0, 0.0),
-	 m_cameraGoalVec(0.0, 0.0)
+	 m_cameraGoalVec(0.0, 0.0),
+	 m_showingCursor(false)
 {
 	InputSystem *inputSystem = InputSystem::getInstance();
 	inputSystem->addKeyListener(this);
+	inputSystem->addMouseListener(this);
 	
 	m_puzzleList = new PuzzleList();
 	m_puzzleList->readPuzzlesFromFile("puzzlelist.txt");
@@ -55,7 +58,13 @@ void LevelSelect::render(GLSystem *glSystem) const
 	Scene::render(glSystem);
 
 	m_puzzleList->render();
-	
+
+	if (m_showingCursor)
+		renderCursor();
+}
+
+void LevelSelect::renderCursor() const
+{
 	GLGraphics *glGraphics = GLGraphics::getInstance();
 
 	int mouseX = 0;
@@ -87,6 +96,13 @@ void LevelSelect::eventKeyUp(const SDL_KeyboardEvent &key)
 	}
 
 	m_puzzleController->setPuzzleData(m_puzzleList->getCurrentPuzzle());
+}
+
+void LevelSelect::eventMouseButtonUp(const SDL_MouseButtonEvent &mouse)
+{
+	vec2f worldLoc = m_camera->cameraToWorld(vec2f(mouse.x, mouse.y));
+	m_puzzleList->nearestPuzzle(worldLoc);
+	moveCamera();
 }
 
 void LevelSelect::moveCamera()

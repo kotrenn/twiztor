@@ -47,6 +47,7 @@ int main(int, char **)
 		Camera *camera = new Camera();
 		//Scene *scene = new PuzzleScene(camera, puzzleData);
 		Scene *scene = new LevelSelect(camera);
+		((LevelSelect *)scene)->showCursor();
 		if (!scene->init(glData)) quit = true;
 		//PuzzleController *puzzleController = new PuzzleController(puzzleData);
 		
