@@ -33,6 +33,15 @@ LevelSelect::~LevelSelect()
 	delete m_puzzleList;
 }
 
+float LevelSelect::getAnimationPercentage() const
+{
+	Uint32 curTime = SDL_GetTicks();
+	Uint32 deltaTime = curTime - m_prevCameraTime;
+	float t = (float)deltaTime / (float)m_moveDuration;
+	if (t > 1.0) t = 1.0;
+	return t;
+}
+
 vec2f LevelSelect::interpolate(float t, const vec2f &a, const vec2f &b) const
 {
     // Use 5th-degree polynomial from Perlin noise
@@ -45,10 +54,7 @@ vec2f LevelSelect::interpolate(float t, const vec2f &a, const vec2f &b) const
 
 void LevelSelect::update()
 {
-	Uint32 curTime = SDL_GetTicks();
-	Uint32 deltaTime = curTime - m_prevCameraTime;
-	float t = (float)deltaTime / (float)m_moveDuration;
-	if (t > 1.0) t = 1.0;
+	float t = getAnimationPercentage();
 	vec2f interp = interpolate(t, m_cameraStartVec, m_cameraGoalVec);
 	m_camera->lookAt(interp);
 }
@@ -108,7 +114,11 @@ void LevelSelect::eventMouseButtonUp(const SDL_MouseButtonEvent &mouse)
 
 void LevelSelect::moveCamera()
 {
-	m_prevCameraTime = SDL_GetTicks();
-	m_cameraStartVec = m_cameraGoalVec;
+	float t = getAnimationPercentage();
+	Uint32 offset = 0;
+	if (t < 1.0)
+		offset = (t) * m_moveDuration;
+	m_prevCameraTime = SDL_GetTicks() - offset;
+	m_cameraStartVec = m_camera->getCenter();
 	m_cameraGoalVec = m_puzzleList->getCurrentPuzzle()->getCenter();
 }

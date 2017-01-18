@@ -28,6 +28,7 @@ private:
 	vec2f m_cameraGoalVec;
 	bool m_showingCursor;
 
+	float getAnimationPercentage() const;
 	vec2f interpolate(float t, const vec2f &a, const vec2f &b) const;
 	void renderCursor() const;
 	void moveCamera();
