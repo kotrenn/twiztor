@@ -9,3 +9,7 @@ node rhs5 purple 4 13
 permutation red [[lhs1, lhs2, lhs3]]
 permutation green [[lhs1, rhs1]]
 permutation blue [[rhs1, rhs2, rhs3, rhs4, rhs5]]
+arc circle red lhs3 %[2.2*3.0] +-
+arc circle green lhs1 2.2 +-
+arc circle green rhs1 2.2 +-
+arc circle blue rhs5 %[2.2*5.0] -+

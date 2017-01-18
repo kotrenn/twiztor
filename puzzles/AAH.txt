@@ -7,3 +7,7 @@ node lhs purple 1 4
 permutation red [[ul, ur]]
 permutation green [[bl, br]]
 permutation blue [[ul, ur, rhs, br, bl, lhs]]
+arc circle red ul 2.2 +-
+arc circle red ur 2.2 +-
+arc circle green bl 2.2 +-
+arc circle green br 2.2 +-

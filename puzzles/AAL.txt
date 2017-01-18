@@ -15,3 +15,27 @@ permutation red [[coord13, coord23], [coord33, coord43]]
 permutation yellow [[coord22, coord23], [coord31, coord32], [coord33, coord34], [coord42, coord43]]
 permutation green [[coord23, coord33], [coord43, coord53]]
 permutation blue [[coord23, coord24], [coord32, coord33], [coord34, coord35], [coord43, coord44]]
+arc circle red coord13 2.2 -+
+arc circle red coord23 2.2 -+
+arc circle red coord33 2.2 -+
+arc circle red coord43 2.2 -+
+arc circle yellow coord22 2.2 -+
+arc circle yellow coord23 2.2 -+
+arc circle yellow coord31 2.2 -+
+arc circle yellow coord32 2.2 -+
+arc circle yellow coord33 2.2 -+
+arc circle yellow coord34 2.2 -+
+arc circle yellow coord42 2.2 -+
+arc circle yellow coord43 2.2 -+
+arc circle green coord23 2.2 -+
+arc circle green coord33 2.2 -+
+arc circle green coord43 2.2 -+
+arc circle green coord53 2.2 -+
+arc circle blue coord23 2.2 -+
+arc circle blue coord24 2.2 -+
+arc circle blue coord32 2.2 -+
+arc circle blue coord33 2.2 -+
+arc circle blue coord34 2.2 -+
+arc circle blue coord35 2.2 -+
+arc circle blue coord43 2.2 -+
+arc circle blue coord44 2.2 -+
