@@ -3,8 +3,9 @@
 #include "glgraphics.h"
 #include "puzzlereader.h"
 
-PuzzleList::PuzzleList()
-	:m_puzzleDataList(),
+PuzzleList::PuzzleList(Camera *camera)
+	:m_camera(camera),
+	 m_puzzleDataList(),
 	 m_currentIndex(0),
 	 m_puzzleRenderer()
 {
@@ -96,9 +97,14 @@ void PuzzleList::readWorldFromFile(const string &filename)
 void PuzzleList::render() const
 {
 	GLGraphics *glGraphics = GLGraphics::getInstance();
-	
+
+	unsigned int count = 0;
 	for (PuzzleData *puzzleData : m_puzzleDataList)
-		puzzleData->render();
+		if (inViewingRange(puzzleData))
+		{
+			puzzleData->render();
+			count++;
+		}
 
 	PuzzleData *currentPuzzle = getCurrentPuzzle();
 	vec2f center = currentPuzzle->getCenter();
@@ -169,4 +175,12 @@ void PuzzleList::nearestPuzzle(const vec2f &loc)
 			minDist = dist;
 		}
 	}
+}
+
+bool PuzzleList::inViewingRange(PuzzleData *puzzleData) const
+{
+	vec2f puzzleCenter = puzzleData->getCenter();
+	vec2f cameraCenter = m_camera->getCenter();
+	float maxDistance = m_camera->getZoomFactor();
+	return (puzzleCenter - cameraCenter).getNorm() < maxDistance;
 }

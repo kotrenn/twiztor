@@ -114,3 +114,8 @@ vec2f Camera::cameraToWorld(const vec2f &mouseLoc) const
 
 	return vec2f(worldX, worldY);
 }
+
+vec2f Camera::getCenter() const
+{
+	return vec2f(m_centerX + m_offsetX, m_centerY + m_offsetY);
+}

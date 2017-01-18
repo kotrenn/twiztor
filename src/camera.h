@@ -19,6 +19,7 @@ public:
 	void eventMouseWheel(const SDL_MouseWheelEvent &wheel);
 
 	vec2f cameraToWorld(const vec2f &mouseLoc) const;
+	vec2f getCenter() const;
 
 	float getZoomFactor() const { return 1.0 / m_zoomScale; }
 private:

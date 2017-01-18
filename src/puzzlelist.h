@@ -1,13 +1,14 @@
 #ifndef __PUZZLE_LIST_H_
 #define __PUZZLE_LIST_H_
 
+#include "camera.h"
 #include "puzzledata.h"
 #include "puzzlerenderer.h"
 
 class PuzzleList
 {
 public:
-	PuzzleList();
+	PuzzleList(Camera *camera);
 	~PuzzleList();
 
 	void readPuzzlesFromFile(const string &filename);
@@ -27,9 +28,12 @@ public:
 	void lastPuzzle();
 	void nearestPuzzle(const vec2f &loc);
 private:
+	Camera *m_camera;
 	vector<PuzzleData *> m_puzzleDataList;
 	unsigned int m_currentIndex;
 	PuzzleRenderer m_puzzleRenderer;
+
+	bool inViewingRange(PuzzleData *puzzleData) const;
 };
 
 #endif
