@@ -37,11 +37,12 @@ void PuzzleController::solve()
 
 void PuzzleController::randomize()
 {
+	unsigned int numPermutations = m_puzzleData->getPermutationListSize();
 	for (int i = 0; i < 1000; ++i)
 	{
-		PuzzleAction *randomAction = m_puzzleActionStorage->getRandomAction();
+		unsigned int randomIndex = rand() % numPermutations;
 		bool randomInverted = rand() % 2;
-		randomAction->execute(m_puzzleData, randomInverted);
+		activatePermutation(randomIndex, randomInverted);
 	}
 }
 
@@ -64,7 +65,7 @@ void PuzzleController::eventKeyUp(const SDL_KeyboardEvent &key)
 	case SDLK_8: activatePermutation(7, inverted); break;
 	case SDLK_9: activatePermutation(8, inverted); break;
 	case SDLK_0: activatePermutation(9, inverted); break;
-		//case SDLK_r: randomize(); break;
+	case SDLK_r: randomize(); break;
 	case SDLK_s: solve(); break;
 	default: break;
 	}

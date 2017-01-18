@@ -25,7 +25,7 @@ LevelSelect::LevelSelect(Camera *camera)
 
 	m_puzzleController = new PuzzleController(m_puzzleList->getCurrentPuzzle());
 
-	moveCamera();
+	switchPuzzle();
 }
 
 LevelSelect::~LevelSelect()
@@ -90,18 +90,16 @@ void LevelSelect::eventKeyUp(const SDL_KeyboardEvent &key)
 	{
 	case SDLK_DOWN:
 	case SDLK_LEFT:
-	case SDLK_LEFTBRACKET:  m_puzzleList->prevPuzzle(); moveCamera(); break;
+	case SDLK_LEFTBRACKET:  m_puzzleList->prevPuzzle(); switchPuzzle(); break;
 	case SDLK_UP:
 	case SDLK_RIGHT:
-	case SDLK_RIGHTBRACKET: m_puzzleList->nextPuzzle(); moveCamera(); break;
-	case SDLK_HOME:         m_puzzleList->firstPuzzle(); moveCamera(); break;
-	case SDLK_END:          m_puzzleList->lastPuzzle(); moveCamera(); break;
-	case SDLK_PAGEUP:       m_puzzleList->prevPuzzle(skip); moveCamera(); break;
-	case SDLK_PAGEDOWN:     m_puzzleList->nextPuzzle(skip); moveCamera(); break;
+	case SDLK_RIGHTBRACKET: m_puzzleList->nextPuzzle(); switchPuzzle(); break;
+	case SDLK_HOME:         m_puzzleList->firstPuzzle(); switchPuzzle(); break;
+	case SDLK_END:          m_puzzleList->lastPuzzle(); switchPuzzle(); break;
+	case SDLK_PAGEUP:       m_puzzleList->prevPuzzle(skip); switchPuzzle(); break;
+	case SDLK_PAGEDOWN:     m_puzzleList->nextPuzzle(skip); switchPuzzle(); break;
 	default: break;
 	}
-
-	m_puzzleController->setPuzzleData(m_puzzleList->getCurrentPuzzle());
 }
 
 void LevelSelect::eventMouseButtonUp(const SDL_MouseButtonEvent &mouse)
@@ -109,11 +107,12 @@ void LevelSelect::eventMouseButtonUp(const SDL_MouseButtonEvent &mouse)
 	if (mouse.button != SDL_BUTTON_LEFT) return;
 	vec2f worldLoc = m_camera->cameraToWorld(vec2f(mouse.x, mouse.y));
 	m_puzzleList->nearestPuzzle(worldLoc);
-	moveCamera();
+	switchPuzzle();
 }
 
-void LevelSelect::moveCamera()
+void LevelSelect::switchPuzzle()
 {
+	m_puzzleController->setPuzzleData(m_puzzleList->getCurrentPuzzle());
 	m_prevCameraTime = SDL_GetTicks();
 	m_cameraStartVec = m_camera->getCenter();
 	m_cameraGoalVec = m_puzzleList->getCurrentPuzzle()->getCenter();
