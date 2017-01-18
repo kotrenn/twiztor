@@ -125,16 +125,20 @@ PuzzleData *PuzzleList::getPuzzle(const string &name) const
 	return NULL;
 }
 
-void PuzzleList::nextPuzzle()
+void PuzzleList::nextPuzzle(unsigned int skip)
 {
-	if (m_currentIndex == size() - 1) return;
-	m_currentIndex++;
+	if (m_currentIndex >= size() - skip)
+		m_currentIndex = size() - 1;
+	else
+		m_currentIndex += skip;
 }
 
-void PuzzleList::prevPuzzle()
+void PuzzleList::prevPuzzle(unsigned int skip)
 {
-	if (m_currentIndex == 0) return;
-	m_currentIndex--;
+	if (m_currentIndex < skip)
+		m_currentIndex = 0;
+	else
+		m_currentIndex -= skip;
 }
 
 void PuzzleList::firstPuzzle()

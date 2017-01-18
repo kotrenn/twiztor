@@ -3,11 +3,14 @@
 
 #include "keylistener.h"
 #include "mouselistener.h"
+#include "vec2f.h"
 
 class Camera : public KeyListener, MouseListener
 {
 public:
 	Camera();
+
+	void lookAt(const vec2f &loc);
 
 	void loadToGL() const;
 	

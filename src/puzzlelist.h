@@ -20,8 +20,8 @@ public:
 	
 	PuzzleData *getCurrentPuzzle() const;
 	PuzzleData *getPuzzle(const string &name) const;
-	void nextPuzzle();
-	void prevPuzzle();
+	void nextPuzzle(unsigned int skip=1);
+	void prevPuzzle(unsigned int skip=1);
 	void firstPuzzle();
 	void lastPuzzle();
 private:

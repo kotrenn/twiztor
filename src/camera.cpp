@@ -18,6 +18,12 @@ Camera::Camera()
 	inputSystem->addMouseListener(this);
 }
 
+void Camera::lookAt(const vec2f &loc)
+{
+	m_centerX = loc.getX();
+	m_centerY = loc.getY();
+}
+
 void Camera::loadToGL() const
 {
 	glMatrixMode(GL_PROJECTION);
