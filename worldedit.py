@@ -100,7 +100,9 @@ class HexMap(object):
         keys = pygame.key.get_pressed()
 
         # move camera
-        speed = 3
+        speed = 18
+        if pygame.key.get_mods() & pygame.KMOD_LSHIFT:
+            speed = 42
         key_mappings = {
             pygame.K_UP: vec2f(0, -speed),
             pygame.K_DOWN: vec2f(0, speed),
