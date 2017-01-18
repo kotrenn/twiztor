@@ -10,7 +10,8 @@ PuzzleData::PuzzleData(const string &name)
 	 m_permutationFactory(new PermutationFactory()),
 	 m_slotFactory(),
 	 m_puzzleRenderer(NULL),
-	 m_arcMap()
+	 m_arcMap(),
+	 m_center(0.0, 0.0)
 {
 }
 

@@ -18,4 +18,7 @@
 
 using namespace std;
 
+void split(const string &s, char delim, vector<string> &elems, unsigned int maxElems);
+vector<string> split(const string &s, char delim, unsigned int maxElems = 0);
+
 #endif

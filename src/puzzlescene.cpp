@@ -28,7 +28,7 @@ void PuzzleScene::render(GLSystem *glSystem) const
 
 	glSystem->pushMatrix(MAT_MODEL);
 
-	glSystem->translate2fv(m_center);
+	glSystem->translate2fv(MAT_MODEL, m_center);
 
 	/*
 	for (Permutation *permutation : *(m_puzzleData->getPermutationList()))

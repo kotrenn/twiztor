@@ -35,9 +35,6 @@ private:
 	
 	vector<vector<unsigned int>> buildCycleList(const string &cycleInput);
 
-	void split(const string &s, char delim, vector<string> &elems, unsigned int maxElems) const;
-	vector<string> split(const string &s, char delim, unsigned int maxElems = 0) const;
-
 	Color lookupColor(const string &colorName) const;
 	void recenter();
 	void normalize();

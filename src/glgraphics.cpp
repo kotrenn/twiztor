@@ -17,6 +17,7 @@ GLGraphics *GLGraphics::getInstance()
 
 GLGraphics::GLGraphics()
 	:m_glData(NULL),
+	 m_glSystem(NULL),
 	 m_currentColor(1.0, 1.0, 1.0, 1.0)
 {
 }
@@ -52,24 +53,26 @@ void GLGraphics::drawLine(float x1, float y1, float x2, float y2)
 {
 	glBegin(GL_LINES);
 
-	glVertex2f(x1, y1);
-	glVertex2f(x2, y2);
+	vertex2f(x1, y1);
+	vertex2f(x2, y2);
 	
 	glEnd();
 }
 
-void GLGraphics::drawCircle(const vec2f &center, float r)
+void GLGraphics::drawCircle(const vec2f &center, float r, bool filled)
 {
-	drawCircle(center.getX(), center.getY(), r);
+	drawCircle(center.getX(), center.getY(), r, filled);
 }
 
-void GLGraphics::drawCircle(float x, float y, float r)
+void GLGraphics::drawCircle(float x, float y, float r, bool filled)
 {
 	int numSides = 20;
 	float dtheta = 2.0 * 3.14159265 / numSides;
-	
-	//glBegin(GL_LINE_LOOP);
-	glBegin(GL_POLYGON);
+
+	if (filled)
+		glBegin(GL_POLYGON);
+	else
+		glBegin(GL_LINE_LOOP);
 
 	for (int i = 0; i < numSides; ++i)
 	{
@@ -77,7 +80,7 @@ void GLGraphics::drawCircle(float x, float y, float r)
 		float theta = i * dtheta;
 		float curX = x + r * cos(theta);
 		float curY = y + r * sin(theta);
-		glVertex2f(curX, curY);
+		vertex2f(curX, curY);
 	}
 	
 	glEnd();
@@ -90,4 +93,12 @@ void GLGraphics::loadColorToGL()
 	float b = m_currentColor.getB();
 	float a = m_currentColor.getA();
 	glColor4f(r, g, b, a);
+}
+
+void GLGraphics::vertex2f(float x, float y)
+{
+	vec3f vertex(x, y, 1.0);
+	mat3f modelMatrix = m_glSystem->getMatrix(MAT_MODEL);
+	vec3f result = modelMatrix * vertex;
+	glVertex2f(result.getX(), result.getY());
 }

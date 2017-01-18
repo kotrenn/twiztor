@@ -14,5 +14,5 @@ void StickerRenderer::render(const Sticker &sticker) const
 	GLGraphics *glGraphics = GLGraphics::getInstance();
 
 	glGraphics->setColor(stickerColor);
-	glGraphics->drawCircle(stickerCenter, 0.04);
+	glGraphics->drawCircle(stickerCenter, 0.04, true);
 }

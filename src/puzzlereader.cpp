@@ -32,7 +32,7 @@ void PuzzleReader::readFromFile(const string &filename)
 		return;
 	}
 
-	string puzzleName = filename.substr(0, filename.size() - 4);
+	string puzzleName = filename.substr(8, filename.size() - 12);
 	m_puzzleData = new PuzzleData(puzzleName);
 
 	int numPermutations = 0;
@@ -228,36 +228,6 @@ unsigned int PuzzleReader::indexOf(const string &nodeLabel) const
 			index = j;
 	if (index > m_nodeList.size()) cerr << "Warning: index = " << index << endl;
 	return index;
-}
-
-// http://stackoverflow.com/a/236803
-void PuzzleReader::split(const string &s,
-                         char delim,
-                         vector<string> &elems,
-                         unsigned int maxElems) const
-{
-	stringstream ss;
-	ss.str(s);
-	string item;
-	while (getline(ss, item, delim))
-	{
-		elems.push_back(item);
-		if (maxElems > 0 && elems.size() + 1 == maxElems)
-			delim = '|';
-	}
-}
-
-// http://stackoverflow.com/a/236803
-vector<string> PuzzleReader::split(const string &s,
-                                   char delim,
-                                   unsigned int maxElems) const
-{
-	//cout << "split(\"" << s << "\", " << maxElems << ")" << endl;
-	vector<string> elems;
-	split(s, delim, elems, maxElems);
-	//for (string tok : elems)
-	//	cout << "  elem: \"" << tok << "\"" << endl;
-	return elems;
 }
 
 Color PuzzleReader::lookupColor(const string &colorName) const

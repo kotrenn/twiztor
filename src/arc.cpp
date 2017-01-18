@@ -125,18 +125,18 @@ void CircleArc::render() const
 
 		if (sc_debugEnabled)
 		{
-			glGraphics->drawCircle(p0, 0.005);
-			glGraphics->drawCircle(p1, 0.005);
+			glGraphics->drawCircle(p0, 0.005, true);
+			glGraphics->drawCircle(p1, 0.005, true);
 		}
 	}
 
 	if (sc_debugEnabled)
 	{
 		glGraphics->setColor(1.0, 0.0, 1.0);
-		glGraphics->drawCircle(midpoint, 0.005);
+		glGraphics->drawCircle(midpoint, 0.005, true);
 
 		glGraphics->setColor(0.0, 1.0, 0.0);
-		glGraphics->drawCircle(circleCenter, 0.005);
+		glGraphics->drawCircle(circleCenter, 0.005, true);
 	}
 }
 

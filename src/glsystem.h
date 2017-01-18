@@ -22,9 +22,13 @@ public:
 	void pushMatrix(MatrixType matrixType);
 	void popMatrix(MatrixType matrixType);
 
-	void translate2fv(const vec2f &vec);
+	mat3f getMatrix(MatrixType matrixType);
+
+	void translate2fv(MatrixType matrixType, const vec2f &vec);
 private:
-	map<MatrixType, list<mat3f>> m_matrixStacks;
+	map<MatrixType, vector<mat3f>> m_matrixStacks;
+
+	void replaceMatrix(MatrixType matrixType, const mat3f &mat);
 };
 
 #endif

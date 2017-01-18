@@ -1,5 +1,6 @@
 #include "puzzlelist.h"
 
+#include "glgraphics.h"
 #include "puzzlereader.h"
 
 PuzzleList::PuzzleList()
@@ -15,7 +16,7 @@ PuzzleList::~PuzzleList()
 		delete puzzleData;
 }
 
-void PuzzleList::readFromFile(const string &filename)
+void PuzzleList::readPuzzlesFromFile(const string &filename)
 {
 	FILE *inFile;
 	if ((inFile = fopen(filename.c_str(), "r")) == NULL)
@@ -45,9 +46,64 @@ void PuzzleList::readFromFile(const string &filename)
 	fclose(inFile);
 }
 
+void PuzzleList::readWorldFromFile(const string &filename)
+{
+	FILE *inFile;
+	if ((inFile = fopen(filename.c_str(), "r")) == NULL)
+	{
+		cerr << "Error: Could not open world file " << filename << " for reading." << endl;
+		return;
+	}
+
+	int len = 120;
+	char buf[len + 1];
+	string rawLine;
+	set<string> visitedPuzzles;
+	vec2f maxDist(0.0, 0.0);
+	float padding = 2.0;
+	while (fgets(buf, len, inFile) != NULL)
+	{
+		rawLine = string(buf);
+		rawLine.pop_back(); // Clear out the newline
+		vector<string> values = split(rawLine, ' ');
+		string puzzleName = values[0];
+		float puzzleX = stof(values[1]);
+		float puzzleY = stof(values[2]);
+		vec2f puzzleCenter = padding * vec2f(puzzleX, puzzleY);
+		PuzzleData *puzzleData = getPuzzle(puzzleName);
+		if (puzzleData == NULL) continue;
+		puzzleData->setCenter(puzzleCenter);
+		visitedPuzzles.insert(puzzleName);
+		if (maxDist.getNorm() < puzzleCenter.getNorm())
+			maxDist = puzzleCenter;
+	}
+
+	fclose(inFile);
+
+	unsigned int curPuzzle = 0;
+	vec2f offset = 2.0 * padding * maxDist.getUnit();
+	for (PuzzleData *puzzleData : m_puzzleDataList)
+	{
+		if (visitedPuzzles.count(puzzleData->getName()) == 0)
+		{
+			curPuzzle++;
+			vec2f newCenter = maxDist + curPuzzle * offset;
+			puzzleData->setCenter(newCenter);
+		}
+	}
+}
+
 void PuzzleList::render() const
 {
-	getCurrentPuzzle()->render();
+	GLGraphics *glGraphics = GLGraphics::getInstance();
+	
+	for (PuzzleData *puzzleData : m_puzzleDataList)
+		puzzleData->render();
+
+	PuzzleData *currentPuzzle = getCurrentPuzzle();
+	vec2f center = currentPuzzle->getCenter();
+	glGraphics->setColor(1.0, 0.0, 0.0);
+	glGraphics->drawCircle(center, 1.4);
 }
 
 void PuzzleList::addPuzzleData(PuzzleData *puzzleData)

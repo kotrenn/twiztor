@@ -58,5 +58,5 @@ void CircleGLEntity::render() const
 {
 	GLGraphics *glGraphics = GLGraphics::getInstance();
 	
-	glGraphics->drawCircle(vec2f(m_x, m_y), m_r);
+	glGraphics->drawCircle(vec2f(m_x, m_y), m_r, true);
 }

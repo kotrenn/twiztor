@@ -9,9 +9,10 @@ PuzzleRenderer::PuzzleRenderer()
 
 void PuzzleRenderer::render(const PuzzleData &puzzleData) const
 {
-	//glSystem->pushMatrix(MAT_MODEL);
-
-	//glSystem->translate2fv(m_center);
+	GLSystem *glSystem = GLGraphics::getInstance()->getGLSystem();
+	
+	glSystem->pushMatrix(MAT_MODEL);
+	glSystem->translate2fv(MAT_MODEL, puzzleData.getCenter());
 
 	for (Permutation *permutation : *(puzzleData.getPermutationList()))
 		permutation->render(*(puzzleData.getSlotList()), puzzleData.getArcList(permutation));
@@ -22,5 +23,5 @@ void PuzzleRenderer::render(const PuzzleData &puzzleData) const
 	for (Sticker *sticker : *(puzzleData.getStickerList()))
 		sticker->render();
 
-	//glSystem->popMatrix(MAT_MODEL);
+	glSystem->popMatrix(MAT_MODEL);
 }

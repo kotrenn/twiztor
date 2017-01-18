@@ -10,6 +10,7 @@
 int main(int, char **)
 {
 	GLData glData;
+	GLSystem glSystem;
 	if (!glData.init())
 	{
 		printf("Failed to initialize");
@@ -20,7 +21,9 @@ int main(int, char **)
 		
 		SingletonManager singletonManager();
 		InputSystem *inputSystem = InputSystem::getInstance();;
-		GLGraphics::getInstance()->setGLData(&glData);
+		GLGraphics *glGraphics = GLGraphics::getInstance();
+		glGraphics->setGLData(&glData);
+		glGraphics->setGLSystem(&glSystem);
 
 		bool testLevel = false;
 		PuzzleData *puzzleData = NULL;
@@ -58,6 +61,7 @@ int main(int, char **)
 			scene->update();
 
 			//Render scene
+			glSystem.loadAllIdentities();
 			glData.render(scene);
 			
 			//Update screen

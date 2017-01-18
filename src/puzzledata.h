@@ -52,6 +52,9 @@ public:
 	void setArc(Permutation *permutation, unsigned int nodeIndex, Arc *arc);
 	vector<Arc *> getArcList(Permutation *permutation) const { return m_arcMap.at(permutation); }
 
+	vec2f getCenter() const { return m_center; }
+	void setCenter(const vec2f &center) { m_center = center; }
+
 	void makeTestLevel();
 	
 private:
@@ -63,6 +66,7 @@ private:
 	SlotFactory m_slotFactory;
 	PuzzleRenderer *m_puzzleRenderer;
 	map<Permutation *, vector<Arc *>> m_arcMap;
+	vec2f m_center;
 };
 
 #endif

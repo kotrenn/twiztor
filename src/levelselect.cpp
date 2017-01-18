@@ -12,7 +12,8 @@ LevelSelect::LevelSelect(Camera *camera)
 	inputSystem->addKeyListener(this);
 	
 	m_puzzleList = new PuzzleList();
-	m_puzzleList->readFromFile("puzzlelist.txt");
+	m_puzzleList->readPuzzlesFromFile("puzzlelist.txt");
+	m_puzzleList->readWorldFromFile("world.txt");
 
 	m_puzzleController = new PuzzleController(m_puzzleList->getCurrentPuzzle());
 }

@@ -10,7 +10,8 @@ public:
 	PuzzleList();
 	~PuzzleList();
 
-	void readFromFile(const string &filename);
+	void readPuzzlesFromFile(const string &filename);
+	void readWorldFromFile(const string &filename);
 	
 	void render() const;
 

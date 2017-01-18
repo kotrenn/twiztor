@@ -3,6 +3,7 @@
 
 #include "color.h"
 #include "gldata.h"
+#include "glsystem.h"
 #include "vec2f.h"
 
 class GLGraphics
@@ -17,18 +18,23 @@ public:
 
 	void drawLine(const vec2f &v1, const vec2f &v2);
 	void drawLine(float x1, float y1, float x2, float y2);
-	void drawCircle(const vec2f &center, float r);
-	void drawCircle(float x, float y, float r);
+	void drawCircle(const vec2f &center, float r, bool filled=false);
+	void drawCircle(float x, float y, float r, bool filled=false);
 
 	void setGLData(GLData *glData) { m_glData = glData; }
+	void setGLSystem(GLSystem *glSystem) { m_glSystem = glSystem; }
+
+	GLSystem *getGLSystem() const { return m_glSystem; }
 private:
 	GLGraphics();
 	static GLGraphics *s_instance;
 	
-	void loadColorToGL();
-
 	GLData *m_glData;
+	GLSystem *m_glSystem;
 	Color m_currentColor;
+	
+	void loadColorToGL();
+	void vertex2f(float x, float y);
 };
 
 #endif

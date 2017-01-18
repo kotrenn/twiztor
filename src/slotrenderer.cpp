@@ -14,5 +14,5 @@ void SlotRenderer::render(const Slot &slot) const
 	GLGraphics *glGraphics = GLGraphics::getInstance();
 
 	glGraphics->setColor(slotColor);
-	glGraphics->drawCircle(slotCenter, 0.05);
+	glGraphics->drawCircle(slotCenter, 0.05, true);
 }
