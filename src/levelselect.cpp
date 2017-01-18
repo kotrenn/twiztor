@@ -114,10 +114,6 @@ void LevelSelect::eventMouseButtonUp(const SDL_MouseButtonEvent &mouse)
 
 void LevelSelect::moveCamera()
 {
-	float t = getAnimationPercentage();
-	Uint32 offset = 0;
-	if (t < 1.0)
-		offset = (t) * m_moveDuration;
 	m_prevCameraTime = SDL_GetTicks() - offset;
 	m_cameraStartVec = m_camera->getCenter();
 	m_cameraGoalVec = m_puzzleList->getCurrentPuzzle()->getCenter();
