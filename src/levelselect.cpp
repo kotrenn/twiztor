@@ -1,5 +1,6 @@
 #include "levelselect.h"
 
+#include "glgraphics.h"
 #include "inputsystem.h"
 
 LevelSelect::LevelSelect(Camera *camera)
@@ -54,18 +55,34 @@ void LevelSelect::render(GLSystem *glSystem) const
 	Scene::render(glSystem);
 
 	m_puzzleList->render();
+	
+	GLGraphics *glGraphics = GLGraphics::getInstance();
+
+	int mouseX = 0;
+	int mouseY = 0;
+	SDL_GetMouseState(&mouseX, &mouseY);
+	vec2f point = m_camera->cameraToWorld(vec2f(mouseX, mouseY));
+	//cout << point << endl;
+	glGraphics->setColor(1.0, 0.0, 1.0);
+	glGraphics->drawCircle(point, 0.03 * m_camera->getZoomFactor());
 }
 
 void LevelSelect::eventKeyUp(const SDL_KeyboardEvent &key)
 {
+	unsigned int skip = 10;
+	
 	switch (key.keysym.sym)
 	{
+	case SDLK_DOWN:
+	case SDLK_LEFT:
 	case SDLK_LEFTBRACKET:  m_puzzleList->prevPuzzle(); moveCamera(); break;
+	case SDLK_UP:
+	case SDLK_RIGHT:
 	case SDLK_RIGHTBRACKET: m_puzzleList->nextPuzzle(); moveCamera(); break;
 	case SDLK_HOME:         m_puzzleList->firstPuzzle(); moveCamera(); break;
 	case SDLK_END:          m_puzzleList->lastPuzzle(); moveCamera(); break;
-	case SDLK_PAGEUP:       m_puzzleList->prevPuzzle(10); moveCamera(); break;
-	case SDLK_PAGEDOWN:     m_puzzleList->nextPuzzle(10); moveCamera(); break;
+	case SDLK_PAGEUP:       m_puzzleList->prevPuzzle(skip); moveCamera(); break;
+	case SDLK_PAGEDOWN:     m_puzzleList->nextPuzzle(skip); moveCamera(); break;
 	default: break;
 	}
 

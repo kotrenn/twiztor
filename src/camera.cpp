@@ -10,6 +10,8 @@ Camera::Camera()
 	 m_zoomScale(0.42),
 	 m_centerX(0.0),
 	 m_centerY(0.0),
+	 m_offsetX(0.0),
+	 m_offsetY(0.0),
 	 m_rotationAngle(0.0),
 	 m_moveSpeed(0.003)
 {
@@ -38,12 +40,12 @@ void Camera::loadToGL() const
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	float eyeX = m_centerX;
-	float eyeY = m_centerY;
+	float eyeX = m_centerX + m_offsetX;
+	float eyeY = m_centerY + m_offsetY;
 	float eyeZ = 1.0;
 
-	float centerX = m_centerX;
-	float centerY = m_centerY;
+	float centerX = m_centerX + m_offsetX;
+	float centerY = m_centerY + m_offsetY;
 	float centerZ = 0.0;
 
 	float upX = 0.0;
@@ -55,9 +57,10 @@ void Camera::loadToGL() const
 	          upX, upY, upZ);
 }
 
-void Camera::eventKeyDown(const SDL_KeyboardEvent &)
+void Camera::eventKeyDown(const SDL_KeyboardEvent &key)
 {
-	//if (key.keysym.sym == )
+	if (key.keysym.sym == SDLK_c)
+		m_offsetX = m_offsetY = 0.0;
 }
 
 void Camera::eventMouseMotion(const SDL_MouseMotionEvent &event)
@@ -67,8 +70,8 @@ void Camera::eventMouseMotion(const SDL_MouseMotionEvent &event)
 	int deltaY = event.yrel;
 
 	if (buttonState == 0) return;
-	m_centerX -= deltaX * m_moveSpeed / m_zoomScale;
-	m_centerY += deltaY * m_moveSpeed / m_zoomScale;
+	m_offsetX -= deltaX * m_moveSpeed / m_zoomScale;
+	m_offsetY += deltaY * m_moveSpeed / m_zoomScale;
 }
 
 void Camera::eventMouseWheel(const SDL_MouseWheelEvent &event)
@@ -80,4 +83,32 @@ void Camera::eventMouseWheel(const SDL_MouseWheelEvent &event)
 		m_zoomScale *= factor;
 	else if (y > 0)
 		m_zoomScale /= factor;
+}
+
+vec2f Camera::cameraToWorld(const vec2f &mouseLoc) const
+{
+	// invert y
+	float mouseX = mouseLoc[0];
+	float mouseY = SCREEN_HEIGHT - mouseLoc[1];
+
+	mouseX -= SCREEN_WIDTH / 2;
+	mouseY -= SCREEN_HEIGHT / 2;
+
+	// scale
+	float worldX = mouseX / SCREEN_WIDTH;
+	float worldY = mouseY / SCREEN_HEIGHT;
+
+	worldX *= m_viewWidth;
+	worldY *= m_viewHeight;
+
+	worldX /= m_zoomScale;
+	worldY /= m_zoomScale;
+
+	// adjust to center
+	worldX += m_centerX + m_offsetX;
+	worldY += m_centerY + m_offsetY;
+
+	// TODO: Camera::cameraToWorld() : m_rotationAngle calculations
+
+	return vec2f(worldX, worldY);
 }
