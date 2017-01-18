@@ -229,6 +229,7 @@ def main():
     font = pygame.font.Font(pygame.font.get_default_font(), FONT_SIZE)
 
     hex_map = HexMap('world.txt', width, height)
+    hex_map.load_from_file()
 
     running = True
     while running:
