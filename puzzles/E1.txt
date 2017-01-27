@@ -34,12 +34,12 @@ node s4r2c3 yellow 5 3
 node s4r3c1 yellow 6 1
 node s4r3c2 yellow 6 2
 node s4r3c3 yellow 6 3
-permutation red [[s1r1c1,s2r1c3,s3r3c3,s4r1c3],[s1r1c2,s2r2c3,s3r3c2,s4r2c1],[s1r1c3,s2r2c3,s3r3c1,s4r1c1]]
-permutation blue [[s1r2c1,s2r1c2,s3r2c3,s4r3c2],[s1r2c2,s2r2c2,s3r2c2,s4r2c2],[s1r2c3,s2r3c2,s3r2c1,s4r1c2]]
-permutation green [[s1r3c1,s2r1c1,s3r1c3,s4r3c3],[s1r3c2,s2r2c1,s3r1c2,s4r2c3],[s1r3c3,s2r3c1,s3r1c1,s4r1c3]]
-permutation magenta [[s1r1c1,s3r1c1],[s1r2c1,s3r2c1],[s1r3c1,s3r3c1]
-permutation cyan [[s1r1c2,s3r1c2],[s1r2c2,s3r2c2],[s1r3c2,s3r3c2]
-permutation yellow [[s1r1c1,s3r1c3],[s1r2c1,s3r2c3],[s1r3c3,s3r3c3]
-permutation purple [[s4r1c1,s2r1c1],[s4r1c2,s2r1c2],[s4r1c3,s2r1c3]]
-permutation orange [[s4r2c1,s2r2c1],[s4r2c2,s2r2c2],[s4r2c3,s2r2c3]]
-permutation gray [[s4r3c1,s2r3c1],[s4r3c2,s2r3c2],[s4r3c3,s2r3c3]]
+permutation red [[s1r1c1, s2r1c3, s3r3c3, s4r1c3], [s1r1c2, s2r2c3, s3r3c2, s4r2c1], [s1r1c3, s2r2c3, s3r3c1, s4r1c1]]
+permutation blue [[s1r2c1, s2r1c2, s3r2c3, s4r3c2], [s1r2c2, s2r2c2, s3r2c2, s4r2c2], [s1r2c3, s2r3c2, s3r2c1, s4r1c2]]
+permutation green [[s1r3c1, s2r1c1, s3r1c3, s4r3c3], [s1r3c2, s2r2c1, s3r1c2, s4r2c3], [s1r3c3, s2r3c1, s3r1c1, s4r1c3]]
+permutation magenta [[s1r1c1, s3r1c1], [s1r2c1, s3r2c1], [s1r3c1, s3r3c1]]
+permutation cyan [[s1r1c2, s3r1c2], [s1r2c2, s3r2c2], [s1r3c2, s3r3c2]]
+permutation yellow [[s1r1c1, s3r1c3], [s1r2c1, s3r2c3], [s1r3c3, s3r3c3]]
+permutation purple [[s4r1c1, s2r1c1], [s4r1c2, s2r1c2], [s4r1c3, s2r1c3]]
+permutation orange [[s4r2c1, s2r2c1], [s4r2c2, s2r2c2], [s4r2c3, s2r2c3]]
+permutation gray [[s4r3c1, s2r3c1], [s4r3c2, s2r3c2], [s4r3c3, s2r3c3]]
