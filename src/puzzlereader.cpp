@@ -305,5 +305,8 @@ void PuzzleReader::normalize()
 
 	for (Permutation *permutation : *(m_puzzleData->getPermutationList()))
 		for (Arc *arc : m_puzzleData->getArcList(permutation))
+		{
 			arc->normalize(maxRadius);
+			arc->computeParameters();
+		}
 }

@@ -9,6 +9,10 @@ Arc::Arc(Permutation *permutation, Slot *slotU, Slot *slotV)
 {
 }
 
+void Arc::computeParameters()
+{
+}
+
 void Arc::adjustCenter(const vec2f &)
 {
 }
@@ -51,21 +55,17 @@ CircleArc::CircleArc(Permutation *permutation,
 	:Arc(permutation, slotU, slotV),
 	 m_circleRadius(circleRadius),
 	 m_circlePlus(circlePlus),
-	 m_circleInverted(circleInverted)
+	 m_circleInverted(circleInverted),
+	 m_circleCenter(0.0, 0.0),
+	 m_thetaU(0.0),
+	 m_thetaV(0.0),
+	 m_dTheta(0.0)
 {
+	computeParameters();
 }
 
-vec2f CircleArc::getPoint(float) const
+void CircleArc::computeParameters()
 {
-	// TODO: CircleArc::getPoint(float)
-	return m_slotV->getCenter();
-}
-
-void CircleArc::render() const
-{
-	GLGraphics *glGraphics = GLGraphics::getInstance();
-	glGraphics->setColor(m_permutation->getColor());
-	
 	vec2f v0 = m_slotU->getCenter();
 	vec2f v1 = m_slotV->getCenter();
 
@@ -80,63 +80,72 @@ void CircleArc::render() const
 	vec2f disp = (v1 - v0).getUnit();
 	vec2f rot = vec2f(disp.getY(), -disp.getX());
 	if (m_circlePlus) rot *= -1.0;
-	vec2f circleCenter = midpoint + h * rot;
+	m_circleCenter = midpoint + h * rot;
 
 	// Set up interval of angles to iterate along
-	vec2f deltaU = v0 - circleCenter;
-	vec2f deltaV = v1 - circleCenter;
+	vec2f deltaU = v0 - m_circleCenter;
+	vec2f deltaV = v1 - m_circleCenter;
 
-	float thetaU = atan2(deltaU[1], deltaU[0]);
-	float thetaV = atan2(deltaV[1], deltaV[0]);
+    m_thetaU = atan2(deltaU[1], deltaU[0]);
+	m_thetaV = atan2(deltaV[1], deltaV[0]);
 
-	unsigned int numIntervals = 25;
-	if (sc_debugEnabled) numIntervals = 5;
-	
-	float dTheta = thetaV - thetaU;
+	m_dTheta = m_thetaV - m_thetaU;
 
 	// Put dTheta into the interval [0, 2pi]
-	while (dTheta < 0)             dTheta += 2.0 * 3.14159;
-	while (dTheta > 2.0 * 3.14159) dTheta -= 2.0 * 3.14159;
+	while (m_dTheta < 0)             m_dTheta += 2.0 * 3.14159;
+	while (m_dTheta > 2.0 * 3.14159) m_dTheta -= 2.0 * 3.14159;
 
 	// Invert it?
 	if (m_circleInverted)
 	{
-		float tmp = thetaU;
-		thetaU = thetaV;
-		thetaV = tmp;
-		dTheta = 2.0 * 3.14159 - dTheta;
+		float tmp = m_thetaU;
+		m_thetaU = m_thetaV;
+		m_thetaV = tmp;
+		m_dTheta = 2.0 * 3.14159 - m_dTheta;
 	}
+}
 
-	dTheta /= numIntervals;
+vec2f CircleArc::getPoint(float t) const
+{
+	//float theta = m_thetaU + t * m_dTheta;
+	float theta = m_thetaU + t * m_dTheta;
 
-	// Iterate!
+	vec2f p(cos(theta), sin(theta));
+	p = m_circleRadius * p + m_circleCenter;
+
+	return p;
+}
+
+void CircleArc::render() const
+{
+	GLGraphics *glGraphics = GLGraphics::getInstance();
+	glGraphics->setColor(m_permutation->getColor());
+
+	unsigned int numIntervals = 20;
+	if (sc_debugEnabled) numIntervals = 5;
+	float dt = 1.0 / numIntervals;
 	for (unsigned int i = 0; i < numIntervals; ++i)
 	{
-		float theta0 = thetaU + i * dTheta;
-		float theta1 = thetaU + (i + 1) * dTheta;
+		float t0 = i * dt;
+		float t1 = (i + 1) * dt;
 
-		vec2f p0(cos(theta0), sin(theta0));
-		vec2f p1(cos(theta1), sin(theta1));
-
-		p0 = m_circleRadius * p0 + circleCenter;
-		p1 = m_circleRadius * p1 + circleCenter;
+		vec2f p0 = getPoint(t0);
+		vec2f p1 = getPoint(t1);
 
 		glGraphics->drawLine(p0, p1);
 
 		if (sc_debugEnabled)
 		{
-			glGraphics->drawCircle(p0, 0.005, true);
-			glGraphics->drawCircle(p1, 0.005, true);
+			glGraphics->setColor(t0, 0.0, 1.0 - t0);
+			glGraphics->drawCircle(p0, 0.03, true);
+			glGraphics->setColor(m_permutation->getColor());
 		}
 	}
 
 	if (sc_debugEnabled)
 	{
-		glGraphics->setColor(1.0, 0.0, 1.0);
-		glGraphics->drawCircle(midpoint, 0.005, true);
-
 		glGraphics->setColor(0.0, 1.0, 0.0);
-		glGraphics->drawCircle(circleCenter, 0.005, true);
+		glGraphics->drawCircle(m_circleCenter, 0.03, true);
 	}
 }
 
