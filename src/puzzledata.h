@@ -14,6 +14,8 @@ class Arc;
 class Permutation;
 class PermutationFactory;
 class PuzzleRenderer;
+class SlotFactory;
+class Sticker;
 
 class PuzzleData
 {
@@ -63,7 +65,7 @@ private:
 	vector<Slot *> m_slotList;
 	vector<Sticker *> m_stickerList;
 	PermutationFactory *m_permutationFactory;
-	SlotFactory m_slotFactory;
+	SlotFactory *m_slotFactory;
 	PuzzleRenderer *m_puzzleRenderer;
 	map<Permutation *, vector<Arc *>> m_arcMap;
 	vec2f m_center;

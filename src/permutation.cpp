@@ -56,6 +56,9 @@ Permutation Permutation::multiply(const Permutation &rhs)
 
 void Permutation::apply(PuzzleData *puzzleData, bool inverted)
 {
+	// Arcs for this permutation
+	vector<Arc *> arcList = puzzleData->getArcList(this);
+	
 	// Previous lists
 	const vector<Sticker *> *stickerList = puzzleData->getStickerList();
 	const vector<Slot *> *slotList = puzzleData->getSlotList();
@@ -72,11 +75,13 @@ void Permutation::apply(PuzzleData *puzzleData, bool inverted)
 		unsigned int a = i;
 		unsigned int b = j;
 		if (inverted) { a = j; b = i; }
+		unsigned int start = a;
+		if (inverted) start = b;
 
 		// Perform the copy
 		Sticker *sticker = (*stickerList)[a];
 		newStickerList[b] = sticker;
-		sticker->setSlot((*slotList)[b]);
+		sticker->moveToSlot((*slotList)[b], arcList[start], inverted);
 	}
 
 	// Copy results into puzzleData

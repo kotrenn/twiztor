@@ -3,6 +3,9 @@
 
 #include "sticker.h"
 
+class Sticker;
+class StickerRenderer;
+
 class StickerFactory
 {
 public:
@@ -11,7 +14,7 @@ public:
 
 	Sticker *makeSticker(const Color &color);
 private:
-	StickerRenderer m_stickerRenderer;
+	StickerRenderer *m_stickerRenderer;
 };
 
 #endif

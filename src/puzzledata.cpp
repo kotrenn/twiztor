@@ -8,7 +8,7 @@ PuzzleData::PuzzleData(const string &name)
 	 m_slotList(),
 	 m_stickerList(),
 	 m_permutationFactory(new PermutationFactory()),
-	 m_slotFactory(),
+	 m_slotFactory(new SlotFactory()),
 	 m_puzzleRenderer(NULL),
 	 m_arcMap(),
 	 m_center(0.0, 0.0)
@@ -43,10 +43,10 @@ void PuzzleData::makeTestLevel()
 	Color green(  "green", 0.0, 1.0, 0.0);
 	Color blue(    "blue", 0.0, 0.0, 1.0);
 
-	Slot *slot0 = m_slotFactory.makeSlot(red,    vec2f( 0.0, -3.0));
-	Slot *slot1 = m_slotFactory.makeSlot(yellow, vec2f( 0.0,  0.0));
-	Slot *slot2 = m_slotFactory.makeSlot(green,  vec2f(-3.0,  3.0));
-	Slot *slot3 = m_slotFactory.makeSlot(blue,   vec2f( 3.0,  3.0));
+	Slot *slot0 = m_slotFactory->makeSlot(red,    vec2f( 0.0, -3.0));
+	Slot *slot1 = m_slotFactory->makeSlot(yellow, vec2f( 0.0,  0.0));
+	Slot *slot2 = m_slotFactory->makeSlot(green,  vec2f(-3.0,  3.0));
+	Slot *slot3 = m_slotFactory->makeSlot(blue,   vec2f( 3.0,  3.0));
 
 	Slot *slotArray[] = { slot0, slot1, slot2, slot3 };
 
@@ -54,7 +54,7 @@ void PuzzleData::makeTestLevel()
 	{
 		addSlot(slot);
 		Sticker *slotSticker = slot->getSticker();
-		slotSticker->setSlot(slot);
+		slotSticker->moveToSlot(slot);
 		addSticker(slotSticker);
 	}
 

@@ -7,6 +7,7 @@
 
 class Arc;
 class Permutation;
+class Slot;
 
 class PermutationRenderer
 {

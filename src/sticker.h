@@ -1,11 +1,13 @@
 #ifndef __STICKER_H_
 #define __STICKER_H_
 
+#include "arc.h"
 #include "color.h"
 #include "gfx.h"
 #include "slot.h"
 #include "stickerrenderer.h"
 
+class Arc;
 class Slot;
 class StickerRenderer;
 
@@ -14,7 +16,7 @@ class Sticker
 public:
 	Sticker(StickerRenderer *stickerRenderer, const Color &color);
 
-	void setSlot(Slot *slot);
+	void moveToSlot(Slot *slot, Arc *arc=NULL, bool inverted=false);
 	void setColor(const Color &color) { m_color = color; }
 
 	vec2f getCenter() const;
@@ -26,12 +28,14 @@ public:
 private:
 	float getTimeRatio() const;
 
+	static const Uint32 sc_MOVE_DURATION = 1200; // 1.2 seconds
+	
 	StickerRenderer *m_stickerRenderer;
 	Color m_color;
 	Slot *m_slot;
-	Slot *m_previousSlot;
-	Uint32 m_previousTime;
-	static const Uint32 sf_MOVE_DURATION = 1200; // 1.2 seconds
+	Uint32 m_prevTime;
+	Arc *m_prevArc;
+	bool m_prevInverted;
 };
 
 #endif

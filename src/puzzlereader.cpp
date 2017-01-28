@@ -74,7 +74,7 @@ void PuzzleReader::readNode(const string &rawLine)
 	float nodeY = m_zoomScale * stof(values[4]);
 	Sticker *newSticker = m_stickerFactory->makeSticker(nodeColor);
 	Slot *newSlot = m_slotFactory->makeSlot(nodeColor, vec2f(nodeX, nodeY));
-	newSticker->setSlot(newSlot);
+	newSticker->moveToSlot(newSlot);
 	m_puzzleData->addSlot(newSlot);
 	m_puzzleData->addSticker(newSticker);
 	m_nodeList.push_back(nodeName);

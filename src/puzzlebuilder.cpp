@@ -27,7 +27,7 @@ void PuzzleBuilder::addNode(const string &name, const Color &color, const vec2f 
 {
 	Sticker *newSticker = m_stickerFactory.makeSticker(color);
 	Slot *newSlot = m_slotFactory.makeSlot(color, center);
-	newSticker->setSlot(newSlot);
+	newSticker->moveToSlot(newSlot);
 
 	m_puzzleData->addSlot(newSlot);
 	m_puzzleData->addSticker(newSticker);
