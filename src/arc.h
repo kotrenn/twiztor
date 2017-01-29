@@ -13,14 +13,16 @@ public:
 
 	virtual void computeParameters();
 	virtual vec2f getPoint(float t) const = 0;
-	virtual void render() const = 0;
+	virtual void render() const;
 
 	virtual void adjustCenter(const vec2f &newCenter);
 	virtual void normalize(float radius);
 protected:
+	static const Uint32 sc_animDuration = 4200;
 	Permutation *m_permutation;
 	Slot *m_slotU;
 	Slot *m_slotV;
+	Uint32 m_startTime;
 };
 
 class LineArc : public Arc
@@ -29,7 +31,7 @@ public:
 	LineArc(Permutation *permutation, Slot *slotU, Slot *slotV);
 
 	vec2f getPoint(float t) const;
-	void render() const;
+	virtual void render() const;
 };
 
 class CircleArc : public Arc
@@ -41,7 +43,7 @@ public:
 
 	void computeParameters();
 	vec2f getPoint(float t) const;
-	void render() const;
+	virtual void render() const;
 
 	void normalize(float radius);
 private:

@@ -5,7 +5,8 @@
 Arc::Arc(Permutation *permutation, Slot *slotU, Slot *slotV)
 	:m_permutation(permutation),
 	 m_slotU(slotU),
-	 m_slotV(slotV)
+	 m_slotV(slotV),
+	 m_startTime(SDL_GetTicks())
 {
 }
 
@@ -19,6 +20,18 @@ void Arc::adjustCenter(const vec2f &)
 
 void Arc::normalize(float)
 {
+}
+
+void Arc::render() const
+{
+	Uint32 curTime = SDL_GetTicks();
+	float duration = (float)(curTime - m_startTime) / sc_animDuration;
+	float t = duration - static_cast<int>(duration);
+	vec2f p = getPoint(t);
+
+	GLGraphics *glGraphics = GLGraphics::getInstance();
+	glGraphics->setColor(m_permutation->getColor());
+	glGraphics->drawCircle(p, 0.03, true);
 }
 
 
@@ -35,6 +48,8 @@ vec2f LineArc::getPoint(float t) const
 
 void LineArc::render() const
 {
+	Arc::render();
+	
 	GLGraphics *glGraphics = GLGraphics::getInstance();
 	glGraphics->setColor(m_permutation->getColor());
 
@@ -118,6 +133,8 @@ vec2f CircleArc::getPoint(float t) const
 
 void CircleArc::render() const
 {
+	Arc::render();
+	
 	GLGraphics *glGraphics = GLGraphics::getInstance();
 	glGraphics->setColor(m_permutation->getColor());
 
