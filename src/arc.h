@@ -18,7 +18,7 @@ public:
 	virtual void adjustCenter(const vec2f &newCenter);
 	virtual void normalize(float radius);
 protected:
-	static const Uint32 sc_animDuration = 4200;
+	static const Uint32 sc_animDuration = 12000;
 	Permutation *m_permutation;
 	Slot *m_slotU;
 	Slot *m_slotV;

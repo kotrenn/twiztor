@@ -24,14 +24,21 @@ void Arc::normalize(float)
 
 void Arc::render() const
 {
-	Uint32 curTime = SDL_GetTicks();
-	float duration = (float)(curTime - m_startTime) / sc_animDuration;
-	float t = duration - static_cast<int>(duration);
-	vec2f p = getPoint(t);
-
 	GLGraphics *glGraphics = GLGraphics::getInstance();
 	glGraphics->setColor(m_permutation->getColor());
-	glGraphics->drawCircle(p, 0.03, true);
+	
+	Uint32 curTime = SDL_GetTicks();
+	float duration = (float)(curTime - m_startTime) / sc_animDuration;
+	float t0 = duration - static_cast<int>(duration);
+
+	unsigned int numDots = 3;
+	for (unsigned int i = 0; i < numDots; ++i)
+	{
+		float t = t0 + static_cast<float>(i) / numDots;
+		if (t > 1.0) t -= 1.0;
+		vec2f p = getPoint(t);
+		glGraphics->drawCircle(p, 0.01, true);
+	}
 }
 
 
