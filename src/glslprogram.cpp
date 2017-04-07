@@ -1,3 +1,5 @@
+/* Based on that book of shaders */
+
 #include "glslprogram.h"
 
 int GLSLProgram::s_currentProgram = 0;
@@ -522,7 +524,7 @@ bool GLSLProgram::isExtensionSupported(const char *extension)
 
 	const GLubyte *extensions = glGetString(GL_EXTENSIONS);
 
-	for (const GLubyte *start = extensions; ; )
+	for (const GLubyte *start = extensions; start != NULL; )
 	{
 		where = (GLubyte *)strstr((const char *)start, extension);
 		if (where == 0)
@@ -609,7 +611,7 @@ void GLSLProgram::checkGLErrors(const char *caller) const
 
 	if (gle == GL_NO_ERROR) return;
 
-	cerr << "GL Error discovered from caller %s:" << caller << endl;
+	cerr << "GL Error discovered from caller " << caller << ":" << endl;
 	switch (gle)
 	{
 	case GL_INVALID_ENUM:      cerr << "Invalid enum." << endl; break;
