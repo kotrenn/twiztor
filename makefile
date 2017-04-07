@@ -1,18 +1,35 @@
+LINUX = 1
+DEBUG = 1
 NAME = permcpp
-EXE = bin\${NAME}.exe
+
 src := $(wildcard src/*.cpp)
 obj := $(src:%.cpp=%.o)
 puz_src := $(wildcard puzzles/*.txt)
 puz_obj := $(puz_src:%.txt=%.puz)
-FLAGS = -O0 -g -Wall -Wextra -std=c++0x -Wl,-subsystem,windows
-#FLAGS = -O3 -std=c++0x
-LINKS = -lm -lmingw32 -lSDL2main -lSDL2 -lglew32 -lopengl32 -lglu32
-#LINKS = -lm -lSDL2 -lSDL2_image -lSDL2_mixer
+
+WIN_LINKS = -lm -lmingw32 -lSDL2main -lSDL2 -lglew32 -lopengl32 -lglu32 src/glew.c -DGLEW_STATIC
+LIN_LINKS = -lm -lSDL2 -lSDL2_image -lSDL2_mixer -lGL -lGLU -lGLEW
+
+O0_FLAGS = -O0 -g -Wall -Wall -Wextra
+O3_FLAGS = -O3
+
+WIN_FLAGS = -Wl,-subsystem,windows
+LIN_FLAGS =
+
+WIN_EXE = bin\${NAME}.exe
+LIN_EXE = bin/${NAME}
+
+OPT_FLAGS = $(O0_FLAGS)
+OS_FLAGS = $(LIN_FLAGS)
+
+FLAGS = $(OPT_FLAGS) $(OS_FLAGS) -std=c++0x
+LINKS = $(LIN_LINKS)
+EXE = $(LIN_EXE)
 
 all: ${EXE} puzzles
 
 ${EXE}: $(obj)
-	g++ -o ${EXE} src/glew.c $(obj) ${FLAGS} ${LINKS} -DGLEW_STATIC
+	g++ -o ${EXE} $(obj) ${FLAGS} ${LINKS}
 
 $(obj): %.o: %.cpp
 	g++ ${FLAGS} -c -o $@ $<
