@@ -1,6 +1,0 @@
-
-Fragment shader failed to compile with the following errors:
-ERROR: 0:1: error(#106) Invalid shader version number
-ERROR: error(#273) 1 compilation errors.  No code generated
-
-
