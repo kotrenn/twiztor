@@ -7,7 +7,7 @@ obj := $(src:%.cpp=%.o)
 puz_src := $(wildcard puzzles/*.txt)
 puz_obj := $(puz_src:%.txt=%.puz)
 
-WIN_LINKS = -lm -lmingw32 -lSDL2main -lSDL2 -lglew32 -lopengl32 -lglu32 src/glew.c -DGLEW_STATIC
+WIN_LINKS = src/glew.c -lm -lmingw32 -lSDL2main -lSDL2 -lglew32 -lopengl32 -lglu32 -DGLEW_STATIC
 LIN_LINKS = -lm -lSDL2 -lSDL2_image -lSDL2_mixer -lGL -lGLU -lGLEW
 
 O0_FLAGS = -O0 -g -Wall -Wall -Wextra
@@ -20,16 +20,16 @@ WIN_EXE = bin\${NAME}.exe
 LIN_EXE = bin/${NAME}
 
 OPT_FLAGS = $(O0_FLAGS)
-OS_FLAGS = $(LIN_FLAGS)
+OS_FLAGS = $(WIN_FLAGS)
 
 FLAGS = $(OPT_FLAGS) $(OS_FLAGS) -std=c++0x
-LINKS = $(LIN_LINKS)
-EXE = $(LIN_EXE)
+LINKS = $(WIN_LINKS)
+EXE = $(WIN_EXE)
 
 all: ${EXE} puzzles
 
 ${EXE}: $(obj)
-	g++ -o ${EXE} $(obj) ${FLAGS} ${LINKS}
+	g++ -o ${EXE} $(obj) ${LINKS} ${FLAGS}
 
 $(obj): %.o: %.cpp
 	g++ ${FLAGS} -c -o $@ $<
