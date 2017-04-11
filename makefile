@@ -2,8 +2,10 @@ LINUX = 1
 DEBUG = 1
 NAME = permcpp
 
-src := $(wildcard src/cpp/*.cpp)
-obj := $(src:%.cpp=%.o)
+cpp_src := $(wildcard src/cpp/*.cpp)
+cpp_obj := $(cpp_src:%.cpp=%.o)
+java_src := $(wildcard src/java/permgame/*.java)
+java_obj := $(java_src:src/java/permgame/%.java=permgame/%.class)
 puz_src := $(wildcard puzzles/*.txt)
 puz_obj := $(puz_src:%.txt=%.puz)
 
@@ -20,30 +22,30 @@ WIN_EXE = bin\${NAME}.exe
 LIN_EXE = bin/${NAME}
 
 OPT_FLAGS = $(O0_FLAGS)
-OS_FLAGS = $(WIN_FLAGS)
+OS_FLAGS = $(LIN_FLAGS)
 
-FLAGS = $(OPT_FLAGS) $(OS_FLAGS) -std=c++0x
-LINKS = $(WIN_LINKS)
-EXE = $(WIN_EXE)
+CPP_FLAGS = $(OPT_FLAGS) $(OS_FLAGS) -std=c++0x
+CPP_LINKS = $(LIN_LINKS)
+CPP_EXE = $(LIN_EXE)
 
-all: ${EXE} puzzles
+all: cpp java
 
-${EXE}: $(obj)
-	g++ -o ${EXE} $(obj) ${LINKS} ${FLAGS}
+# C++
+cpp: ${CPP_EXE} puzzles
 
-$(obj): %.o: %.cpp
-	g++ ${FLAGS} -c -o $@ $<
+${CPP_EXE}: $(cpp_obj)
+	g++ -o ${CPP_EXE} $(cpp_obj) ${CPP_LINKS} ${CPP_FLAGS}
 
-clean:
-	rm -rf ${EXE} src/cpp/*.o puzzlelist.txt puzzles/*.puz
+$(cpp_obj): %.o: %.cpp
+	g++ ${CPP_FLAGS} -c -o $@ $<
 
-clean-all:
-	rm -rf ${EXE} src/cpp/*.o puzzlelist.txt puzzles/*.puz html latex
+# Java
+java: $(java_obj) puzzles
 
-doc:
-	rm -rf html latex
-	doxygen doxygen.txt
+$(java_obj): permgame/%.class: src/java/permgame/%.java
+	javac -d . -cp src/java/ $<
 
+# Puzzles
 puzzles: puzzlelist.txt
 
 puzzlelist.txt: genpuzzles.py compile_puzzle.py $(puz_obj)
@@ -51,3 +53,15 @@ puzzlelist.txt: genpuzzles.py compile_puzzle.py $(puz_obj)
 
 $(puz_obj): %.puz: %.txt
 	python compile_puzzle.py $< > $@
+
+# Doc
+doc:
+	rm -rf html latex
+	doxygen doxygen.txt
+
+# Clean
+clean:
+	rm -rf ${CPP_EXE} src/cpp/*.o permgame puzzlelist.txt puzzles/*.puz
+
+clean-all: clean
+	rm -rf html latex
