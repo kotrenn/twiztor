@@ -4,7 +4,7 @@ var EPSILON = 0.0001;
 
 class vec2f
 {
-	function zero()
+	zero()
 	{
 		return new vec2f(0, 0);
 	}
@@ -15,39 +15,39 @@ class vec2f
 		this.y = y;
 	}
 
-	function add(rhs)
+	add(rhs)
 	{
 		return new vec2f(this.x + rhs.x, this.y + rhs.y);
 	}
 
-	function sub(rhs)
+	sub(rhs)
 	{
 		return new vec2f(this.x - rhs.x, this.y - rhs.y);
 	}
 
-	function dot(rhs)
+	dot(rhs)
 	{
 		return this.x * rhs.x + this.y * rhs.y;
 	}
 
-	function scale(rhs)
+	scale(rhs)
 	{
 		return new vec2f(this.x * rhs, this.y * rhs);
 	}
 
-	function norm()
+	norm()
 	{
 		return math.sqrt(this.x * this.x + this.y * this.y);
 	}
 
-	function unit()
+	unit()
 	{
 		var mag = this.norm();
 		if (mag < EPSILON) return vec2f.zero();
 		return new vec2f(this.x / mag, this.y / mag);
 	}
 
-	function normalize()
+	normalize()
 	{
 		var mag = this.norm();
 		if (mag < EPSILON)
