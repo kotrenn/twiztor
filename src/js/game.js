@@ -23,11 +23,29 @@ function linearStrArray(n)
 }
 
 
-var scale = 200.0;
+var scaleConst = 100;
+var yConst = scaleConst;
+var xConst = 2 * yConst;
+
+function adjustPosX(t)
+{
+	return scaleConst * t + xConst;
+}
+
+function adjustPosY(t)
+{
+	return scaleConst * t + yConst;
+}
+
+function adjustLen(t)
+{
+	return scaleConst * t;
+}
+
 function fillRect(context, color, x, y, w, h)
 {
 	context.beginPath();
-	context.rect(x * scale, y * scale, w * scale, h * scale);
+	context.rect(adjustPosX(x), adjustPosY(y), adjustLen(w), adjustLenY(h));
 	context.fillStyle = color;
 	context.fill();
 	context.closePath();
@@ -36,8 +54,8 @@ function fillRect(context, color, x, y, w, h)
 function drawLine(context, color, x1, y1, x2, y2)
 {
 	context.beginPath();
-	context.moveTo(x1 * scale, y1 * scale);
-	context.lineTo(x2 * scale, y2 * scale);
+	context.moveTo(adjustPosX(x1), adjustPosY(y1));
+	context.lineTo(adjustPosX(x2), adjustPosY(y2));
 	context.strokeStyle = color;
 	context.stroke();
 	context.moveTo(0, 0);
@@ -46,7 +64,7 @@ function drawLine(context, color, x1, y1, x2, y2)
 function fillCircle(context, color, x, y, r)
 {
 	context.beginPath();
-	context.arc(x * scale, y * scale, r * scale, 0, 2.0 * Math.PI);
+	context.arc(adjustPosX(x), adjustPosY(y), r, 0, 2.0 * Math.PI);
 	context.fillStyle = color;
 	context.fill();
 	context.closePath();
@@ -91,7 +109,7 @@ class vec2f
 
 	norm()
 	{
-		return math.sqrt(this.x * this.x + this.y * this.y);
+		return Math.sqrt(this.x * this.x + this.y * this.y);
 	}
 
 	unit()
@@ -127,6 +145,7 @@ class Sticker
 	{
 		this.prevTime = 0;
 		this.prevArc = arc;
+		this.prevArc = null;
 		this.prevInverted = inverted;
 		this.slot = slot;
 	}
@@ -167,8 +186,10 @@ class Sticker
 	{
 	}
 
-	draw()
+	draw(context)
 	{
+		var center = this.getCenter();
+		fillCircle(context, this.color, center.x, center.y, 4);
 	}
 }
 
@@ -187,6 +208,7 @@ class Slot
 
 	draw(context)
 	{
+		fillCircle(context, this.color, this.center.x, this.center.y, 5)
 	}
 
 	setSticker(sticker)
@@ -238,6 +260,19 @@ class Arc
 
 		drawLine(context, color, v0.x, v0.y, v1.x, v1.y);
 	}
+
+	// CircleArc
+	computeParameters()
+	{
+	}
+
+	adjustCenter(vec)
+	{
+	}
+
+	normalize(flt)
+	{
+	}
 }
 
 
@@ -254,7 +289,7 @@ class Permutation
 
 	draw(context, arcList)
 	{
-		for (var i in arcList)
+		for (var i = 0; i < arcList.length; i++)
 		{
 			var arc = arcList[i];
 			if (arc == null) continue;
@@ -279,10 +314,10 @@ class Permutation
 
 	setCycles(cycles)
 	{
-		for (var k in cycles)
+		for (var k = 0; k < cycles.length; k++)
 		{
 			var cycle = cycles[k];
-			for (var i in cycle)
+			for (var i = 0; i < cycle.length; i++)
 			{
 				var j = (i + 1) % cycle.length;
 				this.mapping[cycle[i]] = cycle[j];
@@ -293,7 +328,7 @@ class Permutation
 	multiply(rhs)
 	{
 		var ret = new Permutation(this.mapping.length, this.color, this.index);
-		for (var i in this.mapping)
+		for (var i = 0; i < this.mapping.length; i++)
 			ret.mapping[i] = this.mapping[rhs.mapping[i]];
 		
 		return ret;
@@ -301,29 +336,37 @@ class Permutation
 
 	apply(puzzleData, inverted)
 	{
+		// Arcs for this permutation
 		var arcList = puzzleData.getArcList(this);
+
+		// Previous lists
 		var stickerList = puzzleData.getStickerList();
 		var slotList = puzzleData.getSlotList();
 
+		// Buffer list to construct the new list without modifying the old list
 		var newStickerList = [];
-		for (var i in stickerList)
+		for (var i = 0; i < stickerList.length; i++)
 			newStickerList.push(stickerList[i]);
 
-		for (var i in this.mapping)
+		// Reorder newStickerList as necessary
+		for (var i = 0; i < this.mapping.length; i++)
 		{
 			var j = this.mapping[i];
 
+			// Swap indices around if inverting
 			var a = i;
 			var b = j;
 			if (inverted) { a = j; b = i; }
 			var start = a;
 			if (inverted) start = b;
 
+			// Perform the copy
 			var sticker = stickerList[a];
 			newStickerList[b] = sticker;
 			sticker.moveToSlot(slotList[b], arcList[start], inverted);
 		}
 
+		// Copy results into puzzleData
 		puzzleData.setStickerList(newStickerList);
 	}
 
@@ -332,7 +375,7 @@ class Permutation
 		var ret = this.mapping[index];
 
 		if (inverted)
-			for (var i in this.mapping)
+			for (var i = 0; i < this.mapping.length; i++)
 				if (this.mappign[i] == index)
 					ret = i;
 		
@@ -343,7 +386,7 @@ class Permutation
 	{
 		var ret = new Permutation(this.mapping.length, this.color, this.index);
 
-		for (var i in this.mapping)
+		for (var i = 0; i < this.mapping.length; i++)
 		{
 			ret.mapping[i] = this.mapping[i];
 			ret.labels[i] = this.labels[i];
@@ -363,31 +406,39 @@ class PuzzleData
 		this.permutationList = [];
 		this.slotList = [];
 		this.stickerList = [];
-		this.arcMap = {};
+		this.arcMap = [];
 		this.center = new vec2f(0.0, 0.0);
+	}
+
+	activatePermutation(index, inverted)
+	{
+		if (index >= this.permutationList.length) return;
+
+		var permutation = this.permutationList[index];
+		permutation.apply(this, inverted);
 	}
 
 	draw(context)
 	{
-		for (var i in this.permutationList)
+		for (var i = 0; i < this.permutationList.length; i++)
 		{
 			var permutation = this.permutationList[i];
 			permutation.draw(context, this.getArcList(permutation));
 		}
 
-		for (var i in this.slotList)
+		for (var i = 0; i < this.slotList.length; i++)
 			this.slotList[i].draw(context);
 
-		for (var i in this.stickerList)
+		for (var i = 0; i < this.stickerList.length; i++)
 			this.stickerList[i].draw(context);
 	}
 
 	addPermutation(permutation)
 	{
 		this.permutationList.push(permutation)
-		this.arcMap[permutation] = [];
+		this.arcMap[permutation.index] = [];
 
-		for (var i in this.slotList)
+		for (var i = 0; i < this.slotList.length; i++)
 		{
 			var slotU = this.slotList[i];
 			var slotV = this.slotList[permutation.next(i)];
@@ -431,6 +482,21 @@ class PuzzleData
 		return this.stickerList;
 	}
 
+	getPermutationListSize()
+	{
+		return this.permutationList.length;
+	}
+
+	getSlotListSize()
+	{
+		return this.slotList.length;
+	}
+
+	getStickerListSize()
+	{
+		return this.stickerList.length;
+	}
+
 	setPermutationList(permutationList)
 	{
 		this.permutationList = permutationList;
@@ -463,16 +529,15 @@ class PuzzleData
 
 	getArc(permutation, nodeIndex, inverted)
 	{
-		//if (!this.arcMap.contains(permutation))
-		if (!(permutation in this.arcMap))
+		if (permutation.index >= this.arcMap.length)
 			return null;
 		
-		var arcList = this.arcMap[permutation];
+		var arcList = this.arcMap[permutation.index];
 		var mapping = permutation.getMapping();
 		var nextIndex = mapping[nodeIndex];
 		if (inverted)
 		{
-			for (var i in mapping)
+			for (var i = 0; i < mapping.length; i++)
 				if (mapping[i] == nodeIndex)
 					nextIndex = i;
 		}
@@ -482,16 +547,15 @@ class PuzzleData
 
 	setArc(permutation, nodeIndex, arc)
 	{
-		//if (!this.arcMap.contains(permutation))
-		if (!(permutation in this.arcMap))
-			this.arcMap[permutation] = [this.getSlotListSize()];
+		if (permutation.index >= this.arcMap.length)
+			this.arcMap[permutation.index] = zeroArray(this.getSlotListSize());
 
-		this.arcMap[permutation][nodeIndex] = arc;
+		this.arcMap[permutation.index][nodeIndex] = arc;
 	}
 
 	getArcList(permutation)
 	{
-		return this.arcMap[permutation];
+		return this.arcMap[permutation.index];
 	}
 
 	getCenter()
@@ -507,7 +571,6 @@ class PuzzleData
 
 
 
-
 class PuzzleBuilder
 {
 	constructor(name)
@@ -518,10 +581,15 @@ class PuzzleBuilder
 		this.permutationMap = {};
 	}
 
+	getPuzzleData()
+	{
+		return this.puzzleData;
+	}
+	
 	addNode(nodeName, nodeColor, nodeX, nodeY)
 	{
 		var newSticker = new Sticker(nodeColor);
-		var newSlot = new Slot(nodeColor, new vec2f(nodeX, nodeY));
+		var newSlot = new Slot(newSticker, new vec2f(nodeX, nodeY), nodeColor);
 		newSticker.moveToSlot(newSlot);
 		this.puzzleData.addSlot(newSlot);
 		this.puzzleData.addSticker(newSticker);
@@ -531,37 +599,103 @@ class PuzzleBuilder
 	addPermutation(color, cycleList)
 	{
 		var n = this.puzzleData.slotList.length;
-		var index = this.puzzleData.length;
+		var index = this.puzzleData.getPermutationListSize();
 		var newPermutation = new Permutation(n, color, index);
 		newPermutation.setCycles(cycleList);
 		this.puzzleData.addPermutation(newPermutation);
 		this.permutationMap[color] = newPermutation;
 	}
 
-	getPuzzleData()
+	recenter()
 	{
-		return this.puzzleData;
+		var centerSum = new vec2f(0.0, 0.0);
+
+		for (var i = 0; i < this.puzzleData.getSlotListSize(); i++)
+		{
+			var slot = this.puzzleData.getSlotList()[i];
+			
+			var slotCenter = slot.getCenter();
+			centerSum = centerSum.add(slotCenter);
+		}
+
+		centerSum = centerSum.scale(1.0 / this.puzzleData.getSlotListSize());
+
+		for (var i = 0; i < this.puzzleData.getSlotListSize(); i++)
+		{
+			var slot = this.puzzleData.getSlotList()[i];
+
+			var slotCenter = slot.getCenter();
+			slotCenter = slotCenter.sub(centerSum);
+			slot.setCenter(slotCenter);
+		}
+
+		for (var i = 0; i < this.puzzleData.getPermutationListSize(); i++)
+		{
+			var permutation = this.puzzleData.getPermutationList()[i];
+			var arcList = this.puzzleData.getArcList(permutation);
+			for (var j = 0; j < arcList.length; j++)
+			{
+				var arc = arcList[j];
+				arc.adjustCenter(centerSum);
+			}
+		}
 	}
-}
 
+	normalize()
+	{
+		var maxRadius = -1.0;
 
+		for (var i = 0; i < this.puzzleData.getSlotListSize(); i++)
+		{
+			var slot = this.puzzleData.getSlotList()[i];
 
-function AAA()
-{
-	var builder = new PuzzleBuilder('AAA');
-	
-	builder.addNode('v0', '#FF0000', 0.25, 0.25);
-	builder.addNode('v1', '#0000FF', 1.0, 1.0);
+			var slotCenter = slot.getCenter();
+			var radius = slotCenter.norm();
+			if (radius > maxRadius)
+				maxRadius = radius;
+		}
 
-	builder.addPermutation('#FF0000', [[0, 1]]);
+		for (var i = 0; i < this.puzzleData.getSlotListSize(); i++)
+		{
+			var slot = this.puzzleData.getSlotList()[i];
 
-	return builder.getPuzzleData();
+			var slotCenter = slot.getCenter();
+			slotCenter = slotCenter.scale(1.0 / maxRadius);
+			slot.setCenter(slotCenter);
+		}
+
+		for (var i = 0; i < this.puzzleData.getPermutationListSize(); i++)
+		{
+			var permutation = this.puzzleData.getPermutationList()[i];
+			var arcList = this.puzzleData.getArcList(permutation);
+			for (var j = 0; j < arcList.length; j++)
+			{
+				var arc = arcList[j];
+				arc.normalize(maxRadius);
+				arc.computeParameters();
+			}
+		}
+	}
 }
 
 
 
 var leftPressed = false;
 var rightPressed = false;
+
+function testAAA()
+{
+    var builder = new PuzzleBuilder('puzzles/AAA');
+
+    builder.addNode('lhs', '#ff0000', 1, 1);
+    builder.addNode('rhs', '#0000ff', 4, 1);
+    builder.addPermutation('#ff0000', [[0, 1]]);
+	
+	builder.recenter();
+	builder.normalize();
+
+    return builder.getPuzzleData();
+}
 
 function keyDown(e)
 {
@@ -580,14 +714,20 @@ function keyUp(e)
 	if (e.keyCode == 39)
 	{
 		rightPressed = false;
+		puzzleData.activatePermutation(0, true);
 	}
 	else if (e.keyCode == 37)
 	{
 		leftPressed = false;
+		puzzleData.activatePermutation(1, true);
 	}
+	//if (37 <= e.keyCode && e.keyCode <= 40)
+	//	puzzleData.activatePermutation(e.keyCode - 37, true);
+	else if (e.keyCode == 38 && puzzleIndex + 1 < puzzleList.length)
+		puzzleData = puzzleList[++puzzleIndex];
+	else if (e.keyCode == 40 && puzzleIndex > 0)
+		puzzleData = puzzleList[--puzzleIndex];
 }
-
-var puzzleData = AAA();
 
 function update()
 {

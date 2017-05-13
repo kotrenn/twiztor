@@ -28,7 +28,7 @@ CPP_FLAGS = $(OPT_FLAGS) $(OS_FLAGS) -std=c++0x
 CPP_LINKS = $(LIN_LINKS)
 CPP_EXE = $(LIN_EXE)
 
-all: cpp java
+all: cpp java js
 
 # C++
 cpp: ${CPP_EXE} puzzles
@@ -44,6 +44,12 @@ java: $(java_obj) puzzles
 
 $(java_obj): permgame/%.class: src/java/permgame/%.java
 	javac -d . -cp src/java/ $<
+
+# JS
+js: bin/game.js puzzles
+
+bin/game.js: src/js/game.js buildjs.py puzzles
+	python buildjs.py
 
 # Puzzles
 puzzles: puzzlelist.txt
