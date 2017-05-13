@@ -67,7 +67,7 @@ doc:
 
 # Clean
 clean:
-	rm -rf ${CPP_EXE} src/cpp/*.o permgame puzzlelist.txt puzzles/*.puz
+	rm -rf ${CPP_EXE} src/cpp/*.o permgame puzzlelist.txt puzzles/*.puz bin/js.html bin/game.js
 
 clean-all: clean
 	rm -rf html latex
