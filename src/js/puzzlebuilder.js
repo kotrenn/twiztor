@@ -1,65 +1,106 @@
 class PuzzleBuilder
 {
-	constructor()
+	constructor(name)
 	{
-		this.permutationFactory = new PermutationFactory();
-		this.slotFactory = new SlotFactory();
-		this.stickerFactory = new StickerFactory();
-		this.puzzleData = null;
-		this.nodeMap = NodeMap();
+		this.name = name;
+		this.puzzleData = new PuzzleData();
+		this.nodeList = [];
+		this.permutationMap = {};
 	}
 
-	function beginPuzzle(name)
-	{
-		this.puzzleData = new PuzzleData(name);
-	}
-
-	function compilePuzzle()
+	getPuzzleData()
 	{
 		return this.puzzleData;
 	}
-
-	function addNode(name, color, center)
+	
+	addNode(nodeName, nodeColor, nodeX, nodeY)
 	{
-		var newSticker = this.stickerFactory.makeSticker(color);
-		var newSlot = this.slotFactory.makeSlot(color, center);
+		var newSticker = new Sticker(nodeColor);
+		var newSlot = new Slot(newSticker, new vec2f(nodeX, nodeY), nodeColor);
 		newSticker.moveToSlot(newSlot);
-
 		this.puzzleData.addSlot(newSlot);
 		this.puzzleData.addSticker(newSticker);
-
-		if (this.nodeMap.find(name) == this.nodeMap.end())
-			this.nodeMap[name] = this.nodeMap.size();
+		this.nodeList.push(nodeName);
 	}
 
-	function addPermutation(color, cycleList)
+	addPermutation(color, cycleList)
 	{
-		var indexedCycleList;
+		var n = this.puzzleData.slotList.length;
+		var index = this.puzzleData.getPermutationListSize();
+		var newPermutation = new Permutation(n, color, index);
+		newPermutation.setCycles(cycleList);
+		this.puzzleData.addPermutation(newPermutation);
+		this.permutationMap[color] = newPermutation;
+	}
 
-		for (var cycle : cycleList)
+	recenter()
+	{
+		var centerSum = new vec2f(0.0, 0.0);
+
+		for (var i = 0; i < this.puzzleData.getSlotListSize(); i++)
 		{
-			var indexedCycle;
-
-			for (var name : cycle)
-			{
-				var index = this.nodeMap[name];
-				indexedCycle += [index];
-			}
-
-			indexedCycleList += [indexedCycle];
+			var slot = this.puzzleData.getSlotList()[i];
+			
+			var slotCenter = slot.getCenter();
+			centerSum = centerSum.add(slotCenter);
 		}
 
-		this.permutationFactory.makePermutation(this.nodeMap.size(),
-												color,
-												0,
-												indexedCycleList);
+		centerSum = centerSum.scale(1.0 / this.puzzleData.getSlotListSize());
+
+		for (var i = 0; i < this.puzzleData.getSlotListSize(); i++)
+		{
+			var slot = this.puzzleData.getSlotList()[i];
+
+			var slotCenter = slot.getCenter();
+			slotCenter = slotCenter.sub(centerSum);
+			slot.setCenter(slotCenter);
+		}
+
+		for (var i = 0; i < this.puzzleData.getPermutationListSize(); i++)
+		{
+			var permutation = this.puzzleData.getPermutationList()[i];
+			var arcList = this.puzzleData.getArcList(permutation);
+			for (var j = 0; j < arcList.length; j++)
+			{
+				var arc = arcList[j];
+				arc.adjustCenter(centerSum);
+			}
+		}
 	}
 
-	function makeCircleArc(color, src, dst, center)
+	normalize()
 	{
-	}
+		var maxRadius = -1.0;
 
-	function makeLineArc(color, src, dst)
-	{
+		for (var i = 0; i < this.puzzleData.getSlotListSize(); i++)
+		{
+			var slot = this.puzzleData.getSlotList()[i];
+
+			var slotCenter = slot.getCenter();
+			var radius = slotCenter.norm();
+			if (radius > maxRadius)
+				maxRadius = radius;
+		}
+
+		for (var i = 0; i < this.puzzleData.getSlotListSize(); i++)
+		{
+			var slot = this.puzzleData.getSlotList()[i];
+
+			var slotCenter = slot.getCenter();
+			slotCenter = slotCenter.scale(1.0 / maxRadius);
+			slot.setCenter(slotCenter);
+		}
+
+		for (var i = 0; i < this.puzzleData.getPermutationListSize(); i++)
+		{
+			var permutation = this.puzzleData.getPermutationList()[i];
+			var arcList = this.puzzleData.getArcList(permutation);
+			for (var j = 0; j < arcList.length; j++)
+			{
+				var arc = arcList[j];
+				arc.normalize(maxRadius);
+				arc.computeParameters();
+			}
+		}
 	}
 }

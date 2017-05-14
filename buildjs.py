@@ -138,8 +138,7 @@ def print_puzzle_list(out_file, puzzle_list):
     print >>out_file, 'puzzleData = puzzleList[puzzleIndex];'
 
 with open('bin/game.js', 'w') as out_file:
-    #for js_filename in os.listdir('src/js'):
-    for js_filename in ['game.js']:
+    for js_filename in os.listdir('src/js'):
         if not '.js' in js_filename: continue
         append(out_file, 'src/js/' + js_filename)
 
@@ -150,5 +149,4 @@ with open('bin/game.js', 'w') as out_file:
         puzzle_list += [puz_filename]
 
     print_puzzle_list(out_file, puzzle_list)
-
-#os.system('cat bin/game.js')
+os.system('cp src/js/index.html bin/js.html')

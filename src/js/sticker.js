@@ -1,54 +1,61 @@
 class Sticker
 {
-	var sc_MOVE_DURATION = 1200;
-	
-	constructor(stickerRenderer, color)
+	constructor(color)
 	{
-		this.stickerRenderer = stickerRenderer;
 		this.color = color;
 		this.slot = null;
-		this.prevTime = 0;
 		this.prevArc = null;
 		this.prevInverted = false;
 	}
 
-	moveToSlot(slot, arc=null, bool inverted=false)
+	moveToSlot(slot, arc, inverted)
 	{
-		this.prevTime = SDL_GetTIcks(); // Replace
+		this.prevTime = 0;
 		this.prevArc = arc;
+		this.prevArc = null;
 		this.prevInverted = inverted;
 		this.slot = slot;
+	}
+
+	setColor(color)
+	{
+		this.color = color;
+	}
+
+	getTimeRatio()
+	{
+		/*
+		currentTime = SDL_GetTicks();
+		float ret = (currentTime - this.prevTime) / sc_MOVE_DURATION;
+		if (ret > 1.0) ret = 1.0;
+		return ret;
+		*/
+		return 0.0;
+	}
+
+	getCenter()
+	{
+		var slotCenter = this.slot.getCenter();
+		var ret = slotCenter;
+		if (this.prevArc != null)
+		{
+			var t = this.getTimeRatio();
+			if (t < 1.0)
+			{
+				if (this.prevInverted) t = 1.0 - t;
+				ret = this.prevArc.getPoint(t);
+			}
+		}
+		return ret;
 	}
 
 	move(timeDelta)
 	{
 	}
 
-	render()
+	draw(context)
 	{
-	}
-
-	getTimeRatio()
-	{
-		var currentTime = SDL_GetTicks(); // Replace
-		var ret = float(currentTime - this.prevTime) / this.sc_MOVE_DURATION;
-		if (ret > 1.0) ret = 1.0;
-		return ret;
-	}
-	
-	getCenter()
-	{
-		var slotCenter = this.slot.getCenter();
-		var ret = slotCenter;
-		if (this.arc != null)
-		{
-			var t = getTimeRatio();
-			if (t < 1.0)
-			{
-				if (this.prevInverted) t = 1.0 - t;
-				ret = this.prevArc.getPoint();
-			}
-		}
-		return ret;
+		var center = this.getCenter();
+		fillCircle(context, this.color, center.x, center.y, 4);
 	}
 }
