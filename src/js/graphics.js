@@ -1,53 +1,46 @@
-class Graphics
+var scaleConst = 100;
+var yConst = scaleConst;
+var xConst = 2 * yConst;
+
+function adjustPosX(t)
 {
-	constructor(ctx)
-	{
-		this.ctx = ctx;
-		this.color = (0, 0, 0);
-		this.matrixStack = [new mat3f(0)];
-	}
+	return scaleConst * t + xConst;
+}
 
-	function setColor(color)
-	{
-		this.color = color;
-	}
+function adjustPosY(t)
+{
+	return scaleConst * t + yConst;
+}
 
-	function drawCircle(center, radius, filled=false)
-	{
-		this.ctx.beginPath();
-		this.ctx.arc(center.x, center.y, radius, 0, 2.0 * Math.PI);
-		this.ctx.fillStyle = this.color;
-		if (filled) this.ctx.fill();
-		this.ctx.closePath();
-	}
+function adjustLen(t)
+{
+	return scaleConst * t;
+}
 
-	function pushMatrix()
-	{
-		this.matrixStack += [mat2f(this.matrixStack[-1])];
-	}
+function fillRect(context, color, x, y, w, h)
+{
+	context.beginPath();
+	context.rect(adjustPosX(x), adjustPosY(y), adjustLen(w), adjustLenY(h));
+	context.fillStyle = color;
+	context.fill();
+	context.closePath();
+}
 
-	function popMatrix()
-	{
-		this.matrixStack.popBack();
-	}
+function drawLine(context, color, x1, y1, x2, y2)
+{
+	context.beginPath();
+	context.moveTo(adjustPosX(x1), adjustPosY(y1));
+	context.lineTo(adjustPosX(x2), adjustPosY(y2));
+	context.strokeStyle = color;
+	context.stroke();
+	context.moveTo(0, 0);
+}
 
-	function getMatrix()
-	{
-		return this.matrixStack[-1];
-	}
-
-	function replaceMatrix(mat)
-	{
-		this.matrixStacks[-1] = mat;
-	}
-	
-	function translate2fv(vec)
-	{
-		var matrix = new mat3f(1.0, 0.0, vec.x,
-							   0.0, 1.0, vec.y,
-							   0.0, 0.,0, 1.0);
-		var prevMatrix = this.getMatrix();
-		var newMatrix = prevMatrix.mul(matrix);
-		replaceMatrix(newMatrix);
-	}
+function fillCircle(context, color, x, y, r)
+{
+	context.beginPath();
+	context.arc(adjustPosX(x), adjustPosY(y), r, 0, 2.0 * Math.PI);
+	context.fillStyle = color;
+	context.fill();
+	context.closePath();
 }

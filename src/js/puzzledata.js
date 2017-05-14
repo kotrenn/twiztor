@@ -1,67 +1,170 @@
 class PuzzleData
 {
-	constructor()
+	constructor(name)
 	{
-		this.name = "";
+		this.name = name;
 		this.permutationList = [];
 		this.slotList = [];
 		this.stickerList = [];
-		this.center = vec2f(0.0, 0.0);
+		this.arcMap = [];
+		this.center = new vec2f(0.0, 0.0);
 	}
 
-	function makeTestLevel()
+	activatePermutation(index, inverted)
 	{
-		// Type conversions between 1.0 colorf and 255 colori?
-		var red    = colorf('red',    1.0, 0.0, 0.0);
-		var yellow = colorf('yellow', 1.0, 1.0, 0.0);
-		var green  = colorf('green',  0.0, 1.0, 0.0);
-		var blue   = colorf('blue',   0.0, 0.0, 1.0);
+		if (index >= this.permutationList.length) return;
 
-		var slot0 = this.slotFactory.makeSlot(red,    new vec2f( 0.0, -3.0));
-		var slot1 = this.slotFactory.makeSlot(yellow, new vec2f( 0.0,  0.0));
-		var slot2 = this.slotFactory.makeSlot(green,  new vec2f(-3.0,  3.0));
-		var slot3 = this.slotFactory.makeSlot(blue,   new vec2f( 3.0,  3.0));
+		var permutation = this.permutationList[index];
+		permutation.apply(this, inverted);
+	}
 
-		var slotArray = [ slot0, slot1, slot2, slot3 ];
-
-		for (slot : slotArray)
+	draw(context)
+	{
+		for (var i = 0; i < this.permutationList.length; i++)
 		{
-			addSlot(slot);
-			slotSticker = slot.getSticker();
-			slotSticker.moveToSlot(slot); // shouldn't this be in factory implementation?
-			addSticker(slotSticker);
+			var permutation = this.permutationList[i];
+			permutation.draw(context, this.getArcList(permutation));
 		}
-		
-		var cycles0 = [ [ 0, 1 ], [ 2 ], [ 3 ] ];
-		var cycles1 = [ [ 0 ], [ 1, 2, 3 ] ];
 
-		var p0 = this.permutationFactory.makePermutation(4, red, 0, cycles0);
-		var p1 = this.permutationFactory.makePermutation(4, blue, 1, cycles1);
+		for (var i = 0; i < this.slotList.length; i++)
+			this.slotList[i].draw(context);
 
-		addPermutation(p0);
-		addPermutation(p1);
+		for (var i = 0; i < this.stickerList.length; i++)
+			this.stickerList[i].draw(context);
 	}
 
-	function getArc(permutation, nodeIndex, inverted)
+	addPermutation(permutation)
 	{
-		if (this.arcMap.count(permutation) == 0) return null;
-		var varcList = this.arcMap.at(permutation);
+		this.permutationList.push(permutation)
+		this.arcMap[permutation.index] = [];
 
+		for (var i = 0; i < this.slotList.length; i++)
+		{
+			var slotU = this.slotList[i];
+			var slotV = this.slotList[permutation.next(i)];
+			var lineArc = new Arc(permutation, slotU, slotV);
+			this.setArc(permutation, i, lineArc);
+		}
+	}
+
+	addSlot(slot)
+	{
+		this.slotList.push(slot);
+	}
+
+	addSticker(sticker)
+	{
+		this.stickerList.push(sticker);
+	}
+
+	clearSlotList()
+	{
+		this.slotList = [];
+	}
+
+	clearStickerList()
+	{
+		this.stickerList = [];
+	}
+
+	getPermutationList()
+	{
+		return this.permutationList;
+	}
+
+	getSlotList()
+	{
+		return this.slotList;
+	}
+
+	getStickerList()
+	{
+		return this.stickerList;
+	}
+
+	getPermutationListSize()
+	{
+		return this.permutationList.length;
+	}
+
+	getSlotListSize()
+	{
+		return this.slotList.length;
+	}
+
+	getStickerListSize()
+	{
+		return this.stickerList.length;
+	}
+
+	setPermutationList(permutationList)
+	{
+		this.permutationList = permutationList;
+	}
+
+	setSlotList(slotList)
+	{
+		this.slotList = slotList;
+	}
+
+	setStickerList(stickerList)
+	{
+		this.stickerList = stickerList;
+	}
+
+	getPermutation(index)
+	{
+		return this.permutationList[index];
+	}
+
+	getSlot(index)
+	{
+		return this.slotList[index];
+	}
+
+	getSticker(index)
+	{
+		return this.stickerList[index];
+	}
+
+	getArc(permutation, nodeIndex, inverted)
+	{
+		if (permutation.index >= this.arcMap.length)
+			return null;
+		
+		var arcList = this.arcMap[permutation.index];
 		var mapping = permutation.getMapping();
 		var nextIndex = mapping[nodeIndex];
 		if (inverted)
-			for (var i = 0; i < mapping.size(); i++)
+		{
+			for (var i = 0; i < mapping.length; i++)
 				if (mapping[i] == nodeIndex)
 					nextIndex = i;
+		}
 
 		return arcList[nextIndex];
 	}
 
-	function setArc(permutation, nodeIndex, arc)
+	setArc(permutation, nodeIndex, arc)
 	{
-		if (this.arcMap.count(permutation) == 0)
-			this.arcMap[permutation] = [null * getSlotListSize()];
+		if (permutation.index >= this.arcMap.length)
+			this.arcMap[permutation.index] = zeroArray(this.getSlotListSize());
 
-		this.arcMap[permutation][nodeIndex] = arc;
+		this.arcMap[permutation.index][nodeIndex] = arc;
+	}
+
+	getArcList(permutation)
+	{
+		return this.arcMap[permutation.index];
+	}
+
+	getCenter()
+	{
+		return this.center;
+	}
+
+	setCenter(center)
+	{
+		this.center = center;p
 	}
 }

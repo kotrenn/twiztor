@@ -6,6 +6,7 @@ cpp_src := $(wildcard src/cpp/*.cpp)
 cpp_obj := $(cpp_src:%.cpp=%.o)
 java_src := $(wildcard src/java/permgame/*.java)
 java_obj := $(java_src:src/java/permgame/%.java=permgame/%.class)
+js_src := $(wildcard src/js/*.js)
 puz_src := $(wildcard puzzles/*.txt)
 puz_obj := $(puz_src:%.txt=%.puz)
 
@@ -46,9 +47,12 @@ $(java_obj): permgame/%.class: src/java/permgame/%.java
 	javac -d . -cp src/java/ $<
 
 # JS
-js: bin/game.js puzzles
+js: bin/js.html bin/game.js puzzles
 
-bin/game.js: src/js/game.js buildjs.py puzzles
+bin/js.html: src/js/index.html
+	cp src/js/index.html bin/js.html
+
+bin/game.js: $(js_src) buildjs.py puzzles
 	python buildjs.py
 
 # Puzzles

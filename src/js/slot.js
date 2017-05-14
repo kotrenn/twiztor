@@ -1,19 +1,36 @@
 class Slot
 {
-	constructor(slotRenderer, sticker, center, color)
+	constructor(sticker, center, color)
 	{
-		this.slotRenderer = slotRenderer;
 		this.sticker = sticker;
 		this.center = center;
-		this.delta = new vec2f(0.0, 0.0);
+		this.delta = (0, 0);
 		this.color = color;
 		this.scale = 0.3;
 	}
 
-	render()
+	draw(context)
 	{
-		if (this.slotRenderer == null) return;
+		fillCircle(context, this.color, this.center.x, this.center.y, 5)
+	}
 
-		this.slotRenderer.render(this);
+	setSticker(sticker)
+	{
+		this.sticker = sticker;
+	}
+
+	getColor()
+	{
+		return this.color;
+	}
+
+	getCenter()
+	{
+		return this.center;
+	}
+
+	setCenter(center)
+	{
+		this.center = center;
 	}
 }
