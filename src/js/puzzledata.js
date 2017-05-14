@@ -42,7 +42,7 @@ class PuzzleData
 		{
 			var slotU = this.slotList[i];
 			var slotV = this.slotList[permutation.next(i)];
-			var lineArc = new Arc(permutation, slotU, slotV);
+			var lineArc = NewLineArc(permutation, slotU, slotV);
 			this.setArc(permutation, i, lineArc);
 		}
 	}

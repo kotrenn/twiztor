@@ -8,6 +8,8 @@ function testAAA()
     builder.addNode('lhs', '#ff0000', 1, 1);
     builder.addNode('rhs', '#0000ff', 4, 1);
     builder.addPermutation('#ff0000', [[0, 1]]);
+	builder.addCircleArc('#ff0000', 'lhs', 2.2, true, false);
+	builder.addCircleArc('#ff0000', 'rhs', 2.2, true, false);
 	
 	builder.recenter();
 	builder.normalize();

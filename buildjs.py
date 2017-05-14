@@ -92,11 +92,31 @@ def parse_cycle_list(cycle_list_str, node_table):
 def puzzle_permutation(out_file, vals, node_table):
     color = color_lookup(vals[0])
     cycle_list = str(parse_cycle_list(' '.join(vals[1:]), node_table))
-    line = '    '
+    line  = '    '
     line += 'builder.addPermutation('
     line += '\'' + color + '\', '
     line += cycle_list + ');'
     print >>out_file, line
+
+def puzzle_arc_circle(out_file, vals, node_table):
+    color = color_lookup(vals[0])
+    node = vals[1]
+    radius = vals[2]
+    plus = True if vals[3][0] == '+' else False
+    inverted = True if vals[3][1] == '+' else False
+    bool_table = { True: 'true', False: 'false' }
+    line  = '    '
+    line += 'builder.addCircleArc('
+    line += '\'' + color + '\', '
+    line += '\'' + node + '\', '
+    line += str(radius) + ', '
+    line += bool_table[plus] + ', '
+    line += bool_table[inverted] + ');'
+    print >> out_file, line
+
+def puzzle_arc(out_file, vals, node_table):
+    if vals[0] == 'circle':
+        puzzle_arc_circle(out_file, vals[1:], node_table)
 
 def puzzle(out_file, puz_filename):
     node_table = {}
@@ -116,6 +136,8 @@ def puzzle(out_file, puz_filename):
                 puzzle_node(out_file, vals[1:], node_table)
             elif vals[0] == 'permutation':
                 puzzle_permutation(out_file, vals[1:], node_table)
+            elif vals[0] == 'arc':
+                puzzle_arc(out_file, vals[1:], node_table)
 
     print >>out_file, ''
     print >>out_file, '    builder.recenter();'
@@ -136,6 +158,7 @@ def print_puzzle_list(out_file, puzzle_list):
     print >>out_file, line
     print >>out_file, 'puzzleIndex = 0;'
     print >>out_file, 'puzzleData = puzzleList[puzzleIndex];'
+    print >>out_file, 'puzzleData = testAAA();'
 
 with open('bin/game.js', 'w') as out_file:
     for js_filename in os.listdir('src/js'):
@@ -149,4 +172,5 @@ with open('bin/game.js', 'w') as out_file:
         puzzle_list += [puz_filename]
 
     print_puzzle_list(out_file, puzzle_list)
+    
 os.system('cp src/js/index.html bin/js.html')

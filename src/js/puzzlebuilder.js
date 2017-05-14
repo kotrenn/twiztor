@@ -12,11 +12,20 @@ class PuzzleBuilder
 	{
 		return this.puzzleData;
 	}
-	
+
+	indexOf(nodeName)
+	{
+		for (var i = 0; i < this.puzzleData.getSlotListSize(); i++)
+			if (this.puzzleData.getSlot(i).name == nodeName)
+				return i;
+		
+		return -1;
+	}
+
 	addNode(nodeName, nodeColor, nodeX, nodeY)
 	{
 		var newSticker = new Sticker(nodeColor);
-		var newSlot = new Slot(newSticker, new vec2f(nodeX, nodeY), nodeColor);
+		var newSlot = new Slot(nodeName, newSticker, new vec2f(nodeX, nodeY), nodeColor);
 		newSticker.moveToSlot(newSlot);
 		this.puzzleData.addSlot(newSlot);
 		this.puzzleData.addSticker(newSticker);
@@ -33,6 +42,18 @@ class PuzzleBuilder
 		this.permutationMap[color] = newPermutation;
 	}
 
+	addCircleArc(arcColor, nodeName, circleR, circlePlus, circleInverted)
+	{
+		var permutation = this.permutationMap[arcColor];
+		var indexU = this.indexOf(nodeName);
+		var indexV = permutation.next(indexU);
+		var slotU = this.puzzleData.getSlot(indexU);
+		var slotV = this.puzzleData.getSlot(indexV);
+		var circleArc = NewCircleArc(permutation, slotU, slotV,
+									 circleR, circlePlus, circleInverted);
+		this.puzzleData.setArc(permutation, indexU, circleArc);
+	}
+	
 	recenter()
 	{
 		var centerSum = new vec2f(0.0, 0.0);

@@ -1,7 +1,8 @@
 class Slot
 {
-	constructor(sticker, center, color)
+	constructor(name, sticker, center, color)
 	{
+		this.name = name;
 		this.sticker = sticker;
 		this.center = center;
 		this.delta = (0, 0);
