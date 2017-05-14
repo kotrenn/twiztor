@@ -16,8 +16,6 @@ function NewCircleArc(permutation, slotU, slotV, circleRadius, circlePlus, circl
 
 	ret.computeParameters();
 
-	ret.debugEnabled = true;
-
 	return ret;
 }
 
