@@ -1,3 +1,5 @@
+MOVE_DURATION = 1200; // 1.2 seconds
+
 class Sticker
 {
 	constructor(color)
@@ -10,9 +12,8 @@ class Sticker
 
 	moveToSlot(slot, arc, inverted)
 	{
-		this.prevTime = 0;
+		this.prevTime = (new Date()).getTime();
 		this.prevArc = arc;
-		this.prevArc = null;
 		this.prevInverted = inverted;
 		this.slot = slot;
 	}
@@ -24,13 +25,10 @@ class Sticker
 
 	getTimeRatio()
 	{
-		/*
-		currentTime = SDL_GetTicks();
-		float ret = (currentTime - this.prevTime) / sc_MOVE_DURATION;
+		var currentTime = (new Date()).getTime();
+		var ret = (currentTime - this.prevTime) / MOVE_DURATION;
 		if (ret > 1.0) ret = 1.0;
 		return ret;
-		*/
-		return 0.0;
 	}
 
 	getCenter()
