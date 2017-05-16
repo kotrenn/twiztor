@@ -1,4 +1,5 @@
-MOVE_DURATION = 1200; // 1.2 seconds
+var MOVE_DURATION = 1200; // 1.2 seconds
+var STICKER_RADIUS = 5;
 
 class Sticker
 {
@@ -54,6 +55,6 @@ class Sticker
 	draw(context)
 	{
 		var center = this.getCenter();
-		fillCircle(context, this.color, center.x, center.y, 4);
+		fillCircle(context, this.color, center.x, center.y, STICKER_RADIUS);
 	}
 }

@@ -1,3 +1,5 @@
+var SLOT_RADIUS = 8;
+
 class Slot
 {
 	constructor(name, sticker, center, color)
@@ -12,7 +14,7 @@ class Slot
 
 	draw(context)
 	{
-		fillCircle(context, this.color, this.center.x, this.center.y, 5)
+		fillCircle(context, this.color, this.center.x, this.center.y, SLOT_RADIUS)
 	}
 
 	setSticker(sticker)

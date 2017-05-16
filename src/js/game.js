@@ -47,9 +47,9 @@ function update()
 
 function draw()
 {
-	context.clearRect(0, 0, canvas.width, canvas.height);
+	g_gameContext.clearRect(0, 0, g_gameCanvas.width, g_gameCanvas.height);
 
-	puzzleData.draw(context);
+	puzzleData.draw(g_gameContext);
 }
 
 function loop()
@@ -57,9 +57,6 @@ function loop()
 	update();
 	draw();
 }
-
-var canvas = document.getElementById("gameCanvas");
-var context = canvas.getContext("2d");
 
 document.addEventListener("keydown", keyDown, false);
 document.addEventListener("keyup", keyUp, false);
