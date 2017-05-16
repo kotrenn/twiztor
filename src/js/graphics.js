@@ -5,7 +5,7 @@ gameCanvas.width = 0.95 * Math.min(windowWidth, windowHeight);
 gameCanvas.height = g_gameCanvas.width;
 
 var g_gameContext = g_gameCanvas.getContext("2d");
-g_gameContext.font="20px Georgia";
+g_gameContext.font="20px Courier";
 
 var GRAPHICS_SCALE = 0.45 * Math.min(g_gameCanvas.width, g_gameCanvas.height);
 var X_OFFSET = 0.5 * g_gameCanvas.width;

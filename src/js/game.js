@@ -1,4 +1,5 @@
-var shiftPressed = false;
+var g_shiftPressed = false;
+var g_showHelp = false;
 
 function testAAA()
 {
@@ -24,9 +25,9 @@ function keyDown(e)
 
 function keyUp(e)
 {
-	var inverted = shiftPressed == true;
+	var inverted = g_shiftPressed == true;
 	if (e.keyCode == 16) // SHIFT
-		shiftPressed = false;
+		g_shiftPressed = false;
 	if (e.keyCode == 37 && puzzleIndex > 0) // LEFT
 		puzzleData = puzzleList[--puzzleIndex];
 	if (e.keyCode == 39 && puzzleIndex + 1 < puzzleList.length) // RIGHT
@@ -35,6 +36,8 @@ function keyUp(e)
 		puzzleData.activatePermutation(e.keyCode - 49, inverted);
 	if (e.keyCode == 48) // 0
 		puzzleData.activatePermutation(10, inverted);
+	if (e.keyCode == 72) // H
+		g_showHelp = g_showHelp == false;
 	if (e.keyCode == 82) // R
 		puzzleData.randomize();
 	if (e.keyCode == 83) // S
@@ -50,6 +53,19 @@ function draw()
 	g_gameContext.clearRect(0, 0, g_gameCanvas.width, g_gameCanvas.height);
 
 	puzzleData.draw(g_gameContext);
+
+	var controls = ['         Left - Previous Puzzle',
+					'        Right - Next Puzzle',
+					'1, 2, 3, 4, 5',
+					'6, 7, 8, 9, 0 - Activate Permutation',
+					'            R - Randomize Puzzle',
+					'            S - Solve Puzzle'];
+	var helpMsg  = 'H - Show Help';
+	var startY = g_gameCanvas.height - 130;
+	if (g_showHelp)
+		for (var i = 0; i < controls.length; i++)
+			drawString(g_gameContext, '#000000', controls[i], 5, startY + 20 * i);
+	drawString(g_gameContext, '#000000', helpMsg, 5, startY + 20 * controls.length);
 }
 
 function loop()
