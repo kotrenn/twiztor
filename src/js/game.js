@@ -35,6 +35,10 @@ function keyUp(e)
 		puzzleData.activatePermutation(e.keyCode - 49, inverted);
 	if (e.keyCode == 48) // 0
 		puzzleData.activatePermutation(10, inverted);
+	if (e.keyCode == 82) // R
+		puzzleData.randomize();
+	if (e.keyCode == 83) // S
+		puzzleData.solve();
 }
 
 function update()

@@ -11,6 +11,11 @@ class Sticker
 		this.prevInverted = false;
 	}
 
+	getSlot()
+	{
+		return this.slot;
+	}
+
 	moveToSlot(slot, arc, inverted)
 	{
 		this.prevTime = (new Date()).getTime();

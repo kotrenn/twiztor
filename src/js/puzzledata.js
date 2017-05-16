@@ -10,6 +10,26 @@ class PuzzleData
 		this.center = new vec2f(0.0, 0.0);
 	}
 
+	solve()
+	{
+		for (var i = 0; i < this.stickerList.length; i++)
+		{
+			var sticker = this.stickerList[i];
+			sticker.setColor(sticker.getSlot().getColor());
+		}
+	}
+
+	randomize()
+	{
+		var numPermutations = this.getPermutationListSize();
+		for (var i = 0; i < 1000; i++)
+		{
+			var randomIndex = randInt(1, numPermutations) - 1;
+			var randomInverted = randInt(1, 2) == 1;
+			this.activatePermutation(randomIndex, randomInverted);
+		}
+	}
+
 	activatePermutation(index, inverted)
 	{
 		if (index >= this.permutationList.length) return;
