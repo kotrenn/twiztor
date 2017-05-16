@@ -1,5 +1,4 @@
-var leftPressed = false;
-var rightPressed = false;
+var shiftPressed = false;
 
 function testAAA()
 {
@@ -19,26 +18,23 @@ function testAAA()
 
 function keyDown(e)
 {
-	if (e.keyCode == 39)
-	{
-		rightPressed = true;
-	}
-	else if (e.keyCode == 37)
-	{
-		leftPressed = true;
-	}
+	if (e.keyCode == 16) // SHIFT
+		shiftPressed = true;
 }
 
 function keyUp(e)
 {
-	if (e.keyCode == 37 && puzzleIndex > 0)
+	var inverted = shiftPressed == true;
+	if (e.keyCode == 16) // SHIFT
+		shiftPressed = false;
+	if (e.keyCode == 37 && puzzleIndex > 0) // LEFT
 		puzzleData = puzzleList[--puzzleIndex];
-	if (e.keyCode == 39 && puzzleIndex + 1 < puzzleList.length)
+	if (e.keyCode == 39 && puzzleIndex + 1 < puzzleList.length) // RIGHT
 		puzzleData = puzzleList[++puzzleIndex];
-	if (49 <= e.keyCode && e.keyCode <= 57)
-		puzzleData.activatePermutation(e.keyCode - 49, true);
-	if (e.keyCode == 48)
-		puzzleData.activatePermutation(10, true);
+	if (49 <= e.keyCode && e.keyCode <= 57) // 1, 2, 3, 4, 5, 6, 7, 8, 9
+		puzzleData.activatePermutation(e.keyCode - 49, inverted);
+	if (e.keyCode == 48) // 0
+		puzzleData.activatePermutation(10, inverted);
 }
 
 function update()
