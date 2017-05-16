@@ -20,6 +20,8 @@ class PuzzleData
 
 	draw(context)
 	{
+		drawString(context, '#000000', this.name, 5, 20);
+		
 		for (var i = 0; i < this.permutationList.length; i++)
 		{
 			var permutation = this.permutationList[i];

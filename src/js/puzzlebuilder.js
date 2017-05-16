@@ -3,7 +3,7 @@ class PuzzleBuilder
 	constructor(name)
 	{
 		this.name = name;
-		this.puzzleData = new PuzzleData();
+		this.puzzleData = new PuzzleData(name);
 		this.nodeList = [];
 		this.permutationMap = {};
 	}
