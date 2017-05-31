@@ -11,7 +11,6 @@ function NewCircleArc(permutation,
 					  slotV,
 					  circleRadius,
 					  circlePlus,
-					  circleInverted,
 					  circleReversed,
 					  circleReflected)
 {
@@ -19,7 +18,6 @@ function NewCircleArc(permutation,
 	
 	ret.circleRadius = circleRadius;
 	ret.circlePlus = circlePlus;
-	ret.circleInverted = circleInverted;
 	ret.circleReversed = circleReversed;
 	ret.circleReflected = circleReflected;
 
@@ -42,7 +40,6 @@ class Arc
 		// CircleArc vars
 		this.circleRadius = 0.0;
 		this.circlePlus = false;
-		this.circleInverted = false;
 		this.circleReversed = false;
 		this.circleReflected = false;
 		this.circleCenter = new vec2f(0.0, 0.0);
@@ -168,18 +165,6 @@ class Arc
 				this.thetaU -= 2.0 * Math.PI;
 				this.dTheta = this.thetaV - this.thetaU;
 			}
-			if (this.circleInverted)
-			{
-				if (this.dTheta > 0)
-					this.dTheta = 2.0 * Math.PI - this.dTheta;
-				else
-					this.dTheta = -2.0 * Math.PI - (this.dTheta);
-			}
-
-			/*
-			while (this.dTheta < -2.0 * Math.PI) this.dTheta += 2.0 * Math.PI;
-			while (this.dTheta >  2.0 * Math.PI) this.dTheta -= 2.0 * Math.PI;
-			*/
 
 			if (this.debugEnabled)
 			{

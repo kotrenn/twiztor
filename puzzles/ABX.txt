@@ -24,30 +24,30 @@ permutation green [[p7, p3, p8, p9, p10, p5]]
 permutation blue [[p1, p2, p3, p4, p5, p6]]
 permutation purple [[p9, p11]]
 float R %[3.0]
-arc circle red p17 %[R] ----
-arc circle red p15 %[R] ----
-arc circle red p20 %[R] --+-
-arc circle red p19 %[R] --+-
-arc circle red p18 %[R] ----
-arc circle red p13 %[R] ----
-arc circle yellow p11 %[R] ----
-arc circle yellow p16 %[R] ----
-arc circle yellow p15 %[R] --+-
-arc circle yellow p14 %[R] --+-
-arc circle yellow p13 %[R] ----
-arc circle yellow p12 %[R] ----
-arc circle green p7 %[R] +---
-arc circle green p3 %[R] +---
-arc circle green p8 %[R] +--+
-arc circle green p9 %[R] +--+
-arc circle green p10 %[R] +---
-arc circle green p5 %[R] +---
-arc circle blue p1 %[R] +---
-arc circle blue p2 %[R] +---
-arc circle blue p3 %[R] +--+
-arc circle blue p4 %[R] +--+
-arc circle blue p5 %[R] +---
-arc circle blue p6 %[R] +---
+arc circle red p17 %[R] ---
+arc circle red p15 %[R] ---
+arc circle red p20 %[R] -+-
+arc circle red p19 %[R] -+-
+arc circle red p18 %[R] ---
+arc circle red p13 %[R] ---
+arc circle yellow p11 %[R] ---
+arc circle yellow p16 %[R] ---
+arc circle yellow p15 %[R] -+-
+arc circle yellow p14 %[R] -+-
+arc circle yellow p13 %[R] ---
+arc circle yellow p12 %[R] ---
+arc circle green p7 %[R] +--
+arc circle green p3 %[R] +--
+arc circle green p8 %[R] +-+
+arc circle green p9 %[R] +-+
+arc circle green p10 %[R] +--
+arc circle green p5 %[R] +--
+arc circle blue p1 %[R] +--
+arc circle blue p2 %[R] +--
+arc circle blue p3 %[R] +-+
+arc circle blue p4 %[R] +-+
+arc circle blue p5 %[R] +--
+arc circle blue p6 %[R] +--
 float r %[3.0]
-arc circle purple p9 %[r] ----
-arc circle purple p11 %[r] ----
+arc circle purple p9 %[r] ---
+arc circle purple p11 %[r] ---

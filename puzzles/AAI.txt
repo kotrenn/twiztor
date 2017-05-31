@@ -8,9 +8,9 @@ permutation red [[ul, ur]]
 permutation yellow [[lhs, bl]]
 permutation green [[rhs, br]]
 permutation blue [[ul, ur, rhs, br, bl, lhs]]
-arc circle red ul 2.2 +-
-arc circle red ur 2.2 +-
-arc circle yellow lhs 2.2 +-
-arc circle yellow bl 2.2 +--+
-arc circle green rhs 2.2 +-
-arc circle green br 2.2 +--+
+arc circle red ul 2.2 +--
+arc circle red ur 2.2 +--
+arc circle yellow lhs 2.2 +--
+arc circle yellow bl 2.2 +-+
+arc circle green rhs 2.2 +--
+arc circle green br 2.2 +-+

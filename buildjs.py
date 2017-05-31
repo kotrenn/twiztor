@@ -103,9 +103,8 @@ def puzzle_arc_circle(out_file, vals, node_table):
     node = vals[1]
     radius = vals[2]
     plus = True if vals[3][0] == '+' else False
-    inverted = True if vals[3][1] == '+' else False
-    b_reversed = False if len(vals[3]) < 3 else (True if vals[3][2] == '+' else False)
-    reflected = False if len(vals[3]) < 4 else (True if vals[3][3] == '+' else False)
+    b_reversed = False if len(vals[3]) < 2 else (True if vals[3][1] == '+' else False)
+    reflected = False if len(vals[3]) < 3 else (True if vals[3][2] == '+' else False)
     bool_table = { True: 'true', False: 'false' }
     line  = '    '
     line += 'builder.addCircleArc('
@@ -113,7 +112,6 @@ def puzzle_arc_circle(out_file, vals, node_table):
     line += '\'' + node + '\', '
     line += str(radius) + ', '
     line += bool_table[plus] + ', '
-    line += bool_table[inverted] + ', '
     line += bool_table[b_reversed] + ', '
     line += bool_table[reflected] + ');'
     print >> out_file, line
@@ -160,7 +158,7 @@ def print_puzzle_list(out_file, puzzle_list):
     line += ', '.join(puzzle_funcs)
     line += '];'
     print >>out_file, line
-    print >>out_file, 'puzzleIndex = 54;'
+    print >>out_file, 'puzzleIndex = 0;'
     print >>out_file, 'puzzleData = puzzleList[puzzleIndex];'
     #print >>out_file, 'puzzleData = testAAA();'
 

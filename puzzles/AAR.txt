@@ -3,7 +3,7 @@ node coord12 red 1 4
 node coord22 blue 4 4
 permutation red [[coord11, coord12]]
 permutation blue [[coord12, coord22]]
-arc circle red coord11 2.2 +---
-arc circle red coord12 2.2 +--+
-arc circle blue coord12 2.2 +---
-arc circle blue coord22 2.2 +---
+arc circle red coord11 2.2 +--
+arc circle red coord12 2.2 +-+
+arc circle blue coord12 2.2 +--
+arc circle blue coord22 2.2 +--

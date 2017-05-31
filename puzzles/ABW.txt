@@ -12,15 +12,15 @@ permutation green [[p2, p6, p7, p3]]
 permutation blue [[p3, p8, p9, p1]]
 float r1 %[(-0.5*w1+4*w0-0.5*w2).norm()]
 float r2 %[(1.5*w0-1.5*w1).norm()]
-arc circle red p1 %[r2] --+-
-arc circle red p4 %[r1] ----
-arc circle red p5 %[r2] ----
-arc circle red p2 %[r1] ----
-arc circle green p2 %[r2] ----
-arc circle green p6 %[r1] ----
-arc circle green p7 %[r2] ----
-arc circle green p3 %[r1] ----
-arc circle blue p3 %[r2] ----
-arc circle blue p8 %[r1] ----
-arc circle blue p9 %[r2] ----
-arc circle blue p1 %[r1] ----
+arc circle red p1 %[r2] -+-
+arc circle red p4 %[r1] ---
+arc circle red p5 %[r2] ---
+arc circle red p2 %[r1] ---
+arc circle green p2 %[r2] ---
+arc circle green p6 %[r1] ---
+arc circle green p7 %[r2] ---
+arc circle green p3 %[r1] ---
+arc circle blue p3 %[r2] ---
+arc circle blue p8 %[r1] ---
+arc circle blue p9 %[r2] ---
+arc circle blue p1 %[r1] ---

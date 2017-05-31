@@ -9,15 +9,15 @@ node p8 blue %[2*w0+w2]
 node p9 red %[-2*w0+2*w2]
 permutation red [[p1, p2, p3], [p5, p7, p9]]
 permutation blue [[p1, p4, p2], [p6, p8, p7]]
-arc circle red p1 3.0 ----
-arc circle red p2 3.0 --+-
-arc circle red p3 3.0 --+-
-arc circle red p5 2.0 ----
-arc circle red p7 2.0 --++
-arc circle red p9 2.0 --+-
-arc circle blue p1 3.0 ----
-arc circle blue p4 3.0 ----
-arc circle blue p2 3.0 --+-
-arc circle blue p6 1.0 ----
-arc circle blue p8 1.0 ----
-arc circle blue p7 1.0 ----
+arc circle red p1 3.0 ---
+arc circle red p2 3.0 -+-
+arc circle red p3 3.0 -+-
+arc circle red p5 2.0 ---
+arc circle red p7 2.0 -++
+arc circle red p9 2.0 -+-
+arc circle blue p1 3.0 ---
+arc circle blue p4 3.0 ---
+arc circle blue p2 3.0 -+-
+arc circle blue p6 1.0 ---
+arc circle blue p8 1.0 ---
+arc circle blue p7 1.0 ---

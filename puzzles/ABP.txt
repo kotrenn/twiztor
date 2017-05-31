@@ -13,7 +13,7 @@ permutation red [[p1, p2], [p3, p4], [p5, p6], [p7, p8]]
 permutation blue [[p2, p3], [p4, p5], [p6, p7], [p8, p9]]
 permutation yellow [[p10, p8, p6, p4, p2]]
 permutation cyan [[p1, p3, p5, p7, p9, p11]]
-arc circle yellow p2 %[(-3*w0+3*w1).norm()] ----
-arc circle yellow p10 %[(-3*w0+3*w1).norm()] ----
-arc circle cyan p9 %[(4*w0+8*w2).norm()] ----
-arc circle cyan p11 %[(4*w0+8*w2).norm()] ----
+arc circle yellow p2 %[(-3*w0+3*w1).norm()] ---
+arc circle yellow p10 %[(-3*w0+3*w1).norm()] ---
+arc circle cyan p9 %[(4*w0+8*w2).norm()] ---
+arc circle cyan p11 %[(4*w0+8*w2).norm()] ---

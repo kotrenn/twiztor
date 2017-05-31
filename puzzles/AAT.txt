@@ -6,5 +6,5 @@ node r3c1 blue 1 7
 node r3c3 purple 7 7
 permutation red [[r3c1, r2c1, r2c2, r2c3, r3c3]]
 permutation blue [[r1c2, r2c2]]
-arc circle blue r1c2 2.2 +---
-arc circle blue r2c2 2.2 +--+
+arc circle blue r1c2 2.2 +--
+arc circle blue r2c2 2.2 +-+
