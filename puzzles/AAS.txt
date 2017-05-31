@@ -7,11 +7,11 @@ permutation red [[coord11, coord21]]
 permutation green [[coord21, coord22]]
 permutation blue [[coord22, coord32]]
 permutation yellow [[coord32, coord33]]
-arc circle red coord11 2.2 -+
-arc circle red coord21 2.2 -+
-arc circle green coord21 2.2 -+
-arc circle green coord22 2.2 -+
-arc circle blue coord22 2.2 -+
-arc circle blue coord32 2.2 -+
-arc circle yellow coord32 2.2 -+
-arc circle yellow coord33 2.2 -+
+arc circle red coord11 2.2 +---
+arc circle red coord21 2.2 +---
+arc circle green coord21 2.2 +---
+arc circle green coord22 2.2 +--+
+arc circle blue coord22 2.2 +---
+arc circle blue coord32 2.2 +---
+arc circle yellow coord32 2.2 +---
+arc circle yellow coord33 2.2 +--+

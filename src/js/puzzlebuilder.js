@@ -42,7 +42,8 @@ class PuzzleBuilder
 		this.permutationMap[color] = newPermutation;
 	}
 
-	addCircleArc(arcColor, nodeName, circleR, circlePlus, circleInverted)
+	addCircleArc(arcColor, nodeName, circleR,
+				 circlePlus, circleInverted, circleReversed, circleReflected)
 	{
 		var permutation = this.permutationMap[arcColor];
 		var indexU = this.indexOf(nodeName);
@@ -50,7 +51,8 @@ class PuzzleBuilder
 		var slotU = this.puzzleData.getSlot(indexU);
 		var slotV = this.puzzleData.getSlot(indexV);
 		var circleArc = NewCircleArc(permutation, slotU, slotV,
-									 circleR, circlePlus, circleInverted);
+									 circleR, circlePlus, circleInverted,
+									 circleReversed, circleReflected);
 		this.puzzleData.setArc(permutation, indexU, circleArc);
 	}
 	

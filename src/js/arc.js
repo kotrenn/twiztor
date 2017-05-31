@@ -6,13 +6,22 @@ function NewLineArc(permutation, slotU, slotV)
 	return new Arc(permutation, slotU, slotV, ARC_LINE);
 }
 
-function NewCircleArc(permutation, slotU, slotV, circleRadius, circlePlus, circleInverted)
+function NewCircleArc(permutation,
+					  slotU,
+					  slotV,
+					  circleRadius,
+					  circlePlus,
+					  circleInverted,
+					  circleReversed,
+					  circleReflected)
 {
 	var ret = new Arc(permutation, slotU, slotV, ARC_CIRCLE);
 	
 	ret.circleRadius = circleRadius;
 	ret.circlePlus = circlePlus;
 	ret.circleInverted = circleInverted;
+	ret.circleReversed = circleReversed;
+	ret.circleReflected = circleReflected;
 
 	ret.computeParameters();
 
@@ -34,6 +43,8 @@ class Arc
 		this.circleRadius = 0.0;
 		this.circlePlus = false;
 		this.circleInverted = false;
+		this.circleReversed = false;
+		this.circleReflected = false;
 		this.circleCenter = new vec2f(0.0, 0.0);
 		this.thetaU = 0.0;
 		this.thetaV = 0.0;
@@ -108,7 +119,8 @@ class Arc
 			var theta = this.thetaU + t * this.dTheta;
 
 			var p = new vec2f(Math.cos(theta), Math.sin(theta));
-			p = p.scale(this.circleRadius).add(this.circleCenter);
+			p = p.scale(this.circleRadius);
+			p = p.add(this.circleCenter);
 
 			return p;
 		}
@@ -145,17 +157,41 @@ class Arc
 
 			this.dTheta = this.thetaV - this.thetaU;
 
-			// Put dTheta into the interval [0, 2pi]
-			while (this.dTheta < 0)             this.dTheta += 2.0 * Math.PI;
-			while (this.dTheta > 2.0 * Math.PI) this.dTheta -= 2.0 * Math.PI;
-
 			// Invert it?
+			if (this.circleReversed)
+			{
+				this.thetaU += 2.0 * Math.PI;
+				this.dTheta = this.thetaV - this.thetaU;
+			}
+			if (this.circleReflected)
+			{
+				this.thetaU -= 2.0 * Math.PI;
+				this.dTheta = this.thetaV - this.thetaU;
+			}
 			if (this.circleInverted)
 			{
-				var tmp = this.thetaU;
-				this.thetaU = this.thetaV;
-				this.thetaV = tmp;
-				this.dTheta = 2.0 * Math.PI - this.dTheta;
+				if (this.dTheta > 0)
+					this.dTheta = 2.0 * Math.PI - this.dTheta;
+				else
+					this.dTheta = -2.0 * Math.PI - (this.dTheta);
+			}
+
+			/*
+			while (this.dTheta < -2.0 * Math.PI) this.dTheta += 2.0 * Math.PI;
+			while (this.dTheta >  2.0 * Math.PI) this.dTheta -= 2.0 * Math.PI;
+			*/
+
+			if (this.debugEnabled)
+			{
+				var numIntervals = 10;
+				console.log('begin dump');
+				for (var i = 0; i <= numIntervals; i++)
+				{
+					var t = i * (1.0 / numIntervals);
+					var theta = this.thetaU + t * this.dTheta;
+					console.log(theta);
+				}
+				console.log('');
 			}
 		}
 	}

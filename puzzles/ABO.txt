@@ -16,24 +16,24 @@ node p13 blue %[(r+R+r)*tau(4,2)+r*tau(4,2)]
 node p14 blue %[(r+R+r)*tau(4,2)+r*tau(4,1)]
 permutation red [[p1, p4, p3, p2], [p6, p7], [p8, p9, p10], [p11, p12, p13, p14]]
 permutation green [[p1, p5], [p2, p6], [p3, p8], [p4, p11]]
-arc circle red p1 %[r] --
-arc circle red p4 %[r] --
-arc circle red p3 %[r] --
-arc circle red p2 %[r] --
-arc circle green p1 2.2 +-
-arc circle green p5 2.2 +-
-arc circle green p2 2.2 +-
-arc circle green p6 2.2 +-
-arc circle green p3 2.2 +-
-arc circle green p8 2.2 +-
-arc circle green p4 2.2 +-
-arc circle green p11 2.2 +-
-arc circle red p6 %[r] +-
-arc circle red p7 %[r] +-
-arc circle red p8 %[r] --
-arc circle red p9 %[r] --
-arc circle red p10 %[r] --
-arc circle red p11 %[r] --
-arc circle red p12 %[r] --
-arc circle red p13 %[r] --
-arc circle red p14 %[r] --
+arc circle red p1 %[r] --+-
+arc circle red p4 %[r] ----
+arc circle red p3 %[r] ----
+arc circle red p2 %[r] ----
+arc circle green p1 2.2 +--+
+arc circle green p5 2.2 +---
+arc circle green p2 2.2 +---
+arc circle green p6 2.2 +---
+arc circle green p3 2.2 +---
+arc circle green p8 2.2 +--+
+arc circle green p4 2.2 +---
+arc circle green p11 2.2 +---
+arc circle red p6 %[r] ----
+arc circle red p7 %[r] ----
+arc circle red p8 %[r] --+-
+arc circle red p9 %[r] ----
+arc circle red p10 %[r] ----
+arc circle red p11 %[r] ----
+arc circle red p12 %[r] --+-
+arc circle red p13 %[r] ----
+arc circle red p14 %[r] ----

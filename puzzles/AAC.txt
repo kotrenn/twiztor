@@ -10,4 +10,4 @@ arc circle red mid 2.2 +-
 arc circle yellow mid 2.2 +-
 arc circle yellow rhs 2.2 +-
 arc circle blue mid 2.2 +-
-arc circle blue bot 2.2 +-
+arc circle blue bot 2.2 +--+

@@ -6,7 +6,7 @@ permutation red [[ul, ur, bl]]
 permutation blue [[ur, br, bl]]
 arc circle red ul 2.2 +-
 arc circle red ur 4.0 +-
-arc circle red bl 2.2 +-
+arc circle red bl 2.2 +--+
 arc circle blue ur 2.2 +-
 arc circle blue br 2.2 +-
 arc circle blue bl 4.0 +-
