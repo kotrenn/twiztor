@@ -20,7 +20,7 @@ function testAAA()
 function keyDown(e)
 {
 	if (e.keyCode == 16) // SHIFT
-		shiftPressed = true;
+		g_shiftPressed = true;
 }
 
 function keyUp(e)
