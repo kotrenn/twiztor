@@ -174,5 +174,7 @@ with open('bin/game.js', 'w') as out_file:
         puzzle_list += [puz_filename]
 
     print_puzzle_list(out_file, puzzle_list)
+    print >>out_file, ''
+    print >>out_file, 'main();'
     
 os.system('cp src/js/index.html bin/js.html')

@@ -1,6 +1,8 @@
 var g_shiftPressed = false;
 var g_showHelp = false;
 
+var g_buttonPanel = null;
+
 function testAAA()
 {
     var builder = new PuzzleBuilder('puzzles/AAA');
@@ -17,6 +19,24 @@ function testAAA()
     return builder.getPuzzleData();
 }
 
+function refreshPuzzle()
+{
+	puzzleData = puzzleList[puzzleIndex];
+	g_buttonPanel.setPuzzleData(puzzleData);
+}
+
+function previousPuzzle()
+{
+	--puzzleIndex;
+	refreshPuzzle();
+}
+
+function nextPuzzle()
+{
+	++puzzleIndex;
+	refreshPuzzle();
+}
+
 function keyDown(e)
 {
 	if (e.keyCode == 16) // SHIFT
@@ -30,10 +50,10 @@ function keyUp(e)
 		g_shiftPressed = false;
 	if (e.keyCode == 37) // LEFT
 		if (puzzleIndex > 0)
-			puzzleData = puzzleList[--puzzleIndex];
+			previousPuzzle();
 	if (e.keyCode == 39) // RIGHT
 		if (puzzleIndex + 1 < puzzleList.length)
-			puzzleData = puzzleList[++puzzleIndex];
+			nextPuzzle();
 	if (49 <= e.keyCode && e.keyCode <= 57) // 1, 2, 3, 4, 5, 6, 7, 8, 9
 		puzzleData.activatePermutation(e.keyCode - 49, inverted);
 	if (e.keyCode == 48) // 0
@@ -55,7 +75,7 @@ function draw()
 	g_gameContext.clearRect(0, 0, g_gameCanvas.width, g_gameCanvas.height);
 
 	puzzleData.draw(g_gameContext);
-	puzzleData.drawUI(g_gameContext);
+	g_buttonPanel.drawUI(g_gameContext);
 
 	var controls = ['         Left - Previous Puzzle',
 					'        Right - Next Puzzle',
@@ -78,7 +98,13 @@ function loop()
 	draw();
 }
 
-document.addEventListener("keydown", keyDown, false);
-document.addEventListener("keyup", keyUp, false);
+function main()
+{
+	g_buttonPanel = new ButtonPanel();
+	refreshPuzzle();
+	
+	document.addEventListener("keydown", keyDown, false);
+	document.addEventListener("keyup", keyUp, false);
 
-setInterval(loop, 10);
+	setInterval(loop, 10);
+}
