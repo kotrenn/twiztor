@@ -6,6 +6,7 @@ class PuzzleData
 		this.permutationList = [];
 		this.slotList = [];
 		this.stickerList = [];
+		this.buttonList = []
 		this.arcMap = [];
 		this.center = new vec2f(0.0, 0.0);
 	}
@@ -58,7 +59,7 @@ class PuzzleData
 	drawUI(context)
 	{
 		for (var i = 0; i < this.permutationList.length; i++)
-			this.permutationList[i].drawUI(context);
+			this.buttonList[i].drawUI(context);
 	}
 
 	addPermutation(permutation)
@@ -73,6 +74,8 @@ class PuzzleData
 			var lineArc = NewLineArc(permutation, slotU, slotV);
 			this.setArc(permutation, i, lineArc);
 		}
+
+		this.buttonList.push(new Button(permutation));
 	}
 
 	addSlot(slot)

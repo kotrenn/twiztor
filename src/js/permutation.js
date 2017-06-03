@@ -20,25 +20,6 @@ class Permutation
 		}
 	}
 
-	drawUI(context)
-	{
-		// Draw button
-		var buttonPos = this.reverseIndex + 1;
-		var buttonSkip = 10;
-		var buttonW = 25;
-		var buttonH = buttonW;
-		var buttonX = g_gameCanvas.width - buttonPos * (buttonW + buttonSkip);
-		var buttonY = buttonSkip;
-		fillRectUI(context, this.color, buttonX, buttonY, buttonW, buttonH);
-
-		// Draw number
-		var visibleIndex = (this.index + 1) % 10;
-		var numStr = visibleIndex.toString();
-		var numX = buttonX + 0.5 * buttonW - 0.25 * FONT_SIZE;
-		var numY = buttonY + buttonH + 1.15 * FONT_SIZE;
-		drawString(context, '#000000', numStr, numX, numY);
-	}
-
 	getColor()
 	{
 		return this.color;
@@ -52,6 +33,11 @@ class Permutation
 	getIndex()
 	{
 		return this.index;
+	}
+
+	getReverseIndex()
+	{
+		return this.reverseIndex;
 	}
 
 	setReverseIndex(reverseIndex)
