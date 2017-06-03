@@ -91,7 +91,10 @@ function draw()
 					'6, 7, 8, 9, 0',
 					' [Hold] Shift - Reverse Permutation',
 					'            R - Randomize Puzzle',
-					'            S - Solve Puzzle'];
+					'            S - Solve Puzzle',
+					'            J - Previous Button',
+					'            L - Next Button',
+					'          I/K - Activate Button'];
 	var helpMsg  = 'H - Show Help';
 	var startY = g_gameCanvas.height - 20 * controls.length - 10;
 	if (g_showHelp)
