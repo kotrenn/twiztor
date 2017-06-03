@@ -64,6 +64,10 @@ function keyUp(e)
 		puzzleData.randomize();
 	if (e.keyCode == 83) // S
 		puzzleData.solve();
+	if (e.keyCode == 74) // J
+		g_buttonPanel.prevButton();
+	if (e.keyCode == 76) // L
+		g_buttonPanel.nextButton();
 }
 
 function update()
