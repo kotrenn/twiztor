@@ -3,36 +3,35 @@ class Button
 	constructor(permutation)
 	{
 		this.permutation = permutation;
+		this.buttonPos   = this.permutation.getReverseIndex() + 1;
+		this.buttonSkip  = 10;
+		this.buttonW     = 25;
+		this.buttonH     = this.buttonW;
+		this.buttonX     = g_gameCanvas.width;
+		this.buttonX    -= this.buttonPos * (this.buttonW + this.buttonSkip);
+		this.buttonY     = this.buttonSkip;
+		
+		var visibleIndex = (this.permutation.getIndex() + 1) % 10;
+		this.numStr      = visibleIndex.toString();
+		this.numX        = this.buttonX + 0.5 * this.buttonW - 0.25 * FONT_SIZE;
+		this.numY        = this.buttonY +       this.buttonH + 1.15 * FONT_SIZE;
 	}
 
 	drawUI(context)
 	{
-		var buttonPos = this.permutation.getReverseIndex() + 1;
-		var buttonSkip = 10;
-		var buttonW = 25;
-		var buttonH = buttonW;
-		var buttonX = g_gameCanvas.width;
-		buttonX -= buttonPos * (buttonW + buttonSkip);
-		var buttonY = buttonSkip;
-		
-		var visibleIndex = (this.permutation.getIndex() + 1) % 10;
-		var numStr = visibleIndex.toString();
-		var numX = buttonX + 0.5 * buttonW - 0.25 * FONT_SIZE;
-		var numY = buttonY +       buttonH + 1.15 * FONT_SIZE;
-		
 		// Draw button
 		fillRectUI(context,
 				   this.permutation.getColor(),
-				   buttonX,
-				   buttonY,
-				   buttonW,
-				   buttonH);
+				   this.buttonX,
+				   this.buttonY,
+				   this.buttonW,
+				   this.buttonH);
 
 		// Draw number
 		drawString(context,
 				   '#000000',
-				   numStr,
-				   numX,
-				   numY);
+				   this.numStr,
+				   this.numX,
+				   this.numY);
 	}
 }

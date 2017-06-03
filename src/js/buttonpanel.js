@@ -4,6 +4,17 @@ class ButtonPanel
 	{
 		this.buttonList = [];
 		this.puzzleData = null;
+
+		this.panelX = 0;
+		this.panelY = 0;
+		this.panelW = 0;
+		this.panelH = 0;
+
+		this.PANEL_COLOR   = '#aaaaaa';
+		this.BORDER_LEFT   = 10;
+		this.BORDER_RIGHT  = 10;
+		this.BORDER_TOP    = 10;
+		this.BORDER_BOTTOM = 2 * this.BORDER_TOP + FONT_SIZE;
 	}
 
 	setPuzzleData(puzzleData)
@@ -18,10 +29,48 @@ class ButtonPanel
 			var permutation = this.puzzleData.getPermutation(i);
 			this.buttonList.push(new Button(permutation));
 		}
+
+		this.refreshUI();
+	}
+
+	refreshUI()
+	{
+		var minX = g_gameCanvas.width;
+		var minY = g_gameCanvas.height;
+		var maxX = -1;
+		var maxY = -1;
+		
+		for (var i = 0; i < this.buttonList.length; i++)
+		{
+			var button = this.buttonList[i];
+			var buttonMinX = button.buttonX;
+			var buttonMinY = button.buttonY;
+			var buttonMaxX = button.buttonX + button.buttonW;
+			var buttonMaxY = button.buttonY + button.buttonH;
+			if (buttonMinX < minX) minX = buttonMinX;
+			if (buttonMinY < minY) minY = buttonMinY;
+			if (buttonMaxX > maxX) maxX = buttonMaxX;
+			if (buttonMaxY > maxY) maxY = buttonMaxY;
+		}
+		
+		this.panelW = maxX - minX + this.BORDER_LEFT + this.BORDER_RIGHT;
+		this.panelH = maxY - minY + this.BORDER_TOP  + this.BORDER_BOTTOM;;
+		this.panelX = minX - this.BORDER_LEFT;
+		this.panelY = minY - this.BORDER_TOP;
 	}
 
 	drawUI(context)
 	{
+		if (this.puzzleData == null) return;
+		if (this.buttonList.length == 0) return;
+		
+		fillRectUI(context,
+				   this.PANEL_COLOR,
+				   this.panelX,
+				   this.panelY,
+				   this.panelW,
+				   this.panelH);
+		
 		for (var i = 0; i < this.buttonList.length; i++)
 			this.buttonList[i].drawUI(context);
 	}
