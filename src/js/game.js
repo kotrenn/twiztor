@@ -55,6 +55,7 @@ function draw()
 	g_gameContext.clearRect(0, 0, g_gameCanvas.width, g_gameCanvas.height);
 
 	puzzleData.draw(g_gameContext);
+	puzzleData.drawUI(g_gameContext);
 
 	var controls = ['         Left - Previous Puzzle',
 					'        Right - Next Puzzle',

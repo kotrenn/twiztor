@@ -54,6 +54,12 @@ class PuzzleData
 		for (var i = 0; i < this.stickerList.length; i++)
 			this.stickerList[i].draw(context);
 	}
+	
+	drawUI(context)
+	{
+		for (var i = 0; i < this.permutationList.length; i++)
+			this.permutationList[i].drawUI(context);
+	}
 
 	addPermutation(permutation)
 	{

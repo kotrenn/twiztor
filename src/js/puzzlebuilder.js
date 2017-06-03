@@ -10,7 +10,17 @@ class PuzzleBuilder
 
 	getPuzzleData()
 	{
+		this.reverseIndexList();
 		return this.puzzleData;
+	}
+
+	reverseIndexList()
+	{
+		for (var i = 0; i < this.puzzleData.getPermutationListSize(); i++)
+		{
+			var j = this.puzzleData.getPermutationListSize() - i - 1;
+			this.puzzleData.getPermutation(i).setReverseIndex(j);
+		}
 	}
 
 	indexOf(nodeName)

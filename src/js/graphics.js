@@ -5,7 +5,8 @@ gameCanvas.width = 0.95 * Math.min(windowWidth, windowHeight);
 gameCanvas.height = g_gameCanvas.width;
 
 var g_gameContext = g_gameCanvas.getContext("2d");
-g_gameContext.font="20px Courier";
+var FONT_SIZE = 20;
+g_gameContext.font = FONT_SIZE.toString() + 'px Courier';
 
 var GRAPHICS_SCALE = 0.45 * Math.min(g_gameCanvas.width, g_gameCanvas.height);
 var X_OFFSET = 0.5 * g_gameCanvas.width;
@@ -30,8 +31,18 @@ function adjustLen(t)
 
 function fillRect(context, color, x, y, w, h)
 {
+	fillRectUI(context,
+			   color,
+			   adjustPosX(x),
+			   adjustPosY(y),
+			   adjustLen(w),
+			   adjustLenY(h));
+}
+
+function fillRectUI(context, color, x, y, w, h)
+{
 	context.beginPath();
-	context.rect(adjustPosX(x), adjustPosY(y), adjustLen(w), adjustLenY(h));
+	context.rect(x, y, w, h);
 	context.fillStyle = color;
 	context.fill();
 	context.closePath();

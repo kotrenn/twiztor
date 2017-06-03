@@ -6,16 +6,37 @@ class Permutation
 		this.labels = linearStrArray(n);
 		this.color = color;
 		this.index = index;
+		this.reverseIndex = -1;
 	}
 
 	draw(context, arcList)
 	{
+		// Draw arcs
 		for (var i = 0; i < arcList.length; i++)
 		{
 			var arc = arcList[i];
 			if (arc == null) continue;
 			arc.draw(context);
 		}
+	}
+
+	drawUI(context)
+	{
+		// Draw button
+		var buttonPos = this.reverseIndex + 1;
+		var buttonSkip = 10;
+		var buttonW = 25;
+		var buttonH = buttonW;
+		var buttonX = g_gameCanvas.width - buttonPos * (buttonW + buttonSkip);
+		var buttonY = buttonSkip;
+		fillRectUI(context, this.color, buttonX, buttonY, buttonW, buttonH);
+
+		// Draw number
+		var visibleIndex = (this.index + 1) % 10;
+		var numStr = visibleIndex.toString();
+		var numX = buttonX + 0.5 * buttonW - 0.25 * FONT_SIZE;
+		var numY = buttonY + buttonH + 1.15 * FONT_SIZE;
+		drawString(context, '#000000', numStr, numX, numY);
 	}
 
 	getColor()
@@ -31,6 +52,11 @@ class Permutation
 	getIndex()
 	{
 		return this.index;
+	}
+
+	setReverseIndex(reverseIndex)
+	{
+		this.reverseIndex = reverseIndex;
 	}
 
 	setCycles(cycles)
