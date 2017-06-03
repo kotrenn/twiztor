@@ -72,6 +72,13 @@ class ButtonPanel
 		this.refreshUI();
 	}
 
+	activateButton(inverted)
+	{
+		var button = this.getSelectedButton();
+		var permutation = button.getPermutation();
+		permutation.apply(this.puzzleData, inverted);
+	}
+
 	refreshUI()
 	{
 		var minX = g_gameCanvas.width;

@@ -17,6 +17,11 @@ class Button
 		this.numY        = this.buttonY +       this.buttonH + 1.15 * FONT_SIZE;
 	}
 
+	getPermutation()
+	{
+		return this.permutation;
+	}
+
 	drawUI(context)
 	{
 		// Draw button

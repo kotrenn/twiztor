@@ -68,6 +68,10 @@ function keyUp(e)
 		g_buttonPanel.prevButton();
 	if (e.keyCode == 76) // L
 		g_buttonPanel.nextButton();
+	if (e.keyCode == 73) // I
+		g_buttonPanel.activateButton(false);
+	if (e.keyCode == 75) // K
+		g_buttonPanel.activateButton(true);
 }
 
 function update()
