@@ -58,17 +58,20 @@ class ButtonPanel
 
 	prevButton()
 	{
-		if (this.selectionIndex - 1 < 0) return;
+		if (this.selectionIndex < 0) return;
 		
 		this.selectionIndex--;
+		this.selectionIndex += this.buttonList.length;
+		this.selectionIndex %= this.buttonList.length;
 		this.refreshUI();
 	}
 
 	nextButton()
 	{
-		if (this.selectionIndex + 1 > this.buttonList.length) return;
-
+		if (this.selectionIndex < 0) return;
+		
 		this.selectionIndex++;
+		this.selectionIndex %= this.buttonList.length;
 		this.refreshUI();
 	}
 
