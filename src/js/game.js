@@ -1,7 +1,7 @@
 var g_shiftPressed = false;
 var g_showHelp = false;
 
-var g_buttonPanel = null;
+var g_actionPanel = null;
 
 function testAAA()
 {
@@ -25,7 +25,7 @@ function refreshPuzzle()
 	if (puzzleIndex >= puzzleList.length) puzzleIndex = puzzleList.length - 1;
 	
 	puzzleData = puzzleList[puzzleIndex];
-	g_buttonPanel.setPuzzleData(puzzleData);
+	g_actionPanel.setPuzzleData(puzzleData);
 }
 
 function previousPuzzle()
@@ -66,13 +66,13 @@ function keyUp(e)
 	if (e.keyCode == 83) // S
 		puzzleData.solve();
 	if (e.keyCode == 74) // J
-		g_buttonPanel.prevButton();
+		g_actionPanel.prevAction();
 	if (e.keyCode == 76) // L
-		g_buttonPanel.nextButton();
+		g_actionPanel.nextAction();
 	if (e.keyCode == 73) // I
-		g_buttonPanel.activateButton(false);
+		g_actionPanel.activateAction(false);
 	if (e.keyCode == 75) // K
-		g_buttonPanel.activateButton(true);
+		g_actionPanel.activateAction(true);
 }
 
 function update()
@@ -84,7 +84,7 @@ function draw()
 	g_gameContext.clearRect(0, 0, g_gameCanvas.width, g_gameCanvas.height);
 
 	puzzleData.draw(g_gameContext);
-	g_buttonPanel.drawUI(g_gameContext);
+	g_actionPanel.drawUI(g_gameContext);
 
 	var controls = [
 					'1, 2, 3, 4, 5 - Activate Permutation',
@@ -94,10 +94,10 @@ function draw()
 					'            X - Next Puzzle',
 					'            R - Randomize Puzzle',
 					'            S - Solve Puzzle',
-					'            J - Previous Button',
-					'            L - Next Button',
-                    '            I - Activate Button',
-             		'            K - Activate Button (R)'
+					'            J - Previous Action',
+					'            L - Next Action',
+                    '            I - Activate Action',
+             		'            K - Activate Action (R)'
 	               ];
 	var helpMsg  = 'H - Show Help';
 	var startY = g_gameCanvas.height - 20 * controls.length - 10;
@@ -115,7 +115,7 @@ function loop()
 
 function main()
 {
-	g_buttonPanel = new ButtonPanel();
+	g_actionPanel = new ActionPanel();
 	refreshPuzzle();
 	
 	document.addEventListener("keydown", keyDown, false);

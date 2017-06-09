@@ -1,15 +1,17 @@
 class Button
 {
-	constructor(permutation)
+	constructor(permutation, depth, pos)
 	{
 		this.permutation = permutation;
-		this.buttonPos   = this.permutation.getReverseIndex() + 1;
+		this.depth       = depth;
+		this.pos         = pos;
 		this.buttonSkip  = 10;
 		this.buttonW     = 25;
 		this.buttonH     = this.buttonW;
 		this.buttonX     = g_gameCanvas.width;
-		this.buttonX    -= this.buttonPos * (this.buttonW + this.buttonSkip);
+		this.buttonX    -= this.pos * (this.buttonW + this.buttonSkip);
 		this.buttonY     = this.buttonSkip;
+		this.buttonY    += this.depth * (this.buttonH + this.buttonSkip);
 		
 		var visibleIndex = (this.permutation.getIndex() + 1) % 10;
 		this.numStr      = visibleIndex.toString();
@@ -31,12 +33,25 @@ class Button
 				   this.buttonY,
 				   this.buttonW,
 				   this.buttonH);
+	}
 
-		// Draw number
-		drawString(context,
-				   '#000000',
-				   this.numStr,
-				   this.numX,
-				   this.numY);
+	getMinX()
+	{
+		return this.buttonX;
+	}
+
+	getMinY()
+	{
+		return this.buttonY;
+	}
+
+	getMaxX()
+	{
+		return this.buttonX + this.buttonW;
+	}
+
+	getMaxY()
+	{
+		return this.buttonY + this.buttonH;
 	}
 }

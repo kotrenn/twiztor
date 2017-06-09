@@ -20,6 +20,11 @@ class Permutation
 		}
 	}
 
+	getSize()
+	{
+		return this.mapping.length;
+	}
+
 	getColor()
 	{
 		return this.color;
