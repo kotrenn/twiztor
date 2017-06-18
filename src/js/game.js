@@ -2,6 +2,8 @@ var g_shiftPressed = false;
 var g_showHelp = false;
 
 var g_actionPanel = null;
+var g_puzzleData = null;
+var g_puzzleIndex = 0;
 
 function testAAA()
 {
@@ -21,22 +23,22 @@ function testAAA()
 
 function refreshPuzzle()
 {
-	if (puzzleIndex <                  0) puzzleIndex = 0;
-	if (puzzleIndex >= puzzleList.length) puzzleIndex = puzzleList.length - 1;
+	if (g_puzzleIndex <                    0) g_puzzleIndex = 0;
+	if (g_puzzleIndex >= g_puzzleList.length) g_puzzleIndex = g_puzzleList.length - 1;
 	
-	puzzleData = puzzleList[puzzleIndex];
-	g_actionPanel.setPuzzleData(puzzleData);
+	g_puzzleData = g_puzzleList[g_puzzleIndex];
+	g_actionPanel.setPuzzleData(g_puzzleData);
 }
 
 function previousPuzzle()
 {
-	--puzzleIndex;
+	--g_puzzleIndex;
 	refreshPuzzle();
 }
 
 function nextPuzzle()
 {
-	++puzzleIndex;
+	++g_puzzleIndex;
 	refreshPuzzle();
 }
 
@@ -52,9 +54,9 @@ function keyUp(e)
 	if (e.keyCode == 16) // SHIFT
 		g_shiftPressed = false;
 	if (49 <= e.keyCode && e.keyCode <= 57) // 1, 2, 3, 4, 5, 6, 7, 8, 9
-		puzzleData.activatePermutation(e.keyCode - 49, inverted);
+		g_puzzleData.activatePermutation(e.keyCode - 49, inverted);
 	if (e.keyCode == 48) // 0
-		puzzleData.activatePermutation(10, inverted);
+		g_puzzleData.activatePermutation(10, inverted);
 	if (e.keyCode == 90) // Z
 		previousPuzzle();
 	if (e.keyCode == 88) // X
@@ -62,9 +64,9 @@ function keyUp(e)
 	if (e.keyCode == 72) // H
 		g_showHelp = g_showHelp == false;
 	if (e.keyCode == 82) // R
-		puzzleData.randomize();
+		g_puzzleData.randomize();
 	if (e.keyCode == 83) // S
-		puzzleData.solve();
+		g_puzzleData.solve();
 	if (e.keyCode == 74) // J
 		g_actionPanel.prevAction();
 	if (e.keyCode == 76) // L
@@ -83,7 +85,7 @@ function draw()
 {
 	g_gameContext.clearRect(0, 0, g_gameCanvas.width, g_gameCanvas.height);
 
-	puzzleData.draw(g_gameContext);
+	g_puzzleData.draw(g_gameContext);
 	g_actionPanel.drawUI(g_gameContext);
 
 	var controls = [
@@ -116,6 +118,7 @@ function loop()
 function main()
 {
 	g_actionPanel = new ActionPanel();
+	getPuzzleFromQuery();
 	refreshPuzzle();
 	
 	document.addEventListener("keydown", keyDown, false);

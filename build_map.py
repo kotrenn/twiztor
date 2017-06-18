@@ -63,7 +63,8 @@ with open('bin/map.html', 'w') as f:
     for node in sorted(locations):
         pos = locations[node]
         coords = ','.join(map(str, pos + [BOX_SIZE + pos[0], BOX_SIZE + pos[1]]))
-        print >>f, '      <area shape="rect" coords="' + coords + '" href="js.html" alt="' + node + '">'
+        url = 'index.html?puzzle=' + node
+        print >>f, '      <area shape="rect" coords="' + coords + '" href="' + url + '" alt="' + node + '">'
     print >>f, '    </map>'
     print >>f, '  </body>'
     print >>f, '</html>'

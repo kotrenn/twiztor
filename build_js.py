@@ -125,7 +125,8 @@ def puzzle(out_file, puz_filename):
 
     header(out_file, puz_filename)
 
-    puz_name = ''.join(puz_filename.split('.')[:-1]) # drop file extension
+    puz_name = ''.join(puz_filename.split('.')[:-1]) # drop file extensio
+    puz_name = puz_name.split('/')[-1]
     print >>out_file, 'function ' + puz_name.split('/')[-1] + '()'
     print >>out_file, '{'
     print >>out_file, '    var builder = new PuzzleBuilder(\'' + puz_name + '\');'
@@ -154,12 +155,12 @@ def print_puzzle_list(out_file, puzzle_list):
     sorted_names = sorted(puzzle_list)
     reduced_names = [''.join(name.split('.')[:-1]) for name in sorted_names]
     puzzle_funcs = [name + '()' for name in reduced_names]
-    line  = 'puzzleList = ['
+    line  = 'g_puzzleList = ['
     line += ', '.join(puzzle_funcs)
     line += '];'
     print >>out_file, line
-    print >>out_file, 'puzzleIndex = 0;'
-    print >>out_file, 'puzzleData = puzzleList[puzzleIndex];'
+    print >>out_file, 'g_puzzleIndex = 0;'
+    print >>out_file, 'g_puzzleData = g_puzzleList[g_puzzleIndex];'
     #print >>out_file, 'puzzleData = testAAA();'
 
 with open('bin/game.js', 'w') as out_file:
@@ -177,4 +178,4 @@ with open('bin/game.js', 'w') as out_file:
     print >>out_file, ''
     print >>out_file, 'main();'
     
-os.system('cp src/js/index.html bin/js.html')
+os.system('cp src/js/index.html bin/index.html')
