@@ -1,7 +1,7 @@
 import os
 
 GRAPH_SIZE = 1200
-BOX_SIZE = 20
+BOX_SIZE = 50
 
 nodes = set([])
 for x in os.listdir('puzzles'):
@@ -44,6 +44,10 @@ with open('out.dot', 'r') as f:
             graph_dims = map(int, line.split('"')[1].split(','))
             ratio_w = 1.0 * GRAPH_SIZE / graph_dims[2]
             ratio_h = 1.0 * GRAPH_SIZE / graph_dims[3]
+            if graph_dims[2] < graph_dims[3]:
+                ratio_w *= 1.0 * graph_dims[2] / graph_dims[3]
+            else:
+                ratio_h *= 1.0 * graph_dims[3] / graph_dims[2]
         elif 'height=' in line:
             cur_node = line.split()[0]
         elif 'pos' in line and '->' not in line:
