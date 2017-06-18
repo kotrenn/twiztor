@@ -68,7 +68,7 @@ $(puz_obj): %.puz: %.txt compile_puzzle.py
 # Map
 map: bin/map.html
 
-bin/map.html: $(puz_png) build_map.py
+bin/map.html: $(puz_png) map.txt build_map.py
 	python build_map.py
 
 bin/images/%.png: puzzles/%.puz render_puzzle.py
