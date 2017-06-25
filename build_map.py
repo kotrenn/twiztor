@@ -41,7 +41,7 @@ with open('out.dot', 'r') as f:
     cur_node = ''
     for line in f:
         if 'graph' in line and not 'digraph' in line:
-            graph_dims = map(int, line.split('"')[1].split(','))
+            graph_dims = map(float, line.split('"')[1].split(','))
             ratio_w = 1.0 * GRAPH_SIZE / graph_dims[2]
             ratio_h = 1.0 * GRAPH_SIZE / graph_dims[3]
             if graph_dims[2] < graph_dims[3]:
