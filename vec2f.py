@@ -47,3 +47,14 @@ def tau(n, k):
 def tau_(n, k):
     theta = float(k) * -2.0 * pi / float(n) + pi
     return vec2f(cos(theta), sin(theta))
+
+import sys
+
+def circle_radius(p, q, r):
+    pq = q - p
+    pr = r - p
+    qr = r - q
+    top = pq.norm() * pr.norm() * qr.norm()
+    bot = 2 * pq.cross(pr)
+    if bot < 0.0001: return 0.0001
+    return top / bot

@@ -1,37 +1,39 @@
 import os
 
+COLOR_DATA = {
+    'red':            (1.0,   0.0,   0.0),
+    'orange':         (1.0,   0.5,   0.0),
+    'yellow':         (1.0,   1.0,   0.0),
+    'green':          (0.0,   1.0,   0.0),
+    'cyan':           (0.0,   1.0,   1.0),
+    'magenta':        (1.0,   0.0,   1.0),
+    'blue':           (0.0,   0.0,   1.0),
+    'purple':         (0.5,   0.0,   0.5),
+    'gray':           (0.5,   0.5,   0.5),
+    'grey':           (0.5,   0.5,   0.5),
+    'black':          (0.0,   0.0,   0.0),
+    'white':          (1.0,   1.0,   1.0),
+    'darkred':        (0.5,   0.0,   0.0),
+    'darkgreen':      (0.0,   0.5,   0.0),
+    'darkblue':       (0.0,   0.0,   0.5),
+    'cornflowerblue': (0.392, 0.584, 0.929),
+    'brown':          (0.647, 0.165, 0.165),
+    'darkseagreen':   (0.561, 0.737, 0.561),
+    'darkorchid':     (0.600, 0.196, 0.800),
+    'yellowgreen':    (0.604, 0.804, 0.196),
+    'turquoise4':     (0.000, 0.525, 0.545),
+    'violet':         (0.933, 0.510, 0.933),
+    'violetred':      (0.816, 0.125, 0.565),
+    'violetred4':     (0.545, 0.133, 0.322),
+}
+
 def color_lookup(color):
-    data = {
-	'red':            (1.0,   0.0,   0.0),
-	'orange':         (1.0,   0.5,   0.0),
-	'yellow':         (1.0,   1.0,   0.0),
-	'green':          (0.0,   1.0,   0.0),
-	'cyan':           (0.0,   1.0,   1.0),
-	'blue':           (0.0,   0.0,   1.0),
-	'magenta':        (1.0,   0.0,   1.0),
-	'purple':         (0.5,   0.0,   0.5),
-	'gray':           (0.5,   0.5,   0.5),
-	'grey':           (0.5,   0.5,   0.5),
-	'black':          (0.0,   0.0,   0.0),
-	'white':          (1.0,   1.0,   1.0),
-	'darkred':        (0.5,   0.0,   0.0),
-	'darkgreen':      (0.0,   0.5,   0.0),
-	'darkblue':       (0.0,   0.0,   0.5),
-	'cornflowerblue': (0.392, 0.584, 0.929),
-	'brown':          (0.647, 0.165, 0.165),
-	'darkseagreen':   (0.561, 0.737, 0.561),
-	'darkorchid':     (0.600, 0.196, 0.800),
-	'yellowgreen':    (0.604, 0.804, 0.196),
-	'turquoise4':     (0.000, 0.525, 0.545),
-	'violet':         (0.933, 0.510, 0.933),
-	'violetred':      (0.816, 0.125, 0.565),
-	'violetred4':     (0.545, 0.133, 0.322),
-    }
-    
-    unorm = data[color]
+    unorm = COLOR_DATA[color]
     byte = [int(255.0 * x) for x in unorm]
     html = ['{0:02x}'.format(x) for x in byte]
     return '#' + ''.join(html)
+
+COLOR_NUMS = {v: str(i) for i, v in enumerate(map(color_lookup, COLOR_DATA))}
 
 def header(out_file, filename):
     print >>out_file, '// ' + filename
@@ -53,6 +55,7 @@ def append(out_file, filename):
 def puzzle_node(out_file, vals, node_table):
     node = vals[0]
     color = color_lookup(vals[1])
+    shape = COLOR_NUMS[color]
     x = vals[2]
     y = vals[3]
 
@@ -62,6 +65,7 @@ def puzzle_node(out_file, vals, node_table):
     line += 'builder.addNode('
     line += '\'' + node  + '\', '
     line += '\'' + color + '\', '
+    line += '\'' + shape + '\', '
     line += x + ', '
     line += y + ');'
     print >>out_file, line

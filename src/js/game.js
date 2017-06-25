@@ -5,6 +5,8 @@ var g_actionPanel = null;
 var g_puzzleData = null;
 var g_puzzleIndex = 0;
 
+var g_displayMode = 0;
+
 function testAAA()
 {
     var builder = new PuzzleBuilder('puzzles/AAA');
@@ -75,6 +77,14 @@ function keyUp(e)
 		g_actionPanel.activateAction(false);
 	if (e.keyCode == 75) // K
 		g_actionPanel.activateAction(true);
+	if (e.keyCode == 66) // B
+		g_displayMode = 0;
+	if (e.keyCode == 78) // N
+		g_displayMode = 1;
+	if (e.keyCode == 77) // M
+		g_displayMode = 2;
+	if (e.keyCode == 86) // V
+		g_displayMode = 3;
 }
 
 function update()

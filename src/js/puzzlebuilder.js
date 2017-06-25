@@ -32,9 +32,9 @@ class PuzzleBuilder
 		return -1;
 	}
 
-	addNode(nodeName, nodeColor, nodeX, nodeY)
+	addNode(nodeName, nodeColor, nodeShape, nodeX, nodeY)
 	{
-		var newSticker = new Sticker(nodeColor);
+		var newSticker = new Sticker(nodeColor, nodeShape % NUM_SHAPES);
 		var newSlot = new Slot(nodeName, newSticker, new vec2f(nodeX, nodeY), nodeColor);
 		newSticker.moveToSlot(newSlot);
 		this.puzzleData.addSlot(newSlot);
