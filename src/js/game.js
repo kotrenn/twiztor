@@ -5,7 +5,7 @@ var g_actionPanel = null;
 var g_puzzleData = null;
 var g_puzzleIndex = 0;
 
-var g_displayMode = 0;
+var g_displayMode = 3;
 
 function testAAA()
 {
