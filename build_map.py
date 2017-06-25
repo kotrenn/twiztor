@@ -1,6 +1,6 @@
 import os
 
-GRAPH_SIZE = 1200
+GRAPH_SIZE = 1800
 BOX_SIZE = 50
 
 nodes = set([])
