@@ -1,0 +1,19 @@
+node x0 purple 0 0
+node x1 red %[-w0+tau(3,1)]
+node x2 red %[-w0+tau(3,2)]
+node y1 blue %[w0+tau_(6,1)]
+node y2 blue %[w0+tau_(6,2)]
+node y3 blue %[w0+tau_(6,3)]
+node y4 blue %[w0+tau_(6,4)]
+node y5 blue %[w0+tau_(6,5)]
+permutation red [[x0, x1, x2]]
+permutation blue [[x0, y5, y4, y3, y2, y1]]
+arc circle red x0 1 +--
+arc circle red x1 1 +-+
+arc circle red x2 1 +--
+arc circle blue x0 1 +--
+arc circle blue y1 1 +--
+arc circle blue y2 1 +--
+arc circle blue y3 1 +--
+arc circle blue y4 1 +--
+arc circle blue y5 1 +--

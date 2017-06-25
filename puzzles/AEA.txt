@@ -1,0 +1,8 @@
+node p0 red 0 0
+node p1 yellow 1 0
+node p2 green 2 0
+node p3 cyan 3 0
+node p4 blue 4 0
+node p5 purple 5 0
+permutation red [[p0, p1], [p2, p3], [p4, p5]]
+permutation blue [[p1, p2], [p3, p4]]

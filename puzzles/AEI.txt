@@ -1,0 +1,11 @@
+node p12 red 1 4
+node p13 yellow 1 7
+node p21 green 4 1
+node p24 blue 4 10
+node p31 purple 7 1
+node p34 cyan 7 10
+node p42 violetred 10 4
+node p43 magenta 10 7
+permutation red [[p21, p31], [p42, p43], [p34, p24], [p13, p12]]
+permutation blue [[p31, p42], [p43, p34], [p24, p13], [p12, p21]]
+permutation yellow [[p12, p42], [p13, p43]]
