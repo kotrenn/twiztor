@@ -1,0 +1,115 @@
+float L 7.0
+float h %[1.5*sqrt(0.75)]
+float rV 2.0
+float rE %[rV*cos(pi/5)]
+node r0 red %[0.5*L*tau(4,3)]
+node r1 red %[0.5*L*tau(4,3)+rV*tau(20,15)]
+node r2 red %[0.5*L*tau(4,3)+rV*tau(20,19)]
+node r3 red %[0.5*L*tau(4,3)+rV*tau(20,3)]
+node r4 red %[0.5*L*tau(4,3)+rV*tau(20,7)]
+node r5 red %[0.5*L*tau(4,3)+rV*tau(20,11)]
+node r6 red %[0.5*L*tau(4,3)+rE*tau(20,5)]
+node r7 red %[0.5*L*tau(4,3)+rE*tau(20,9)]
+node r8 red %[0.5*L*tau(4,3)+rE*tau(20,13)]
+node r9 red %[0.5*L*tau(4,3)+rE*tau(20,17)]
+node r10 red %[0.5*L*tau(4,3)+rE*tau(20,1)]
+node y0 yellow %[0.5*L*tau(4,1)]
+node y1 yellow %[0.5*L*tau(4,1)+rV*tau(20,5)]
+node y2 yellow %[0.5*L*tau(4,1)+rV*tau(20,9)]
+node y3 yellow %[0.5*L*tau(4,1)+rV*tau(20,13)]
+node y4 yellow %[0.5*L*tau(4,1)+rV*tau(20,17)]
+node y5 yellow %[0.5*L*tau(4,1)+rV*tau(20,1)]
+node y6 yellow %[0.5*L*tau(4,1)+rE*tau(20,15)]
+node y7 yellow %[0.5*L*tau(4,1)+rE*tau(20,19)]
+node y8 yellow %[0.5*L*tau(4,1)+rE*tau(20,3)]
+node y9 yellow %[0.5*L*tau(4,1)+rE*tau(20,7)]
+node y10 yellow %[0.5*L*tau(4,1)+rE*tau(20,11)]
+node g0 green %[h*L*tau(4,0)]
+#node g1 green %[h*L*tau(4,0)+rV*tau(20,0)]
+node g2 green %[h*L*tau(4,0)+rV*tau(20,4)]
+node g3 green %[h*L*tau(4,0)+rV*tau(20,8)]
+node g4 green %[h*L*tau(4,0)+rV*tau(20,12)]
+node g5 green %[h*L*tau(4,0)+rV*tau(20,16)]
+node g6 green %[h*L*tau(4,0)+rE*tau(20,10)]
+node g7 green %[h*L*tau(4,0)+rE*tau(20,14)]
+#node g8 green %[h*L*tau(4,0)+rE*tau(20,18)]
+#node g9 green %[h*L*tau(4,0)+rE*tau(20,2)]
+node g10 green %[h*L*tau(4,0)+rE*tau(20,6)]
+node b0 blue %[h*L*tau(4,2)]
+#node b1 blue %[h*L*tau(4,2)+rV*tau(20,10)]
+node b2 blue %[h*L*tau(4,2)+rV*tau(20,14)]
+node b3 blue %[h*L*tau(4,2)+rV*tau(20,18)]
+node b4 blue %[h*L*tau(4,2)+rV*tau(20,2)]
+node b5 blue %[h*L*tau(4,2)+rV*tau(20,6)]
+node b6 blue %[h*L*tau(4,2)+rE*tau(20,0)]
+node b7 blue %[h*L*tau(4,2)+rE*tau(20,4)]
+#node b8 blue %[h*L*tau(4,2)+rE*tau(20,8)]
+#node b9 blue %[h*L*tau(4,2)+rE*tau(20,12)]
+node b10 blue %[h*L*tau(4,2)+rE*tau(20,16)]
+permutation green [[r0, g0, y0], [r1, g2, y3], [r2, g3, y4], [r3, g4, y5], [r4, g5, y1], [r6, g7, y8], [r9, g10, y6], [r10, g6, y7]]
+permutation blue [[r0, y0, b0], [r1, y4, b5], [r3, y1, b2], [r4, y2, b3], [r5, y3, b4], [r6, y9, b10], [r7, y10, b6], [r8, y6, b7]]
+float Tr %[L*((tau(6,0)+tau(6,1))/3).norm()]
+float G0 %[circle_radius(p_r0,p_g0,p_y0)]
+arc circle green r0 %[G0] +--
+arc circle green g0 %[G0] +--
+arc circle green y0 %[G0] +-+
+float G1 %[circle_radius(p_r1,p_g2,p_y3)]
+arc circle green r1 %[G1] +--
+arc circle green g2 %[G1] +--
+arc circle green y3 %[G1] +-+
+float G2 %[circle_radius(p_r2,p_g3,p_y4)]
+arc circle green r2 %[G2] +--
+arc circle green g3 %[G2] +--
+arc circle green y4 %[G2] +-+
+float G3 %[circle_radius(p_r3,p_g4,p_y5)]
+arc circle green r3 %[G3] +--
+arc circle green g4 %[G3] +--
+arc circle green y5 %[G3] +-+
+float G4 %[circle_radius(p_r4,p_g5,p_y1)]
+arc circle green r4 %[G4] +--
+arc circle green g5 %[G4] +--
+arc circle green y1 %[G4] +-+
+float G5 %[circle_radius(p_r6,p_g7,p_y8)]
+arc circle green r6 %[G5] +--
+arc circle green g7 %[G5] +--
+arc circle green y8 %[G5] +-+
+float G6 %[circle_radius(p_r9,p_g10,p_y6)]
+arc circle green r9 %[G6] +--
+arc circle green g10 %[G6] +--
+arc circle green y6 %[G6] +-+
+float G7 %[circle_radius(p_r10,p_g6,p_y7)]
+arc circle green r10 %[G7] +--
+arc circle green g6 %[G7] +--
+arc circle green y7 %[G7] +-+
+float B0 %[circle_radius(p_r0,p_y0,p_b0)]
+arc circle blue r0 %[B0] +--
+arc circle blue y0 %[B0] +-+
+arc circle blue b0 %[B0] +-+
+float B1 %[circle_radius(p_r1,p_y4,p_b5)]
+arc circle blue r1 %[B1] +--
+arc circle blue y4 %[B1] +--
+arc circle blue b5 %[B1] +-+
+float B2 %[circle_radius(p_r3,p_y1,p_b2)]
+arc circle blue r3 %[B2] +--
+arc circle blue y1 %[B2] +-+
+arc circle blue b2 %[B2] +--
+float B3 %[circle_radius(p_r4,p_y2,p_b3)]
+arc circle blue r4 %[B3] +--
+arc circle blue y2 %[B3] +-+
+arc circle blue b3 %[B3] +--
+float B4 %[circle_radius(p_r5,p_y3,p_b4)]
+arc circle blue r5 %[B4] +--
+arc circle blue y3 %[B4] +--
+arc circle blue b4 %[B4] +-+
+float B5 %[circle_radius(p_r6,p_y9,p_b10)]
+arc circle blue r6 %[B5] +--
+arc circle blue y9 %[B5] +-+
+arc circle blue b10 %[B5] +--
+float B6 %[circle_radius(p_r7,p_y10,p_b6)]
+arc circle blue r7 %[B6] +--
+arc circle blue y10 %[B6] +-+
+arc circle blue b6 %[B6] +-+
+float B7 %[circle_radius(p_r8,p_y6,p_b7)]
+arc circle blue r8 %[B7] +--
+arc circle blue y6 %[B7] +--
+arc circle blue b7 %[B7] +-+
