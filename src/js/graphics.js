@@ -14,6 +14,12 @@ var Y_OFFSET = 0.5 * g_gameCanvas.height;
 var RADIUS_SCALE = 2.0;
 var LINE_WIDTH = 4.0;
 
+function drawString(context, color, msg, x, y)
+{
+	context.fillStyle = color;
+	context.fillText(msg, x, y);
+}
+
 function adjustPosX(t)
 {
 	return GRAPHICS_SCALE * t + X_OFFSET;
@@ -69,8 +75,47 @@ function fillCircle(context, color, x, y, r)
 	context.closePath();
 }
 
-function drawString(context, color, msg, x, y)
+function drawCircle(context, color, x, y, r)
 {
-	context.fillStyle = color;
-	context.fillText(msg, x, y);
+	var radius = RADIUS_SCALE * r;
+	context.beginPath();
+	context.arc(adjustPosX(x), adjustPosY(y), radius, 0, 2.0 * Math.PI);
+	context.strokeStyle = color;
+	context.lineWidth = LINE_WIDTH
+	context.stroke();
+	context.closePath();
+}
+
+function drawPolygon(context, color, n, x, y, r)
+{
+	var radius = (RADIUS_SCALE / GRAPHICS_SCALE) * r;
+	for (var i = 0; i < n; i++)
+	{
+		var t0 = (2.0 * Math.PI / n) * (i   );
+		var t1 = (2.0 * Math.PI / n) * (i + 1)
+		var x0 = radius * Math.cos(t0) + x;
+		var y0 = radius * Math.sin(t0) + y;
+		var x1 = radius * Math.cos(t1) + x;
+		var y1 = radius * Math.sin(t1) + y;
+		drawLine(context, color, x0, y0, x1, y1);
+	}
+}
+
+var NUM_SHAPES = 0;
+var SHAPE_CIRCLE = NUM_SHAPES++;
+var SHAPE_TRIANGLE = NUM_SHAPES++;
+var SHAPE_SQUARE = NUM_SHAPES++;
+var SHAPE_PENTAGON = NUM_SHAPES++;
+var SHAPE_HEXAGON = NUM_SHAPES++;
+
+function drawShape(context, shape, color, x, y, r)
+{
+	switch (shape)
+	{
+		case SHAPE_CIRCLE: drawCircle(context, color, x, y, r); break;
+		case SHAPE_TRIANGLE: drawPolygon(context, color, 3, x, y, r); break;
+		case SHAPE_SQUARE: drawPolygon(context, color, 4, x, y, r); break;
+		case SHAPE_PENTAGON: drawPolygon(context, color, 5, x, y, r); break;
+		case SHAPE_HEXAGON: drawPolygon(context, color, 6, x, y, r); break;
+	}
 }

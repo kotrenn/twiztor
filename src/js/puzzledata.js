@@ -15,7 +15,7 @@ class PuzzleData
 		for (var i = 0; i < this.stickerList.length; i++)
 		{
 			var sticker = this.stickerList[i];
-			sticker.setColor(sticker.getSlot().getColor());
+			sticker.cloneSlot();
 		}
 	}
 
