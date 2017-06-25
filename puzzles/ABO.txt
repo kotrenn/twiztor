@@ -20,14 +20,6 @@ arc circle red p1 %[r] -+-
 arc circle red p4 %[r] ---
 arc circle red p3 %[r] ---
 arc circle red p2 %[r] ---
-arc circle green p1 2.2 +-+
-arc circle green p5 2.2 +--
-arc circle green p2 2.2 +--
-arc circle green p6 2.2 +--
-arc circle green p3 2.2 +--
-arc circle green p8 2.2 +-+
-arc circle green p4 2.2 +--
-arc circle green p11 2.2 +--
 arc circle red p6 %[r] ---
 arc circle red p7 %[r] ---
 arc circle red p8 %[r] -+-

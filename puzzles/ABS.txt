@@ -40,17 +40,6 @@ arc circle red p24 %[r] -+-
 arc circle red p25 %[r] -+-
 arc circle red p26 %[r] -+-
 arc circle red p27 %[r] ---
-float Lr %[0.9*L]
-arc circle green p1 %[Lr] ---
-arc circle green p4 %[Lr] ---
-arc circle green p2 %[Lr] -+-
-arc circle green p10 %[Lr] ---
-arc circle green p3 %[Lr] ---
-arc circle green p16 %[Lr] -+-
-arc circle green p6 %[Lr] ---
-arc circle green p22 %[Lr] -+-
-arc circle green p8 %[Lr] -+-
-arc circle green p25 %[Lr] ---
 arc circle blue p4 %[R] ---
 arc circle blue p5 %[R] ---
 arc circle blue p6 %[R] ---

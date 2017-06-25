@@ -8,15 +8,3 @@ node coord33 yellowgreen 7 7
 permutation yellow [[coord12, coord22], [coord31, coord32]]
 permutation green [[coord12, coord13], [coord32, coord33]]
 permutation blue [[coord11, coord12], [coord22, coord32]]
-arc circle yellow coord12 2.2 +--
-arc circle yellow coord22 2.2 +--
-arc circle yellow coord31 2.2 +--
-arc circle yellow coord32 2.2 +-+
-arc circle green coord12 2.2 +--
-arc circle green coord13 2.2 +-+
-arc circle green coord32 2.2 +--
-arc circle green coord33 2.2 +-+
-arc circle blue coord11 2.2 +--
-arc circle blue coord12 2.2 +-+
-arc circle blue coord22 2.2 +--
-arc circle blue coord32 2.2 +--

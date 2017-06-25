@@ -24,14 +24,6 @@ arc circle cyan p1 %[r] +--
 arc circle cyan p4 %[r] +-+
 arc circle cyan p3 %[r] +--
 arc circle cyan p2 %[r] +--
-arc circle purple p1 2.2 +-+
-arc circle purple p5 2.2 +--
-arc circle purple p2 2.2 +--
-arc circle purple p6 2.2 +--
-arc circle purple p3 2.2 +--
-arc circle purple p8 2.2 +-+
-arc circle purple p4 2.2 +--
-arc circle purple p11 2.2 +--
 arc circle yellow p6 %[r] ---
 arc circle yellow p7 %[r] ---
 arc circle green p8 %[r] -+-
