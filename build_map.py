@@ -51,7 +51,7 @@ with open('out.dot', 'r') as f:
         elif 'height=' in line:
             cur_node = line.split()[0]
         elif 'pos' in line and '->' not in line:
-            pos = map(int, line.split('"')[1].split(','))
+            pos = map(float, line.split('"')[1].split(','))
             pos[0] = ratio_w * (pos[0]) - 0.5 * BOX_SIZE
             pos[1] = ratio_h * (graph_dims[3] - pos[1]) - 0.5 * BOX_SIZE
             locations[cur_node] = pos
