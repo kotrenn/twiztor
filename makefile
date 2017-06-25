@@ -48,7 +48,11 @@ $(java_obj): permgame/%.class: src/java/permgame/%.java
 	javac -d . -cp src/java/ $<
 
 # JS
-js: puzzles map bin/js.html bin/game.js
+js: js-game js-map
+
+js-map: map
+
+js-game: puzzles bin/js.html bin/game.js
 
 bin/js.html: src/js/index.html
 	cp src/js/index.html bin/js.html
