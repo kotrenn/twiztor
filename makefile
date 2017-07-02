@@ -30,7 +30,7 @@ CPP_FLAGS = $(OPT_FLAGS) $(OS_FLAGS) -std=c++0x
 CPP_LINKS = $(LIN_LINKS)
 CPP_EXE = $(LIN_EXE)
 
-all: puzzles cpp java js map
+all: puzzles cpp java js map tex
 
 # C++
 cpp: puzzles ${CPP_EXE}
@@ -78,13 +78,20 @@ bin/map.html: $(puz_png) map.txt build_map.py
 bin/images/%.png: puzzles/%.puz render_puzzle.py
 	python render_puzzle.py $<
 
+# Tex
+tex: paper.pdf
+
+paper.pdf: paper.tex
+	pdflatex paper.tex
+	pdflatex paper.tex
+
 # Doc
 doc:
 	rm -rf html latex
 	doxygen doxygen.txt
 
 # Clean
-clean: clean-puzzles clean-cpp clean-java clean-js clean-map clean-doc
+clean: clean-puzzles clean-cpp clean-java clean-js clean-map clean-tex clean-doc
 
 clean-cpp:
 	rm -rf ${CPP_EXE} src/cpp/*.o permgame
@@ -95,11 +102,14 @@ clean-puzzles:
 clean-js:
 	rm -rf bin/js.html bin/game.js
 
-clean-doc:
-	rm -rf html latex
-
 clean-java:
 	rm -rf permgame/*.class
 
 clean-map:
 	rm -rf bin/map.html bin/map.png bin/images/*.png out.dot map.dot
+
+clean-tex:
+	rm -rf paper.pdf paper.aux paper.log
+
+clean-doc:
+	rm -rf html latex
