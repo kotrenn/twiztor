@@ -79,7 +79,7 @@ class Sticker
 		}
 		else if (g_displayMode == 1)
 		{
-			drawCircle(context, this.color, center.x, center.y, STICKER_RADIUS);
+			fillCircle(context, this.color, center.x, center.y, STICKER_RADIUS);
 		}
 		else if (g_displayMode == 2)
 		{
@@ -95,7 +95,7 @@ class Sticker
 		}
 		else if (g_displayMode == 3)
 		{
-			drawShape(context, this.shape, this.color, center.x, center.y, STICKER_RADIUS * 1.1);
+			fillShape(context, this.shape, this.color, center.x, center.y, STICKER_RADIUS * 1.1);
 		}
 	}
 }
