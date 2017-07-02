@@ -1,14 +1,27 @@
-node coord11 red 1 1
-node coord12 red 1 4
-node coord21 red 4 1
-node coord22 red 4 4
-node coord31 green 7 1
-node coord32 green 7 4
-node coord41 green 10 1
-node coord42 green 10 4
-node coord33 blue 7 7
-node coord34 blue 7 10
-node coord43 blue 10 7
-node coord44 blue 10 10
-permutation purple [[coord11, coord21, coord22, coord12], [coord31, coord41, coord42, coord32], [coord33, coord43, coord44, coord34]]
-permutation red [[coord11, coord31, coord33], [coord12, coord32, coord34], [coord21, coord41, coord43], [coord22, coord42, coord44]]
+node p11 blue 1 1
+node p12 purple 1 4
+node p21 green 4 1
+node p22 blue 4 4
+node p31 yellow 7 1
+node p32 green 7 4
+node p41 red 10 1
+node p42 yellow 10 4
+node p33 blue 7 7
+node p34 purple 7 10
+node p43 green 10 7
+node p44 blue 10 10
+permutation purple [[p11, p21, p22, p12], [p31, p41, p42, p32], [p33, p43, p44, p34]]
+permutation red [[p11, p31, p33], [p12, p32, p34], [p21, p41, p43], [p22, p42, p44]]
+float R %[sqrt(18)/2]
+arc circle purple p11 %[R] +--
+arc circle purple p21 %[R] +--
+arc circle purple p22 %[R] +--
+arc circle purple p12 %[R] +-+
+arc circle purple p31 %[R] +--
+arc circle purple p41 %[R] +--
+arc circle purple p42 %[R] +--
+arc circle purple p32 %[R] +-+
+arc circle purple p33 %[R] +--
+arc circle purple p43 %[R] +--
+arc circle purple p44 %[R] +--
+arc circle purple p34 %[R] +-+

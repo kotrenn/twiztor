@@ -1,0 +1,11 @@
+node p0 red 0 0
+node p1 yellow %[tau(5,0)]
+node p2 green %[tau(5,1)]
+node p3 cyan %[tau(5,2)]
+node p4 blue %[tau(5,3)]
+node p5 purple %[tau(5,4)]
+permutation yellow [[p0, p1]]
+permutation green [[p0, p2]]
+permutation cyan [[p0, p3]]
+permutation blue [[p0, p4]]
+permutation purple [[p0, p5]]
