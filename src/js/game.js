@@ -44,6 +44,12 @@ function nextPuzzle()
 	refreshPuzzle();
 }
 
+function randomPuzzle()
+{
+	g_puzzleIndex = randInt(1, g_puzzleList.length) - 1;
+	refreshPuzzle();
+}
+
 function keyDown(e)
 {
 	if (e.keyCode == 16) // SHIFT
@@ -85,6 +91,8 @@ function keyUp(e)
 		g_displayMode = 2;
 	if (e.keyCode == 86) // V
 		g_displayMode = 3;
+	if (e.keyCode == 80) // P
+		randomPuzzle();
 }
 
 function update()
@@ -109,7 +117,8 @@ function draw()
 					'            J - Previous Action',
 					'            L - Next Action',
                     '            I - Activate Action',
-             		'            K - Activate Action (R)'
+                    '            K - Activate Action (R)',
+             		'            P - Random Puzzle'
 	               ];
 	var helpMsg  = 'H - Show Help';
 	var startY = g_gameCanvas.height - 20 * controls.length - 10;
