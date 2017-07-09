@@ -52,8 +52,9 @@ for name in files:
     group = [ident]
     keys = set([str(ident)])
     q = [ident]
-    LIMIT = 1000000
-    while len(q) > 0 and len(group) < LIMIT:
+    #LIMIT = 1000000
+    LIMIT = 5040
+    while len(q) > 0 and len(group) <= LIMIT:
         top = q[-1]
         q = q[:-1]
         for p in perm_list:
@@ -62,5 +63,5 @@ for name in files:
                 keys |= set([str(r)])
                 group += [r]
                 q += [r]
-    if len(group) < LIMIT:
+    if len(group) <= LIMIT:
         print 'Group size = ' + str(len(group))
