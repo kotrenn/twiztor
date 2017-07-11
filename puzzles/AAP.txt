@@ -1,10 +1,10 @@
-node coord11 red 1 1
-node coord12 yellow 1 4
-node coord13 green 1 7
-node coord22 blue 4 4
-node coord31 purple 7 1
-node coord32 cyan 7 4
-node coord33 yellowgreen 7 7
+node coord11 red %[w1]
+node coord12 yellow 0 0
+node coord13 green %[w2]
+node coord22 blue %[w0]
+node coord31 purple %[2*w0-w1]
+node coord32 cyan %[w0-w1]
+node coord33 magenta %[w0-w1+w2]
 permutation yellow [[coord12, coord22], [coord31, coord32]]
 permutation green [[coord12, coord13], [coord32, coord33]]
 permutation blue [[coord11, coord12], [coord22, coord32]]

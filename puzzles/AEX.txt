@@ -1,9 +1,9 @@
-node lhs red 1 4
-node mid yellow 4 4
-node rhs blue 7 4
-node top purple 7 1
-node bot green 4 7
-node six cyan 4 1
+node lhs red 1 -1
+node mid yellow 0 0
+node rhs blue 0 1
+node top purple 1 1
+node bot green -1 -1
+node six cyan 1 0
 permutation red [[lhs, mid]]
 permutation green [[rhs, top]]
 permutation blue [[mid, bot]]

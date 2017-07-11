@@ -1,13 +1,14 @@
-node ul red 1 1
-node ur yellow 4 1
-node bl blue 1 4
-node br green 4 -2
+node ul red 0 0
+node ur yellow %[w0]
+node bl blue %[w2]
+node br green %[w0-w1]
 permutation red [[ul, bl]]
 permutation green [[ur, br]]
 permutation blue [[ul, ur]]
-arc circle red ul 2.2 -+-
-arc circle red bl 2.2 ---
-arc circle green ur 2.2 ---
-arc circle green br 2.2 -+-
-arc circle blue ul 2.2 ---
-arc circle blue ur 2.2 ---
+float r 1.0
+arc circle red ul %[r] -++
+arc circle red bl %[r] ---
+arc circle green ur %[r] ---
+arc circle green br %[r] -++
+arc circle blue ul %[r] ---
+arc circle blue ur %[r] ---

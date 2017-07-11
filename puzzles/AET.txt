@@ -1,10 +1,9 @@
-node lhs red 1 4
-node mid yellow 4 4
-node rhs blue 7 4
-node top purple 7 1
-node bot green 4 7
-node six cyan 4 1
-permutation red [[lhs, mid]]
+node lhs red %[w1]
+node mid yellow 0 0
+node rhs blue %[w0]
+node top purple %[w0-w1]
+node bot green %[w2]
+node six cyan %[2*w0-w1]
+permutation red [[lhs, mid], [rhs, top]]
 permutation yellow [[mid, rhs], [six, top]]
-permutation green [[rhs, top]]
 permutation blue [[mid, bot]]

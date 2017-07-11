@@ -1,8 +1,8 @@
-node p0 red 0 0
-node p1 yellow 1 0
-node p2 green 2 1
-node p3 blue 3 1
-node p4 purple 4 2
+node p0 red %[-w0]
+node p1 yellow 0 0
+node p2 green %[-w1]
+node p3 blue %[-w1+w2]
+node p4 purple %[-w0-w1+w2]
 permutation red [[p0, p1], [p3, p4]]
 permutation green [[p1, p2]]
 permutation blue [[p2, p3]]

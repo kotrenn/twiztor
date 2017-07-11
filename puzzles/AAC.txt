@@ -1,13 +1,14 @@
-node lhs red 1 1
-node mid yellow 4 1
-node rhs blue 7 1
-node bot green 4 4
+node lhs red %[w1]
+node mid yellow 0 0
+node rhs blue %[w0]
+node bot green %[w2]
 permutation red [[lhs, mid]]
 permutation yellow [[mid, rhs]]
 permutation blue [[mid, bot]]
-arc circle red lhs 2.2 +--
-arc circle red mid 2.2 +--
-arc circle yellow mid 2.2 +--
-arc circle yellow rhs 2.2 +--
-arc circle blue mid 2.2 +--
-arc circle blue bot 2.2 +-+
+float r 1.0
+arc circle red lhs %[r] +--
+arc circle red mid %[r] +--
+arc circle yellow mid %[r] +--
+arc circle yellow rhs %[r] +--
+arc circle blue mid %[r] +--
+arc circle blue bot %[r] +--

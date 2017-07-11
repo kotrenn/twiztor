@@ -1,0 +1,16 @@
+node p03 yellow 0 3
+node p04 green 0 4
+node p12 yellow 1 2
+node p13 green 1 3
+node p14 blue 1 4
+node p20 red 2 0
+node p21 yellow 2 1
+node p22 green 2 2
+node p23 blue 2 3
+node p30 yellow 3 0
+node p31 green 3 1
+node p32 blue 3 2
+permutation red [[p12, p13], [p20, p21], [p22, p23], [p30, p31]]
+permutation yellow [[p03, p04], [p13, p14], [p21, p22], [p31, p32]]
+permutation green [[p03, p13], [p04, p14], [p20, p30], [p21, p31], [p22, p32]]
+permutation blue [[p12, p22], [p13, p23]]

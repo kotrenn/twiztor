@@ -1,9 +1,9 @@
-node lhs red 1 4
-node mid yellow 4 4
-node rhs blue 7 4
-node top purple 7 1
-node bot green 4 7
-node six cyan 4 1
+node lhs red %[tau(5,0)]
+node mid yellow 0 0
+node rhs blue %[tau(5,2)]
+node top purple %[tau(5,2)+tau(5,3)]
+node bot green %[tau(5,4)]
+node six cyan %[tau(5,2)+tau(5,3)-tau(5,1)]
 permutation red [[lhs, mid]]
 permutation yellow [[mid, rhs]]
 permutation green [[rhs, top]]

@@ -1,7 +1,7 @@
 node lhs red 1 4
 node mid yellow 4 4
-node rhs blue 7 4
-node top purple 4 1
+node rhs blue 1 7
+node top purple 1 1
 node bot green 4 7
 permutation red [[lhs, mid]]
 permutation yellow [[mid, rhs]]

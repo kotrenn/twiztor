@@ -1,6 +1,6 @@
 import os
 
-GRAPH_SIZE = 1800
+GRAPH_SIZE = 3000
 BOX_SIZE = 50
 
 nodes = set([])
@@ -12,6 +12,7 @@ for x in os.listdir('puzzles'):
 edges = {}
 with open('map.txt', 'r') as f:
     for line in f:
+        if line[0] == '#': continue
         vals = line.strip().split()
         head = vals[0][:-1] # strip the ':'
         tail = vals[1:]
