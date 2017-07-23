@@ -1,0 +1,6 @@
+node p red 0 -1
+node q purple -1 0
+node r purple 1 0
+node s blue 0 1
+permutation red [[p, q], [r, s]]
+permutation blue [[p, r], [q, s]]

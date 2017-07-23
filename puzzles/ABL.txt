@@ -1,25 +1,83 @@
-node p1 yellow %[4*w0+8*w1]
-node p2 yellow %[2*w1]
-node p3 yellow %[-2*w2]
-node p4 green %[-3*w0]
-node p5 green %[zero]
-node p6 green %[3*w0]
-node p7 cyan %[2*w2]
-node p8 cyan %[-2*w1]
-node p9 cyan %[4*w0+8*w2]
-permutation yellow [[p1, p6, p4], [p5, p2, p3]]
-permutation cyan [[p9, p4, p6], [p5, p8, p7]]
-float R 4.0
-float r 1.2
-arc circle yellow p1 %[R] ---
-arc circle yellow p6 %[R] ---
-arc circle yellow p4 %[R] -+-
-arc circle yellow p5 %[r] -+-
-arc circle yellow p2 %[r] ---
-arc circle yellow p3 %[r] ---
-arc circle cyan p9 %[R] -+-
-arc circle cyan p4 %[R] ---
-arc circle cyan p6 %[R] ---
-arc circle cyan p5 %[r] ---
-arc circle cyan p8 %[r] ---
-arc circle cyan p7 %[r] -+-
+float d 6.0
+float r1 3.0
+float r2 4.0
+float r3 5.0
+float R1 3.0
+float R2 4.0
+float R3 5.0
+float x_11 %[(d**2-r1**2+R1**2)/(2*d)]
+float x_12 %[(d**2-r2**2+R1**2)/(2*d)]
+float x_13 %[(d**2-r3**2+R1**2)/(2*d)]
+float x_21 %[(d**2-r1**2+R2**2)/(2*d)]
+float x_22 %[(d**2-r2**2+R2**2)/(2*d)]
+float x_23 %[(d**2-r3**2+R2**2)/(2*d)]
+float x_31 %[(d**2-r1**2+R3**2)/(2*d)]
+float x_32 %[(d**2-r2**2+R3**2)/(2*d)]
+float x_33 %[(d**2-r3**2+R3**2)/(2*d)]
+float h_11 %[sqrt((-d+r1-R1)*(-d-r1+R1)*(-d+r1+R1)*(d+r1+R1))/(2*d)]
+float h_12 %[sqrt((-d+r2-R1)*(-d-r2+R1)*(-d+r2+R1)*(d+r2+R1))/(2*d)]
+float h_13 %[sqrt((-d+r3-R1)*(-d-r3+R1)*(-d+r3+R1)*(d+r3+R1))/(2*d)]
+float h_21 %[sqrt((-d+r1-R2)*(-d-r1+R2)*(-d+r1+R2)*(d+r1+R2))/(2*d)]
+float h_22 %[sqrt((-d+r2-R2)*(-d-r2+R2)*(-d+r2+R2)*(d+r2+R2))/(2*d)]
+float h_23 %[sqrt((-d+r3-R2)*(-d-r3+R2)*(-d+r3+R2)*(d+r3+R2))/(2*d)]
+float h_31 %[sqrt((-d+r1-R3)*(-d-r1+R3)*(-d+r1+R3)*(d+r1+R3))/(2*d)]
+float h_32 %[sqrt((-d+r2-R3)*(-d-r2+R3)*(-d+r2+R3)*(d+r2+R3))/(2*d)]
+float h_33 %[sqrt((-d+r3-R3)*(-d-r3+R3)*(-d+r3+R3)*(d+r3+R3))/(2*d)]
+
+node C yellow 0 0
+node c green %[d] 0
+node p11 cyan %[x_11] %[h_11]
+node p12 yellow %[x_12] %[h_12]
+node p13 yellow %[x_13] %[h_13]
+node p21 green %[x_21] %[h_21]
+node p22 cyan %[x_22] %[h_22]
+node p23 yellow %[x_23] %[h_23]
+node p31 green %[x_31] %[h_31]
+node p32 green %[x_32] %[h_32]
+node p33 cyan %[x_33] %[h_33]
+node q12 yellow %[x_12] %[-h_12]
+node q13 yellow %[x_13] %[-h_13]
+node q21 green %[x_21] %[-h_21]
+node q22 cyan %[x_22] %[-h_22]
+node q23 yellow %[x_23] %[-h_23]
+node q31 green %[x_31] %[-h_31]
+node q32 green %[x_32] %[-h_32]
+node q33 cyan %[x_33] %[-h_33]
+
+permutation yellow [[p11, p12, p13, q13, q12], [p21, p22, p23, q23, q22, q21], [p31, p32, p33, q33, q32, q31]]
+permutation green [[p11, p21, p31, q31, q21], [p12, p22, p32, q32, q22, q12], [p13, p23, p33, q33, q23, q13]]
+
+arc circle yellow p11 %[R1] +--
+arc circle yellow p12 %[R1] +--
+arc circle yellow p13 %[R1] --+
+arc circle yellow q13 %[R1] +--
+arc circle yellow q12 %[R1] +--
+arc circle yellow p21 %[R2] +--
+arc circle yellow p22 %[R2] +--
+arc circle yellow p23 %[R2] --+
+arc circle yellow q23 %[R2] +--
+arc circle yellow q22 %[R2] +--
+arc circle yellow q21 %[R2] +--
+arc circle yellow p31 %[R3] +--
+arc circle yellow p32 %[R3] +--
+arc circle yellow p33 %[R3] --+
+arc circle yellow q33 %[R3] +--
+arc circle yellow q32 %[R3] +--
+arc circle yellow q31 %[R3] +--
+arc circle green p11 %[R1] -+-
+arc circle green p21 %[R1] ---
+arc circle green p31 %[R1] +--
+arc circle green q31 %[R1] ---
+arc circle green q21 %[R1] -+-
+arc circle green p12 %[R2] ---
+arc circle green p22 %[R2] ---
+arc circle green p32 %[R2] +--
+arc circle green q32 %[R2] ---
+arc circle green q22 %[R2] ---
+#arc circle green q12 %[R2] -++
+arc circle green p13 %[R3] ---
+arc circle green p23 %[R3] ---
+arc circle green p33 %[R3] +--
+arc circle green q33 %[R3] ---
+arc circle green q23 %[R3] ---
+#arc circle green q13 %[R3] -++
