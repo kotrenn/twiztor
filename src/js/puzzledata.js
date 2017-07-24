@@ -9,9 +9,6 @@ class PuzzleData
 		this.arcMap = [];
 		this.center = new vec2f(0.0, 0.0);
 		this.easierList = [];
-
-		this.addEasier('AAA');
-		this.addEasier('ABC');
 	}
 
 	solve()
