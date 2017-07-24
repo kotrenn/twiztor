@@ -8,6 +8,10 @@ class PuzzleData
 		this.stickerList = [];
 		this.arcMap = [];
 		this.center = new vec2f(0.0, 0.0);
+		this.easierList = [];
+
+		this.addEasier('AAA');
+		this.addEasier('ABC');
 	}
 
 	solve()
@@ -53,6 +57,16 @@ class PuzzleData
 
 		for (var i = 0; i < this.stickerList.length; i++)
 			this.stickerList[i].draw(context);
+	}
+
+	addEasier(puzzleName)
+	{
+		this.easierList.push(puzzleName);
+	}
+
+	getEasierList()
+	{
+		return this.easierList;
 	}
 	
 	addPermutation(permutation)

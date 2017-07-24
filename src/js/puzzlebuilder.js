@@ -136,4 +136,9 @@ class PuzzleBuilder
 			}
 		}
 	}
+
+	addEasier(puzzleName)
+	{
+		this.puzzleData.addEasier(puzzleName);
+	}
 }

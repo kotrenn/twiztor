@@ -23,6 +23,19 @@ function testAAA()
     return builder.getPuzzleData();
 }
 
+function loadEasier()
+{
+	var easierList = g_puzzleData.getEasierList();
+	var easierStr = 'Easier:';
+	for (var i = 0; i < easierList.length; i++)
+	{
+		var easierPuzzle = easierList[i];
+		easierStr += ' <a href="index.html?puzzle=' + easierPuzzle + '">';
+		easierStr += easierPuzzle + '</a>';
+	}
+	document.getElementById("easier").innerHTML = easierStr;
+}
+
 function refreshPuzzle()
 {
 	if (g_puzzleIndex <                    0) g_puzzleIndex = 0;
@@ -30,6 +43,7 @@ function refreshPuzzle()
 	
 	g_puzzleData = g_puzzleList[g_puzzleIndex];
 	g_actionPanel.setPuzzleData(g_puzzleData);
+	loadEasier();
 }
 
 function previousPuzzle()

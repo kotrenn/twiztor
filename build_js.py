@@ -35,6 +35,17 @@ def color_lookup(color):
 
 COLOR_NUMS = {v: str(i) for i, v in enumerate(map(color_lookup, COLOR_DATA))}
 
+easier = { 'AAA': [] }
+
+def read_map():
+    with open('map.txt', 'r') as f:
+        for line in f:
+            vals = line.strip().split()
+            key = vals[0][:-1]
+            easier[key] = []
+            for val in vals[1:]:
+                easier[key] += [val]
+
 def header(out_file, filename):
     print >>out_file, '// ' + filename
 
@@ -124,6 +135,12 @@ def puzzle_arc(out_file, vals, node_table):
     if vals[0] == 'circle':
         puzzle_arc_circle(out_file, vals[1:], node_table)
 
+def puzzle_easier(out_file, puz_filename):
+    root = puz_filename.split('/')[-1].split('.puz')[0]
+    for name in easier[root]:
+        print >>out_file, '    builder.addEasier(\'' + name + '\');'
+    print >>out_file, ''
+
 def puzzle(out_file, puz_filename):
     node_table = {}
 
@@ -150,6 +167,7 @@ def puzzle(out_file, puz_filename):
     print >>out_file, '    builder.recenter();'
     print >>out_file, '    builder.normalize();'
     print >>out_file, ''
+    puzzle_easier(out_file, puz_filename);
     print >>out_file, '    return builder.getPuzzleData();'
     print >>out_file, '}'
                             
@@ -167,6 +185,7 @@ def print_puzzle_list(out_file, puzzle_list):
     print >>out_file, 'g_puzzleData = g_puzzleList[g_puzzleIndex];'
     #print >>out_file, 'puzzleData = testAAA();'
 
+read_map()
 with open('bin/game.js', 'w') as out_file:
     for js_filename in os.listdir('src/js'):
         if not '.js' in js_filename: continue
