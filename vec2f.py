@@ -55,6 +55,7 @@ def circle_radius(p, q, r):
     pr = r - p
     qr = r - q
     top = pq.norm() * pr.norm() * qr.norm()
-    bot = 2 * pq.cross(pr)
-    if bot < 0.0001: return 0.0001
+    bot = abs(2 * pq.cross(pr))
+    if bot < 0.0001:
+        return 0.0001
     return top / bot
