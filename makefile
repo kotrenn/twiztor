@@ -52,12 +52,12 @@ js: js-game js-map
 
 js-map: map
 
-js-game: puzzles bin/js.html bin/game.js
+js-game: bin/js.html bin/game.js puzzles
 
 bin/js.html: src/js/index.html
 	cp src/js/index.html bin/js.html
 
-bin/game.js: $(js_src) build_js.py puzzles
+bin/game.js: $(js_src) build_js.py $(puz_obj)
 	python build_js.py
 
 # Puzzles
