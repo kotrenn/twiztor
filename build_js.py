@@ -137,6 +137,8 @@ def puzzle_arc(out_file, vals, node_table):
 
 def puzzle_easier(out_file, puz_filename):
     root = puz_filename.split('/')[-1].split('.puz')[0]
+    if root not in easier:
+        return
     for name in easier[root]:
         print >>out_file, '    builder.addEasier(\'' + name + '\');'
     print >>out_file, ''
