@@ -1,0 +1,20 @@
+node q_0_1 yellow 0 1
+node q_2__3 purple 2 -3
+node q_0_0 red 0 0
+node q_0__3 cyan 0 -3
+node q__1__4 yellow -1 -4
+node q_1__1 red 1 -1
+node q_2__2 red 2 -2
+node q__1__3 green -1 -3
+node q_2_0 green 2 0
+node q_2__1 yellow 2 -1
+node q_0__2 blue 0 -2
+node q_1__3 blue 1 -3
+node q_1_0 yellow 1 0
+node q_1__2 purple 1 -2
+node q_1_1 green 1 1
+node q_0__4 green 0 -4
+permutation blue [[q_2__2, q_2__3], [q_2_0, q_2__1], [q_0__2, q_0__3], [q_1__3, q_1__2]]
+permutation green [[q_0_0, q_0_1], [q__1__3, q__1__4], [q_1__1, q_1__2], [q_1_1, q_1_0]]
+permutation yellow [[q_1__2, q_2__2], [q_2__3, q_1__3], [q__1__4, q_0__4], [q_2__1, q_1__1], [q_1_0, q_2_0], [q_0__3, q__1__3]]
+permutation red [[q_1__2, q_0__2], [q_0_1, q_1_1]]

@@ -1,0 +1,14 @@
+node q_0_1 yellow 0 1
+node q_2_0 green 2 0
+node q_0_0 red 0 0
+node q_2__2 red 2 -2
+node q_1__2 purple 1 -2
+node q_1_0 yellow 1 0
+node q_2__1 yellow 2 -1
+node q_1__1 red 1 -1
+node q_1_1 green 1 1
+permutation blue [[q_1__1, q_1__2]]
+permutation magenta [[q_2_0, q_2__1]]
+permutation green [[q_0_0, q_0_1], [q_1_1, q_1_0]]
+permutation yellow [[q_2__1, q_1__1], [q_1__2, q_2__2], [q_1_0, q_2_0]]
+permutation red [[q_0_1, q_1_1]]
