@@ -1,10 +1,24 @@
-node r1c1 red 1 1
-node r1c3 yellow 5 1
-node r1c5 green 9 1
-node r2c2 cyan 3 4
-node r2c4 blue 7 4
-node r3c3 purple 5 7
-permutation red [[r1c1, r1c3, r2c2]]
-permutation green [[r1c3, r1c5, r2c4]]
-permutation blue [[r2c2, r2c4, r3c3]]
-permutation purple [[r1c1, r1c5, r3c3]]
+node p0 red %[tau(12,1)]
+node p1 yellow %[tau(12,5)]
+node p2 green %[tau(12,9)]
+node p3 cyan %[2*tau(12,3)]
+node p4 blue %[2*tau(12,7)]
+node p5 purple %[2*tau(12,11)]
+permutation red [[p0, p2, p5]]
+permutation green [[p1, p4, p2]]
+permutation blue [[p0, p3, p1]]
+permutation purple [[p3, p4, p5]]
+float r %[p_p0.norm()]
+float R %[p_p3.norm()]
+arc circle red p0 %[r] +-+
+arc circle red p2 %[r] +--
+arc circle red p5 %[r] +--
+arc circle green p1 %[r] +-+
+arc circle green p4 %[r] +--
+arc circle green p2 %[r] +--
+arc circle blue p0 %[r] +--
+arc circle blue p3 %[r] +-+
+arc circle blue p1 %[r] +--
+arc circle purple p3 %[R] +-+
+arc circle purple p4 %[R] +--
+arc circle purple p5 %[R] +--

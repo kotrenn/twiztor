@@ -1,9 +1,17 @@
-node coord12 red 1 4
-node coord13 yellow 1 7
-node coord21 green 4 1
-node coord23 blue 4 7
-node coord31 purple 7 1
-node coord32 cyan 7 4
-permutation red [[coord21, coord32, coord23, coord12]]
-permutation green [[coord31, coord23, coord13, coord12]]
-permutation blue [[coord31, coord32, coord13, coord21]]
+node p0 red %[tau(12,1)]
+node p1 yellow %[tau(12,5)]
+node p2 green %[tau(12,9)]
+node p3 cyan %[2*tau(12,3)]
+node p4 blue %[2*tau(12,7)]
+node p5 purple %[2*tau(12,11)]
+permutation red [[p0, p1, p4, p5]]
+permutation green [[p0, p3, p4, p2]]
+permutation blue [[p1, p2, p5, p3]]
+float r %[p_p0.norm()]
+float R %[p_p3.norm()]
+arc circle red p0 %[r] +--
+arc circle red p4 %[R] +--
+arc circle green p2 %[r] +--
+arc circle green p3 %[R] +-+
+arc circle blue p1 %[r] +-+
+arc circle blue p5 %[R] +--
