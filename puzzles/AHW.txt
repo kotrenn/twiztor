@@ -1,0 +1,13 @@
+node p0 red 2 2
+node p1 yellow 4 2
+node p2 purple 2 4
+node p3 cyan 4 4
+node p4 red 0 0
+node p5 yellow 6 0
+node p6 cyan 6 6
+node p7 purple 0 6
+permutation red [[p0, p4, p5, p1]]
+permutation yellow [[p1, p5, p6, p3]]
+permutation green [[p2, p3, p6, p7]]
+permutation blue [[p0, p2, p7, p4]]
+permutation purple [[p0, p1, p3, p2]]
