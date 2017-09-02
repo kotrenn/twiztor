@@ -1,0 +1,15 @@
+float r1 1
+float r2 2
+node p0 red %[r1*tau(10,0)]
+node p1 yellow %[r1*tau(10,2)]
+node p2 green %[r1*tau(10,4)]
+node p3 blue %[r1*tau(10,6)]
+node p4 purple %[r1*tau(10,8)]
+node p5 red %[r2*tau(10,0)]
+node p6 yellow %[r2*tau(10,2)]
+node p7 green %[r2*tau(10,4)]
+node p8 blue %[r2*tau(10,6)]
+node p9 purple %[r2*tau(10,8)]
+permutation red [[p0, p1], [p3, p4], [p2, p7]]
+permutation green [[p0, p4], [p1, p2], [p3, p8]]
+permutation blue [[p0, p5], [p1, p6], [p2, p3], [p4, p9]]

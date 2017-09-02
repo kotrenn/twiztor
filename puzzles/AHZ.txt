@@ -1,0 +1,27 @@
+float r1 1
+float r2 2
+float r3 3
+float r4 4
+node p0 red %[r1*tau(10,0)]
+node p1 red %[r1*tau(10,2)]
+node p2 red %[r1*tau(10,4)]
+node p3 red %[r1*tau(10,6)]
+node p4 red %[r1*tau(10,8)]
+node p5 yellow %[r2*tau(10,0)]
+node p6 yellow %[r2*tau(10,2)]
+node p7 yellow %[r2*tau(10,4)]
+node p8 yellow %[r2*tau(10,6)]
+node p9 yellow %[r2*tau(10,8)]
+node p10 green %[r3*tau(10,5)]
+node p11 green %[r3*tau(10,7)]
+node p12 green %[r3*tau(10,9)]
+node p13 green %[r3*tau(10,1)]
+node p14 green %[r3*tau(10,3)]
+node p15 blue %[r4*tau(10,5)]
+node p16 blue %[r4*tau(10,7)]
+node p17 blue %[r4*tau(10,9)]
+node p18 blue %[r4*tau(10,1)]
+node p19 blue %[r4*tau(10,3)]
+permutation red [[p0, p1], [p3, p4], [p2, p7], [p5, p13], [p6, p14], [p8, p10], [p9, p12], [p11, p16], [p15, p19], [p17, p18]]
+permutation green [[p0, p4], [p1, p2], [p3, p8], [p5, p12], [p6, p13], [p7, p14], [p9, p11], [p10, p15], [p16, p17], [p18, p19]]
+permutation blue [[p0, p5], [p1, p6], [p2, p3], [p4, p9], [p7, p10], [p8, p11], [p12, p17], [p13, p18], [p14, p19], [p15, p16]]
