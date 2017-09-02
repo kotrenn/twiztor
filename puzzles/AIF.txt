@@ -1,0 +1,31 @@
+node p0 red 0 0
+node p1 orange %[-w2]
+node p2 orange %[w0]
+node p3 yellow %[w0-w2]
+node p4 green %[w0-2*w2]
+node p5 green %[2*w0-w2]
+node p6 cyan %[2*w0-2*w2]
+node p7 blue %[2*w0-3*w2]
+node p8 blue %[3*w0-2*w2]
+node p9 purple %[3*w0-3*w2]
+permutation red [[p0, p1, p2], [p3, p4, p5], [p6, p7, p8]]
+permutation blue [[p1, p3, p2], [p4, p6, p5], [p7, p9, p8]]
+float r %[((p_p0+p_p1+p_p2)/3).norm()]
+arc circle red p0 %[r] -+-
+arc circle red p1 %[r] ---
+arc circle red p2 %[r] ---
+arc circle red p3 %[r] -+-
+arc circle red p4 %[r] ---
+arc circle red p5 %[r] ---
+arc circle red p6 %[r] -+-
+arc circle red p7 %[r] ---
+arc circle red p8 %[r] ---
+arc circle blue p1 %[r] ---
+arc circle blue p3 %[r] ---
+arc circle blue p2 %[r] -+-
+arc circle blue p4 %[r] ---
+arc circle blue p6 %[r] ---
+arc circle blue p5 %[r] -+-
+arc circle blue p7 %[r] ---
+arc circle blue p9 %[r] ---
+arc circle blue p8 %[r] -+-
