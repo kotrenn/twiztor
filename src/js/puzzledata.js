@@ -9,6 +9,7 @@ class PuzzleData
 		this.arcMap = [];
 		this.center = new vec2f(0.0, 0.0);
 		this.easierList = [];
+		this.harderList = [];
 	}
 
 	solve()
@@ -61,9 +62,19 @@ class PuzzleData
 		this.easierList.push(puzzleName);
 	}
 
+	addHarder(puzzleName)
+	{
+		this.harderList.push(puzzleName);
+	}
+
 	getEasierList()
 	{
 		return this.easierList;
+	}
+
+	getHarderList()
+	{
+		return this.harderList;
 	}
 	
 	addPermutation(permutation)

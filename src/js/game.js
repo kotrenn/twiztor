@@ -36,6 +36,19 @@ function loadEasier()
 	document.getElementById("easier").innerHTML = easierStr;
 }
 
+function loadHarder()
+{
+	var harderList = g_puzzleData.getHarderList();
+	var harderStr = 'Harder:';
+	for (var i = 0; i < harderList.length; i++)
+	{
+		var harderPuzzle = harderList[i];
+		harderStr += ' <a href="index.html?puzzle=' + harderPuzzle + '">';
+		harderStr += harderPuzzle + '</a>';
+	}
+	document.getElementById("harder").innerHTML = harderStr;
+}
+
 function refreshPuzzle()
 {
 	if (g_puzzleIndex <                    0) g_puzzleIndex = 0;
@@ -44,6 +57,7 @@ function refreshPuzzle()
 	g_puzzleData = g_puzzleList[g_puzzleIndex];
 	g_actionPanel.setPuzzleData(g_puzzleData);
 	loadEasier();
+	loadHarder();
 }
 
 function previousPuzzle()

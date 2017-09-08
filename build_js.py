@@ -35,16 +35,26 @@ def color_lookup(color):
 
 COLOR_NUMS = {v: str(i) for i, v in enumerate(map(color_lookup, COLOR_DATA))}
 
-easier = { 'AAA': [] }
+#easier = { 'AAA': [] }
+easier = { }
+harder = { }
+
+def add_entry(neighbors, key, val):
+    if key not in neighbors:
+        neighbors[key] = []
+    neighbors[key] += [val]
 
 def read_map():
     with open('map.txt', 'r') as f:
         for line in f:
             vals = line.strip().split()
             key = vals[0][:-1]
-            easier[key] = []
+            #easier[key] = []
             for val in vals[1:]:
-                easier[key] += [val]
+                #easier[key] += [val]
+                #harder[val] += [key]
+                add_entry(easier, key, val)
+                add_entry(harder, val, key)
 
 def header(out_file, filename):
     print >>out_file, '// ' + filename
@@ -143,6 +153,14 @@ def puzzle_easier(out_file, puz_filename):
         print >>out_file, '    builder.addEasier(\'' + name + '\');'
     print >>out_file, ''
 
+def puzzle_harder(out_file, puz_filename):
+    root = puz_filename.split('/')[-1].split('.puz')[0]
+    if root not in harder:
+        return
+    for name in harder[root]:
+        print >>out_file, '    builder.addHarder(\'' + name + '\');'
+    print >>out_file, ''
+
 def puzzle(out_file, puz_filename):
     node_table = {}
 
@@ -170,6 +188,7 @@ def puzzle(out_file, puz_filename):
     print >>out_file, '    builder.normalize();'
     print >>out_file, ''
     puzzle_easier(out_file, puz_filename);
+    puzzle_harder(out_file, puz_filename);
     print >>out_file, '    return builder.getPuzzleData();'
     print >>out_file, '}'
                             

@@ -141,4 +141,9 @@ class PuzzleBuilder
 	{
 		this.puzzleData.addEasier(puzzleName);
 	}
+
+	addHarder(puzzleName)
+	{
+		this.puzzleData.addHarder(puzzleName);
+	}
 }
