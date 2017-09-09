@@ -1,11 +1,14 @@
 import os, sys
 
 center = sys.argv[1]
+center = center.split('/')[-1]
+center = center.split('.')[0]
+center = center.split('_')[1]
 
-GRAPH_SIZE = 3000
-BOX_SIZE = 50
+GRAPH_SIZE = 500
+BOX_SIZE = 100
 
-local_nodes = set([])
+local_nodes = set([center])
 
 nodes = set([])
 for x in os.listdir('puzzles'):
@@ -21,8 +24,12 @@ with open('map.txt', 'r') as f:
         head = vals[0][:-1] # strip the ':'
         tail = vals[1:]
         if center in [head] + tail:
-            edges[head] = tail
-            local_nodes |= set([head] + tail)
+            if center in tail:
+                edges[head] = [center]
+                local_nodes |= set([head])
+            else:
+                edges[head] = tail
+                local_nodes |= set([head] + tail)
 
 with open('map.dot', 'w') as f:
     print >>f, 'digraph G'
@@ -63,12 +70,12 @@ with open('out.dot', 'r') as f:
             pos[1] = ratio_h * (graph_dims[3] - pos[1]) - 0.5 * BOX_SIZE
             locations[cur_node] = pos
 
-with open('bin/map_' + center + '.txt', 'w') as f:
-    print >>f, '    <image src="map_' + center + '.png" usemap="#twiztormap">'
-    print >>f, '    <map name="localmap">'
+with open('bin/maps/map_' + center + '.html', 'w') as f:
+    print >>f, '<image src="images/map_' + center + '.png" usemap="#localmap">'
+    print >>f, '<map name="localmap">'
     for node in sorted(locations):
         pos = locations[node]
         coords = ','.join(map(str, pos + [BOX_SIZE + pos[0], BOX_SIZE + pos[1]]))
         url = 'index.html?puzzle=' + node
-        print >>f, '      <area shape="rect" coords="' + coords + '" href="' + url + '" alt="' + node + '">'
-    print >>f, '    </map>'
+        print >>f, '<area shape="rect" coords="' + coords + '" href="' + url + '" alt="' + node + '">'
+    print >>f, '</map>'

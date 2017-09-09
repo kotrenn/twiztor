@@ -49,6 +49,19 @@ function loadHarder()
 	document.getElementById("harder").innerHTML = harderStr;
 }
 
+function loadLocalMap()
+{
+	var localMapList = g_puzzleData.getLocalMap();
+	var mapStr = '<center>';
+	for (var i = 0; i < localMapList.length; i++)
+	{
+		var localMap = localMapList[i];
+		mapStr += localMap;
+	}
+	mapStr += '</center>';
+	document.getElementById("localMap").innerHTML = mapStr;
+}
+
 function refreshPuzzle()
 {
 	if (g_puzzleIndex <                    0) g_puzzleIndex = 0;
@@ -58,6 +71,7 @@ function refreshPuzzle()
 	g_actionPanel.setPuzzleData(g_puzzleData);
 	loadEasier();
 	loadHarder();
+	loadLocalMap();
 }
 
 function previousPuzzle()

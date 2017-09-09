@@ -10,6 +10,7 @@ js_src := $(wildcard src/js/*.js)
 puz_src := $(wildcard puzzles/*.txt)
 puz_obj := $(puz_src:%.txt=%.puz)
 puz_png := $(puz_src:puzzles/%.txt=bin/images/%.png)
+js_maps := $(puz_src:puzzles/%.txt=bin/maps/map_%.html)
 
 WIN_LINKS = src/glew.c -lm -lmingw32 -lSDL2main -lSDL2 -lglew32 -lopengl32 -lglu32 -DGLEW_STATIC
 LIN_LINKS = -lm -lSDL2 -lSDL2_image -lSDL2_mixer -lGL -lGLU -lGLEW
@@ -57,8 +58,11 @@ js-game: bin/js.html bin/game.js puzzles
 bin/js.html: src/js/index.html
 	cp src/js/index.html bin/js.html
 
-bin/game.js: $(js_src) build_js.py $(puz_obj)
+bin/game.js: $(js_src) build_js.py $(puz_obj) $(js_maps)
 	python build_js.py
+
+bin/maps/map_%.html: map.txt build_local_map.py $(puz_png)
+	python build_local_map.py $@
 
 # Puzzles
 puzzles: puzzlelist.txt

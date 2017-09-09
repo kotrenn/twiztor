@@ -35,7 +35,6 @@ def color_lookup(color):
 
 COLOR_NUMS = {v: str(i) for i, v in enumerate(map(color_lookup, COLOR_DATA))}
 
-#easier = { 'AAA': [] }
 easier = { }
 harder = { }
 
@@ -49,10 +48,7 @@ def read_map():
         for line in f:
             vals = line.strip().split()
             key = vals[0][:-1]
-            #easier[key] = []
             for val in vals[1:]:
-                #easier[key] += [val]
-                #harder[val] += [key]
                 add_entry(easier, key, val)
                 add_entry(harder, val, key)
 
@@ -161,6 +157,13 @@ def puzzle_harder(out_file, puz_filename):
         print >>out_file, '    builder.addHarder(\'' + name + '\');'
     print >>out_file, ''
 
+def puzzle_local_map(out_file, puz_filename):
+    root = puz_filename.split('/')[-1].split('.puz')[0]
+    with open('bin/maps/map_' + root + '.html', 'r') as f:
+        for line in f:
+            print >>out_file, '    builder.addLocalMap(\'' + line[:-1] + '\');'
+    print >>out_file, ''
+
 def puzzle(out_file, puz_filename):
     node_table = {}
 
@@ -187,8 +190,9 @@ def puzzle(out_file, puz_filename):
     print >>out_file, '    builder.recenter();'
     print >>out_file, '    builder.normalize();'
     print >>out_file, ''
-    puzzle_easier(out_file, puz_filename);
-    puzzle_harder(out_file, puz_filename);
+    puzzle_easier(out_file, puz_filename)
+    puzzle_harder(out_file, puz_filename)
+    puzzle_local_map(out_file, puz_filename)
     print >>out_file, '    return builder.getPuzzleData();'
     print >>out_file, '}'
                             

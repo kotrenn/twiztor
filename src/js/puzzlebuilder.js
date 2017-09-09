@@ -146,4 +146,9 @@ class PuzzleBuilder
 	{
 		this.puzzleData.addHarder(puzzleName);
 	}
+
+	addLocalMap(mapStr)
+	{
+		this.puzzleData.addLocalMap(mapStr);
+	}
 }

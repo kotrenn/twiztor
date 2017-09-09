@@ -10,6 +10,7 @@ class PuzzleData
 		this.center = new vec2f(0.0, 0.0);
 		this.easierList = [];
 		this.harderList = [];
+		this.localMap = [];
 	}
 
 	solve()
@@ -67,6 +68,11 @@ class PuzzleData
 		this.harderList.push(puzzleName);
 	}
 
+	addLocalMap(mapStr)
+	{
+		this.localMap.push(mapStr);
+	}
+
 	getEasierList()
 	{
 		return this.easierList;
@@ -75,6 +81,11 @@ class PuzzleData
 	getHarderList()
 	{
 		return this.harderList;
+	}
+
+	getLocalMap()
+	{
+		return this.localMap;
 	}
 	
 	addPermutation(permutation)
